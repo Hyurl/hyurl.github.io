@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Docs: Writing Socket Controllers | Cool-Node</title>
+    <link rel="stylesheet" href="/css/highlightjs-theme/monokai.css" />
+    <link rel="stylesheet" href="/css/vivify.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+    <header class="header vivify popInTop">
+        <div class="logo">
+            <a href="/">Cool-Node</a>
+        </div>
+        <div class="change-lang">
+            <a href="?lang=zh">中文</a>
+        </div>
+        <div class="navbar">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/Docs">Docs</a></li>
+            </ul>
+        </div>
+        <div class="navbar-toggle">
+            <button>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+    </header>
+    <div class="github-brand vivify fadeIn">
+        <a href="https://github.com/Hyurl/cool-node" target="_blank" class="btn btn-default">
+            <svg aria-hidden="true" class="octicon octicon-mark-github" version="1.1" viewBox="0 0 16 16" style="width:16px;height:16px;margin-bottom:-3px;">
+                <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path>
+            </svg> Fork Me on GitHub
+        </a>
+    </div>
+    <div class="container vivify fadeIn">
+        <aside class="sidebar vivify fadeIn">
+            <ul>
+                <li><a href="/Docs/GettingStarted">Getting Started</a></li>
+                <li>
+                    <a href="javascript:;">The Basics</a>
+                    <ul>
+                        <li><a href="/Docs/Concepts">Concepts</a></li>
+                        <li><a href="/Docs/WritingHttpControllers">Writing HTTP Controllers</a></li>
+                        <li><a href="/Docs/WritingSocketControllers">Writing Socket Controllers</a></li>
+                        <li><a href="/Docs/DesigningViews">Designing Views</a></li>
+                    </ul>
+                </li>
+                <li><a href="/Docs/Modelar">Modelar ORM</a></li>
+                <li><a href="/Docs/Mail">Sending E-Mail</a></li>
+                <li><a href="/Docs/More">More</a></li>
+                <li><a href="/Docs/MigrationGuide">Migration Guide</a></li>
+            </ul>
+        </aside>
+        <article class="content vivify fadeIn">
+            <h2 id="Create-a-Socket-Controller">
+                <a class="heading-anchor" href="#Create-a-Socket-Controller">
+                    <svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16">
+                        <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+                    </svg>
+                </a>Create a Socket Controller
+            </h2>
+            <p>Cool-Node use <strong>Socket.io</strong> to handle socket communications, you can check out more information about it at <a href="https://socket.io/">socket.io</a>.</p>
+            <p>Writing a socket controller is pretty much the same as writing a HTTP controller, in fact, both the HttpController and the SocketController are subclasses of the basic Controller, so they share some basic properties and methods.
+            </p>
+            <p>Like writing a HTTP controller, firstly, you create a JavaScript file at
+                <code>/App/Controllers/</code> and name it as <code>SocketTest.js</code>, and code its content with a class definition like this:</p>
+            <pre>
+<code class="lang-javascript hljs">const <span class="hljs-type">SocketController</span> = require(<span class="hljs-string">"./SocketController"</span>);
+
+module.exports = <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">SocketController</span></span>{}</code>
+            </pre>
+            <p>Very similar to writing a HTTP controller, isn&#39;t it? Of course it is. And many features that a HTTP controller has can also be used in a socket controller. Like returning values will be automatically sent to the client, all actions will
+                be handle in a Promise, etc. Even viewing system can also be used in socket controllers as well.</p>
+            <p>But since socket controllers don&#39;t have a RESTful API, and don&#39;t require a request type, when calling from a client socket, you must give the full name of a socket controller method.</p>
+            <p>Oh, by the way, since the socket controller use <strong>Socket.io</strong>, so at the client side, you should use socket.io as well. Under the directory
+                <code>/App/Assets/js/</code>, there is a version of socket.io client, but in case of it is out of date, you can copy the newest one at
+                <code>/node_modules/socket.io-client/</code> and replace it.</p>
+            <p>The WebSocket server listens to the same port as HTTP server does, so on the client side, just connect to the same protocol and the same host:</p>
+            <pre>
+<code class="lang-javascript hljs"><span class="hljs-attribute">var socket</span> = io(<span class="hljs-string">"http://localhost"</span>);</code>
+            </pre>
+            <p>This is a more complete example:</p>
+            <pre>
+<code class="lang-javascript hljs">const <span class="hljs-type">SocketController</span> = require(<span class="hljs-string">"./SocketController"</span>);
+
+module.exports = <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">SocketController</span></span>{
+    <span class="hljs-comment">/**
+     * The socket controller will sent data back to the client with the same 
+     * event name which is SocketTest/showHello in this case, so on the client
+     * side, you should listen to the same event name as you will send data 
+     * through it. This method can be accessed like this:
+     * socket.on("SocketTest/showHello", function(data){
+     *     console.log(data); //data will be 'Hello, World!'.
+     * }).emit("SocketTest/showHello");
+     */</span>
+    showHello(){
+        <span class="hljs-keyword">return</span> <span class="hljs-string">"Hello, World!"</span>;
+    }
+
+    <span class="hljs-comment">/**
+     * All socket controller methods accept two parameters:
+     * `data` the data sent from the client side.
+     * `socket` the corresponding socket object.
+     * This method can be accessed like this:
+     * socket.on("SocketTest/sayHello", function(data){
+     *     console.log(data); //data will be 'Hello, Client!'.
+     * }).emit("SocketTest/sayHello", "Hello, Server");
+     */</span>
+    sayHello(data, socket){
+        console.log(data); <span class="hljs-comment">//data will be 'Hello, Server'.</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-string">"Hello, Client"</span>;
+    }
+}</code>
+            </pre>
+            <p>When the server starts, the framework will look up all available methods in a controller, if you don&#39;t want some method be accessed by clients, just name it beginning with an <code>_</code>, such a method will seem as private and will
+                be filtered.
+            </p>
+            <p>If you are not familiar with Socket.io, I suggest you have a look at
+                <a href="http://socket.io">socket.io</a>.</p>
+            <h2 id="Send-Data-with-a-Common-Structure">
+                <a class="heading-anchor" href="#Send-Data-with-a-Common-Structure">
+                    <svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16">
+                        <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+                    </svg>
+                </a>Send Data with a Common Structure
+            </h2>
+            <p>There are two methods in the Controller class (both HTTP and socket), you can use them to send successful or failed message to the client.</p>
+            <h3 id="controller_success">
+                <a class="heading-anchor" href="#controller_success">
+                    <svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16">
+                        <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+                    </svg>
+                </a>controller.success()
+            </h3>
+            <p><em>Sends successful action results to the response context.</em></p>
+            <p><strong>parameters:</strong></p>
+            <ul>
+                <li><code>data</code> The data that needs to be send.</li>
+                <li><code>[code]</code> A code represented the status of the action.</li>
+            </ul>
+            <p><strong>return:</strong></p>
+            <p>Returns a Promise, and the only argument passed to the callback of <code>then()</code> is a object which carries these information:</p>
+            <ul>
+                <li><code>success</code> Indicates if the action is successful, always true.</li>
+                <li><code>data</code> The same <code>data</code> given above.</li>
+                <li><code>code</code> The same <code>code</code> given above.</li>
+            </ul>
+            <h3 id="controller_error">
+                <a class="heading-anchor" href="#controller_error">
+                    <svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16">
+                        <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+                    </svg>
+                </a>controller.error()
+            </h3>
+            <p><em>Sends failed action results to the response context.</em></p>
+            <p><strong>parameters:</strong></p>
+            <ul>
+                <li><code>msg</code> A message the indicates the failed reason.</li>
+                <li><code>[code]</code> A code represented the status of the action.</li>
+            </ul>
+            <p><strong>return:</strong></p>
+            <p>Returns a Promise, and the only argument passed to the callback of <code>then()</code> is a object which carries these information:</p>
+            <ul>
+                <li><code>success</code> Indicates if the action is successful, always false.</li>
+                <li><code>msg</code> The same <code>msg</code> given above.</li>
+                <li><code>code</code> The same <code>code</code> given above.</li>
+            </ul>
+            <pre>
+<code class="lang-javascript hljs">const <span class="hljs-type">SocketController</span> = require(<span class="hljs-string">"./SocketController"</span>);
+
+module.exports = <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">SocketController</span></span>{
+    showGood(){
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.success([<span class="hljs-string">"Hello"</span>, <span class="hljs-string">"World"</span>]);
+    }
+
+    showBad(){
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.error(<span class="hljs-string">"Error reason."</span>);
+    }
+}</code>
+            </pre>
+            <p>Now we&#39;ve talked about how to write controllers, next, let me show you how to write a view file.</p>
+
+        </article>
+    </div>
+
+    <footer>
+        <p class="text-center">
+            <span id="copyright">©2017
+                <a href="http://cool-node.hyurl.com:3000/">Cool Node</a> <a href="https://github.com/Hyurl/cool-node/blob/master/update-log.md">1.2.4</a> based on
+                <a href="http://nodejs.org/">Node.js</a> 6.0+.
+            </span>
+            <span id="license">Licensed under the
+                <a target="_blank" href="http://spdx.org/licenses/MIT.html">MIT License</a>.
+            </span>
+            <span id="icp">
+                <a href="http://www.miitbeian.gov.cn" target="_blank" style="color:#777">桂ICP备15001693号</a>
+            </span>
+        </p>
+        <p class="text-center">See Other Projects:
+            <a href="http://modelar.hyurl.com/">Modelar</a> |
+            <a href="http://modphp.hyurl.com/">ModPHP</a> |
+            <a href="http://modphp.hyurl.com/ModCMS/">ModCMS</a> |
+            <a href="https://github.com/hyurl/type-storage">TypeStorage</a>
+        </p>
+    </footer>
+
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/soft-loader.js"></script>
+    <script src="/js/javascript.js"></script>
+</body>
+
+</html>
