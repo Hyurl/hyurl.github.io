@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Docs: Migration Guide | Cool-Node</title>
+    <title>Docs: Concepts | Cool-Node</title>
     <link rel="stylesheet" href="/cool-node/css/highlightjs-theme/monokai.css" />
     <link rel="stylesheet" href="/cool-node/css/vivify.min.css">
     <link rel="stylesheet" href="/cool-node/css/style.css">
@@ -17,12 +17,12 @@
             <a href="/cool-node/">Cool-Node</a>
         </div>
         <div class="change-lang">
-            <a href="/cool-node/zh/Docs/MigrationGuide">中文</a>
+            <a href="?lang=zh">中文</a>
         </div>
         <div class="navbar">
             <ul>
                 <li><a href="/cool-node/">Home</a></li>
-                <li><a href="/cool-node/Docs">Docs</a></li>
+                <li><a href="/cool-node/cool-node/Docs">Docs</a></li>
             </ul>
         </div>
         <div class="navbar-toggle">
@@ -60,33 +60,7 @@
             </ul>
         </aside>
         <article class="content vivify fadeIn">
-            <h2 id="Migrate-to-1_2_0-from-1_1_x-or-1_0_x">
-                <a class="heading-anchor" href="#Migrate-to-1_2_0-from-1_1_x-or-1_0_x">
-                    <svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16">
-                        <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
-                    </svg>
-                </a>Migrate to 1.2.0 from 1.1.x or 1.0.x.
-            </h2>
-            <p>For convenience reasons, Cool-Node 1.2.0 changed the structure of the project, in the new version, you don&#39;t need to copy all the files from
-                <code>node_modules/cool-node</code> to the root directory of the website any more, and you&#39;re able to create your own entry file.</p>
-            <p>So if you&#39;ve installed version 1.1.x or 1.0.x, when updating to the new version, you have to do some work to make your program fits the new requisites.
-            </p>
-            <ol>
-                <li>Use the command <code>npm update cool-node</code> to update and download new files.</li>
-                <li>Delete the folder <code>Core</code> in the root directory of the website.</li>
-                <li>Edit entry file <code>index.js</code>, change its contents to
-                    <code>const CoolNode = require(&quot;cool-node&quot;);</code>.</li>
-                <li>Edit <code>App[.subdomain]/Controllers/HttpController.js</code>, change the contents to
-                    <code>module.exports = require(&quot;cool-node/Core/Controllers/HttpController&quot;);</code>.</li>
-                <li>Edit <code>App[.subdomain]/Controllers/SocketController.js</code>, change the contents to
-                    <code>module.exports = require(&quot;cool-node/Core/Controllers/SocketController&quot;);</code>.</li>
-                <li>Edit <code>App[.subdomain]/Modles/Model.js</code>, change the contents to
-                    <code>module.exports = require(&quot;modelar/Model&quot;);</code>.</li>
-                <li>Edit <code>App[.subdomain]/Modles/User.js</code>, change the the first line to
-                    <code>const _User = require(&quot;modelar/User&quot;);</code>.</li>
-                <li>Copy <code>node_modules/cool-node/App-example</code> to the root directory of the project.
-                </li>
-            </ol>
+
         </article>
     </div>
     <div id="anchor-pin">

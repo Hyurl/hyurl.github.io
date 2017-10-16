@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Docs: Modelar ORM | Cool-Node</title>
+    <title>Docs: Concepts | Cool-Node</title>
     <link rel="stylesheet" href="/cool-node/css/highlightjs-theme/monokai.css" />
     <link rel="stylesheet" href="/cool-node/css/vivify.min.css">
     <link rel="stylesheet" href="/cool-node/css/style.css">
@@ -17,12 +17,12 @@
             <a href="/cool-node/">Cool-Node</a>
         </div>
         <div class="change-lang">
-            <a href="/cool-node/zh/Docs/Modelar">中文</a>
+            <a href="?lang=zh">中文</a>
         </div>
         <div class="navbar">
             <ul>
                 <li><a href="/cool-node/">Home</a></li>
-                <li><a href="/cool-node/Docs">Docs</a></li>
+                <li><a href="/cool-node/cool-node/Docs">Docs</a></li>
             </ul>
         </div>
         <div class="navbar-toggle">
@@ -60,89 +60,7 @@
             </ul>
         </aside>
         <article class="content vivify fadeIn">
-            <h2 id="Brief-Introduction-of-Modelar">
-                <a class="heading-anchor" href="#Brief-Introduction-of-Modelar">
-                    <svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16">
-            <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
-        </svg>
-                </a>Brief Introduction of Modelar
-            </h2>
-            <p>Modelar is an expressive Model with Promise functionality and Query constructor. It provides a very simple API to manipulate database records, so you can use very little code to accomplish sophisticated missions in a very short time. For more
-                details, please visit
-                <a href="http://modelar.hyurl.com">modelar.hyurl.com</a>.</p>
-            <h2 id="Create-a-Model">
-                <a class="heading-anchor" href="#Create-a-Model">
-                    <svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16">
-                    <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
-                </svg>
-                </a>Create a Model
-            </h2>
-            <p>To create a model, first, create a JavaScript file in <code>/App/Models/</code>. In this example, I will create an Article model, and show you how to use it in a controller.
-            </p>
-            <pre>
-<code class="lang-javascript hljs"><span class="hljs-comment">// /App/Models/Article.js</span>
-const <span class="hljs-type">Model</span> = require(<span class="hljs-string">"./Model"</span>);
 
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Article</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Model</span> </span>{
-    constructor(data = {}) {
-        <span class="hljs-keyword">super</span>(data, {
-            table: <span class="hljs-string">"articles"</span>,
-            primary: <span class="hljs-string">"id"</span>,
-            fields: [ <span class="hljs-string">"id"</span>, <span class="hljs-string">"title"</span>, <span class="hljs-string">"content"</span> ],
-            searchable: [ <span class="hljs-string">"title"</span>, <span class="hljs-string">"content"</span> ]
-        });
-    }
-}
-
-module.exports = <span class="hljs-type">Article</span>;</code>
-            </pre>
-            <pre>
-<code class="lang-javascript hljs"><span class="hljs-comment">// /App/Controllers/Article.js</span>
-const HttpController = require(<span class="hljs-string">"./HttpController"</span>);
-const Article = require(<span class="hljs-string">"../Models/Article"</span>);
-
-module.exports = <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">extends</span> <span class="hljs-title">HttpController</span> </span>{
-    <span class="hljs-comment">// e.g. GET /Http/Article/id/1</span>
-    index(req){
-        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.<span class="hljs-keyword">get</span>(req).then(article =&gt; {
-            <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.view({
-                title: article.title,
-                content: article.content
-            });
-        });
-    }
-
-    <span class="hljs-comment">// POST /Http/Article</span>
-    create(req) {
-        <span class="hljs-keyword">return</span> Article.use(req.db).insert(req.body);
-    }
-
-    <span class="hljs-comment">// e.g. GET /Http/Article/get/id/1</span>
-    <span class="hljs-keyword">get</span>(req) {
-        <span class="hljs-keyword">if</span> (!req.params.id) {
-            <span class="hljs-keyword">throw</span> new Error(<span class="hljs-string">"400 Bad Request!"</span>);
-        }
-        <span class="hljs-keyword">return</span> Article.use(req.db).<span class="hljs-keyword">get</span>(req.params.id);
-    }
-
-    <span class="hljs-comment">// e.g. PUT /Http/Article/id/1</span>
-    update(req) {
-        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.<span class="hljs-keyword">get</span>(req).then(article =&gt; {
-            <span class="hljs-keyword">return</span> article.update(req.body);
-        });
-    }
-
-    <span class="hljs-comment">// e.g. DELETE /Http/Article/id/1</span>
-    delete(req) {
-        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.<span class="hljs-keyword">get</span>(req).then(article =&gt; {
-            <span class="hljs-keyword">return</span> article.delete();
-        });
-    }
-}</code>
-            </pre>
-            <p>Isn&#39;t it cool? Of course it is. But, you have to visit
-                <a href="http://modelar.hyurl.com">modelar.hyurl.com</a> for more details about Modelar. I assure you, once you are familiar with it, you will love it.
-            </p>
         </article>
     </div>
     <div id="anchor-pin">

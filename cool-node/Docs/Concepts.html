@@ -17,7 +17,7 @@
             <a href="/cool-node/">Cool-Node</a>
         </div>
         <div class="change-lang">
-            <a href="/cool-node/zh/Docs/Concepts">中文</a>
+            <a href="?lang=zh">中文</a>
         </div>
         <div class="navbar">
             <ul>
@@ -60,102 +60,7 @@
             </ul>
         </aside>
         <article class="content vivify fadeIn">
-            <h2 id="Project-Structure">
-                <a class="heading-anchor" href="#Project-Structure">
-                    <svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16">
-                        <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
-                    </svg>
-                </a>Project Structure
-            </h2>
-            <p>A typical Cool-Node project has a structure like this:</p>
-            <pre style="background: #ddd;padding: 10px;color: #333;font-size: 14px;">
-/ --------------------- Indicates the root directory of the project.
-|-- App/ -------------- Contains files of an App.
-|   |-- Assets/ ------- Contains files which can be directly accessed from 
-|   |                   clients, like css, js, etc.
-|   |-- Controllers/ -- Contains all controller files.
-|   |   |-- Home.js --- A controller that listens to the root path of the URL.
-|   |
-|   |-- Models/ ------- Contains all model files.
-|   |-- Views/ -------- Contains all view files.
-|
-|-- Core/ ------------- Contains all Cool-Node core files (do not modify),
-|                       This folder has been removed since 1.2.0.
-|
-|-- Middleware/ -------- Contains all middleware files.
-|   |-- http/ ---------- A folder contains HTTP middleware files.
-|   |-- socket/ -------- A folder contains socket middleware files.
-|
-|-- node_modules/ ------ All node modules are stored here.
-|
-|-- config.js ---------- Configurations of the project.
-|-- index.js ----------- Entry file of the program.
-|-- package.json ------- A file manages the project and dependencies.
-            </pre>
 
-            <p>
-                This tutorial is based on Node.js 6.0+, which is not yet support all features of ECMAScript 2015, so if you want to learn about something like <code>async</code>,
-                <code>await</code> or <code>import</code>, you may want to learn them on
-                <a href="https://developer.mozilla.org">MDN</a> yourself.
-            </p>
-            <h2 id="Reserved-Properties">
-                <a class="heading-anchor" href="#Reserved-Properties">
-                    <svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16">
-                        <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
-                    </svg>
-                </a>Reserved Properties
-            </h2>
-            <p>In a Cool-Node project, there are several properties reserved, you can use them, but <strong>DO NOT</strong> try to reassign them.</p>
-            <ul>
-                <li><code>global.ROOT</code> A path string indicates the project root directory.</li>
-                <li><code>global.config</code> Configurations of the project.</li>
-                <li><code>global.wsServer</code> WebSocket server listens <code>ws</code> protocol <em>(Since 1.1.0)</em>.</li>
-                <li><code>global.wssServer</code> WebSocket server listens <code>wss</code> protocol <em>(Since 1.1.0)</em>.</li>
-                <li><code>req.session</code> The session of the current request.</li>
-                <li><code>req.subdomain</code> The subdomain of the current request.</li>
-                <li><code>req.db</code> A database instance from the Modelar ORM.</li>
-                <li><code>socket.session</code> The session of the current socket.</li>
-                <li><code>socket.subdomain</code> The subdomain of the current socket.</li>
-                <li><code>socket.db</code> A database instance from the Modelar ORM.</li>
-            </ul>
-            <p>You can see other <code>req</code> properties in the Node.js API documentation at
-                <a href="https://nodejs.org">nodejs.org</a> and the Express API documentation at
-                <a href="http://expressjs.com/">expressjs.com</a>, and other <code>socket</code> properties in Socket.io API documentation at <a href="https://socket.io/">socket.io</a>.</p>
-            <p>Also, there are some reserved properties in the project, they will mean something if you assign values to them.</p>
-            <ul>
-                <li><code>req.session.UID</code> The authorized user ID of the current request.</li>
-                <li><code>req.user</code> The authorized user of the current request. If you have assigned
-                    <strong>req.session.UID</strong>, this property will be automatically assigned.</li>
-                <li><code>socket.session.UID</code> The authorized user ID of the current socket peer.</li>
-                <li><code>socket.user</code> The authorized user of the current socket peer. If you have assigned <strong>socket.session.UID</strong>, this property will be automatically assigned.
-                </li>
-            </ul>
-            <h3 id="More-Details-about-Sessions-and-Database-Connections">
-                <a class="heading-anchor" href="#More-Details-about-Sessions-and-Database-Connections">
-                    <svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16">
-                        <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
-                    </svg>
-                </a>More Details about Sessions and Database Connections
-            </h3>
-            <p>
-                Another tip for sessions, since Cool-Node is a cross-protocol program, the session in a HTTP request is actually the session in a corresponding socket. So when you assigning a property to the session object, whether from HTTP or socket, the other one
-                will also be affected. Meaning, when you logged-in from a HTTP request, the socket will be logged-in as well, and vise versa.
-            </p>
-            <p>
-                And since <code>req.user</code> is only available in the current request, you should always assign <code>req.session.UID</code> instead, if you are using session to recognize the user. But if you are using other techniques like access
-                token, then you should assign <code>req.user</code> and <code>socket.user</code> in a middleware instead.
-            </p>
-            <p>
-                Don&#39;t worry that when you call <code>req.db</code> or <code>socket.db</code>, a new database connection will be created, it won&#39;t. Modelar ORM handle database connections very efficient, connections won&#39;t be established until
-                you explicitly calling
-                <code>db.connect()</code> of implicitly created by executing a query.
-            </p>
-            <p>
-                Since version 1.1.0, <code>req.db</code> and <code>socket.db</code> can be reassigned or pre-defined, if you don&#39;t assign a value to them, then a default value will be used when accessing them.
-            </p>
-            <p>
-                Also, all connections will be recycled to a internal pool and wait for the next time acquiring after a HTTP response or a socket message is sent.
-            </p>
         </article>
     </div>
     <div id="anchor-pin">

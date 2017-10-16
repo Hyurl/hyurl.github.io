@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Docs: Writing HTTP Controllers | Cool-Node</title>
+    <title>Docs: Concepts | Cool-Node</title>
     <link rel="stylesheet" href="/cool-node/css/highlightjs-theme/monokai.css" />
     <link rel="stylesheet" href="/cool-node/css/vivify.min.css">
     <link rel="stylesheet" href="/cool-node/css/style.css">
@@ -17,12 +17,12 @@
             <a href="/cool-node/">Cool-Node</a>
         </div>
         <div class="change-lang">
-            <a href="/cool-node/zh/Docs/WritingHttpControllers">中文</a>
+            <a href="?lang=zh">中文</a>
         </div>
         <div class="navbar">
             <ul>
                 <li><a href="/cool-node/">Home</a></li>
-                <li><a href="/cool-node/Docs">Docs</a></li>
+                <li><a href="/cool-node/cool-node/Docs">Docs</a></li>
             </ul>
         </div>
         <div class="navbar-toggle">
@@ -60,184 +60,6 @@
             </ul>
         </aside>
         <article class="content vivify fadeIn">
-            <h2 id="Create-a-HTTP-Controller">
-                <a class="heading-anchor" href="#Create-a-HTTP-Controller">
-                    <svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16">
-                        <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
-                    </svg>
-                </a>Create a HTTP Controller
-            </h2>
-            <p>Cool-Node use <strong>Express</strong> to handle HTTP requests, you can check out more information about it at <a href="http://expressjs.com/">expressjs.com</a>.</p>
-            <p>To create a controller, you need to first create a JavaScript file in
-                <code>/App/Controllers/</code>, in this example, I will create a file named
-                <code>HttpTest.js</code>. Unlike other frameworks, I won&#39;t recommend you to name it like
-                <del>TestController.js</del>, and for convenience, you should always leave the
-                <em>Controller</em> part away in a Cool-Node project.</p>
-            <p>This is a simple definition of the HttpTest controller:</p>
-            <pre>
-                <code class="lang-javascript hljs">const <span class="hljs-type">HttpController</span> = require(<span class="hljs-string">"./HttpController"</span>);
-module.exports = <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">HttpController</span></span>{}</code>
-            </pre>
-            <p>At the first line, you need to import the <code>HttpController</code>, and this file must export a class that extends HttpController, you don&#39;t need to give it a name, just leave it anonymous and it is ok.</p>
-            <p>This controller doesn&#39;t do anything now, the next step I will show you how to define methods that are fulfilled with the <strong>auto-routing system</strong>.</p>
-            <h2 id="Auto-Routing-System">
-                <a class="heading-anchor" href="#Auto-Routing-System">
-                    <svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16">
-                        <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
-                    </svg>
-                </a>Auto-Routing System
-            </h2>
-            <p>Most frameworks require you to define routes manually, this is good to control actions, but sometimes, when your project getting big, this will become a very heavy and boring job.</p>
-            <p>So, the most important feature that Cool-Node provides is, <strong>auto-routing</strong>
-                <strong>handler</strong>. When you&#39;re writing controllers, you don&#39;t have to explicitly define routes, the moment you define a controller method, a route will be implicitly defined for you, all you have to do is following this
-                directive.
-            </p>
-            <blockquote>
-                <p>Define a method in the controller class that its name begins with a lower-case request method.</p>
-            </blockquote>
-            <p>Isn&#39;t it simple? let me show you:</p>
-            <pre>
-                <code class="lang-javascript hljs"><span class="hljs-keyword">const</span> HttpController = <span class="hljs-built_in">require</span>(<span class="hljs-string">"./HttpController"</span>);
-
-<span class="hljs-built_in">module</span>.exports = <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">HttpController</span></span>{
-    <span class="hljs-comment">/**
-     * This method can be accessed through the URL like:
-     * http://localhost/HttpTest/ShowHello
-     */</span>
-    getShowHello(){
-        <span class="hljs-comment">// The returning value will be automatically sent back to the client.</span>
-        <span class="hljs-comment">// In a HTTP controller, If a null or undefined is returned, a </span>
-        <span class="hljs-comment">// response without body will be sent.</span>
-        <span class="hljs-keyword">return</span> <span class="hljs-string">"Hello, World!"</span>;
-    }
-
-    <span class="hljs-comment">/**
-     * All HTTP controller methods accept two parameters:
-     * `req` the corresponding request object;
-     * `res` the corresponding response object.
-     * This method can be accessed through the URL via a POST request:
-     * http://localhost/HttpTest/RepeatWhatISaid
-     */</span>
-    postRepeatWhatISaid(req, res){
-        <span class="hljs-keyword">return</span> <span class="hljs-string">"You said: "</span> + <span class="hljs-built_in">JSON</span>.stringify(req.body);
-    }
-
-    <span class="hljs-comment">/**
-     * You can pass more paths to the URL, anything after the controller and 
-     * the action will be treated as request parameters. The following URL 
-     * will call the method, and pass parameters `{id: 1, name: 'test'}`.
-     * http://localhost/HttpTest/ShowParams/id/1/name/test
-     */</span>
-    getShowParams(req){
-        <span class="hljs-comment">//If an object is returned, then a json response will be sent to the </span>
-        <span class="hljs-comment">//client.</span>
-        <span class="hljs-keyword">return</span> req.params; <span class="hljs-comment">//{id: 1, name: 'test'}</span>
-    }
-
-    <span class="hljs-comment">/**
-     * You can also return a Promise, actually, all controller methods, when 
-     * called by a client request, are handled in a Promise, so you can do 
-     * whatever you want in the method.
-     */</span>
-    getShowPromisedData(){
-        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>)=&gt;</span>{
-            setTimeout(<span class="hljs-function"><span class="hljs-params">()</span>=&gt;</span>{
-                <span class="hljs-comment">//This message will be sent after 1 second timeout.</span>
-                resolve(<span class="hljs-string">"Hello, World!"</span>);
-            }, <span class="hljs-number">1000</span>);
-        });
-    }
-}</code>
-            </pre>
-            <p>Now you&#39;ve already learn the most important part of the HttpController, but, this is more, let&#39;s continue on.</p>
-            <h2 id="Showing-Index-Page-and-RESTful-API">
-                <a class="heading-anchor" href="#Showing-Index-Page-and-RESTful-API">
-                    <svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16">
-                        <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
-                    </svg>
-                </a>Showing Index Page and RESTful API
-            </h2>
-            <p>There are some methods you don&#39;t need to explicitly give their request type, they are pre-defined to accept particular request types.</p>
-            <ul>
-                <li><code>index()</code> Listening GET, showing the index page of the controller.</li>
-                <li><code>get()</code> Listening GET, fulfilling RESTful API.</li>
-                <li><code>create()</code> Listening POST, fulfilling RESTful API.</li>
-                <li><code>update()</code> Listening PATCH, fulfilling RESTful API.</li>
-                <li><code>deleet()</code> Listening DELETE, fulfilling RESTful API.</li>
-            </ul>
-            <p>When calling these methods, you don&#39;t need to explicitly give the method name in the URL, just the controller name is OK, the framework will automatically match them by detecting the request type.</p>
-            <p>But, if you both have a <code>index()</code> and a <code>get()</code> in the controller, if no method name is present in the URL, only the index() will be called. In such a case, you need to explicitly point out the method name.</p>
-            <pre>
-                <code class="lang-javascript hljs">const <span class="hljs-type">HttpController</span> = require(<span class="hljs-string">"./HttpController"</span>);
-
-module.exports = <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">HttpController</span></span>{
-    <span class="hljs-comment">/** GET http://localhost/HttpTest */</span>
-    index(){}
-
-    <span class="hljs-comment">/** 
-     * GET http://localhost/HttpTest if index() is not difined, otherwise, use
-     * GET http://localhost/HttpTest/get
-     */</span>
-    get(){}
-
-    <span class="hljs-comment">/** POST http://localhost/HttpTest */</span>
-    create(){}
-
-    <span class="hljs-comment">/** PATCH http://localhost/HttpTest */</span>
-    update(){}
-
-    <span class="hljs-comment">/** DELETE http://localhost/HttpTest */</span>
-    delete(){}
-}</code>
-            </pre>
-            <p>You can change the RESTful map by reassigning the <code>controller.RESTfulMap</code> property, even add more methods. <strong>Since version 1.2.4, this property is set</strong>
-                <strong>by a setter, so you must define a new setter if you want to rewrite it.</strong></p>
-            <p>Ok, now you have acrossed most of the features that a controller have, let&#39;s see how to display a view file (A.K.A template) to the client.</p>
-            <h2 id="The-Viewing-System">
-                <a class="heading-anchor" href="#The-Viewing-System">
-                    <svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16">
-                        <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
-                    </svg>
-                </a>The Viewing System
-            </h2>
-            <p>To display a view file, just call <code>controller.view()</code>, it accept two optional arguments:
-            </p>
-            <ul>
-                <li><code>tplName</code> The template name. Template files are stored in <code>App/Views/</code>, if the filename ends with a <code>.html</code> as its extension name, you can pass this argument without one. If this argument is missing, then
-                    the
-                    <code>defaultView</code> will be used.</li>
-                <li><code>vars</code> Additional variables passed to the template, these variables will be evaluate in the template.</li>
-            </ul>
-            <p>This method returns a <strong>Promise</strong>, and the only argument passed to the callback of <code>then()</code> is the returning contents of the template.</p>
-            <p>The reason why <code>tplName</code> is optional is because the framework will automatically set a default view when the method is called by a client request. let me show yo how it works:</p>
-            <pre>
-                <code class="lang-javascript hljs">const <span class="hljs-type">HttpController</span> = require(<span class="hljs-string">"./HttpController"</span>);
-
-module.exports = <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">HttpController</span></span>{
-    index(){
-        <span class="hljs-comment">//This operation will send the template /App/Views/HttpTest/index.html</span>
-        <span class="hljs-comment">//to the client.</span>
-        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.view();
-    }
-
-    getShowOther(){
-        <span class="hljs-comment">//This operation will send the template </span>
-        <span class="hljs-comment">// /App/Views/HttpTest/ShowOther.html to the client, and pass the </span>
-        <span class="hljs-comment">//variable `title` to it.</span>
-        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.view({title: <span class="hljs-string">"Cool-Node"</span>});
-    }
-
-    getShowAnother(){
-        <span class="hljs-comment">//You can explicitly give the template name if the template does not</span>
-        <span class="hljs-comment">//match the method name.</span>
-        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.view(<span class="hljs-string">"HttpTest/show-another"</span>);
-    }
-}</code>
-            </pre>
-            <p>There is another method <code>controller.viewMarkdown()</code>, it is used to display a markdown file (which extension name is <code>.md</code>) and parse it to HTML. It acts almost the same as <code>controller.view()</code>, except it only
-                accept the argument
-                <code>tplName</code>.</p>
-            <p>More details will be covered at the article <a href="DesigningViews">Designing Views</a>, Now let&#39;s move to the next step, learning how to write a socket controller.</p>
 
         </article>
     </div>

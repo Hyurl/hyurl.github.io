@@ -14,15 +14,15 @@
 <body>
     <header class="header vivify popInTop">
         <div class="logo">
-            <a href="/cool-node/zh/">Cool-Node</a>
+            <a href="/cool-node/">Cool-Node</a>
         </div>
         <div class="change-lang">
-            <a href="/cool-node/Docs/Concepts">English</a>
+            <a href="?lang=en">English</a>
         </div>
         <div class="navbar">
             <ul>
-                <li><a href="/cool-node/zh/">首页</a></li>
-                <li><a href="/cool-node/zh/Docs">文档</a></li>
+                <li><a href="/cool-node/">首页</a></li>
+                <li><a href="/cool-node/Docs">文档</a></li>
             </ul>
         </div>
         <div class="navbar-toggle">
@@ -60,89 +60,7 @@
             </ul>
         </aside>
         <article class="content vivify fadeIn">
-            <h2 id="项目结构">
-                <a class="heading-anchor" href="#项目结构">
-                    <svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16">
-                        <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
-                    </svg>
-                </a>项目结构
-            </h2>
-            <p>一个典型的 Cool-Node 项目有一个这样的结构:</p>
-            <pre style="background: #ddd;padding: 10px;color: #333;font-size: 14px;">
-/ --------------------- 表示项目的根目录。
-|-- App/ -------------- 所含所有 App 的文件。
-|   |-- Assets/ ------- 包含所有可以直接访问的文件，如 js, css 等。
-|   |-- Controllers/ -- 包含所有控制器文件。
-|   |   |-- Home.js --- 用于监听网站根目录的控制器。
-|   |
-|   |-- Models/ ------- 包含所有模型控制器.
-|   |-- Views/ -------- 包含所有试图文件.
-|
-|-- Core/ ------------- 包含所有 Cool-Node 内核文件（不要修改），
-|                       该目录从 1.2.0 起被移除。
-|
-|-- Middleware/ -------- 包含所有用户定义的中间件文件。
-|   |-- http/ ---------- 包含 HTTP 中间件的文件夹。
-|   |-- socket/ -------- 包含 Socket 中间件的文件夹。
-|
-|-- node_modules/ ------ 所有依赖的 Node 模块都保存在这儿。
-|
-|-- config.js ---------- 项目的配置文件。
-|-- index.js ----------- 程序入口文件。
-|-- package.json ------- 管理项目及其依赖的文件。
-            </pre>
 
-            <p>这份向导是基于 Node.js 6.0+ 的，它还没有支持所有的 ECMAScript 2015 特性，因此如果 你想要学习一些像 <code>async</code>、<code>await</code> 或者 <code>import</code> 之类的知识，你可能需要自己在
-                <a href="https://developer.mozilla.org">MDN</a> 上学习。</p>
-            <h2 id="预留的属性">
-                <a class="heading-anchor" href="#预留的属性">
-                    <svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16">
-                        <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
-                    </svg>
-                </a>预留的属性
-            </h2>
-            <p>在一个 Cool-Node 项目中，有一些属性是预留的，你可以使用它们，但是<strong>不要</strong>尝试去重新 定义它们。
-            </p>
-            <ul>
-                <li><code>global.ROOT</code> 一个表示项目根目录的字符串路径。</li>
-                <li><code>global.config</code> 项目的配置。</li>
-                <li><code>global.wsServer</code> 监听 <code>ws</code> 协议的 WebSocket 服务器 <em>(自 1.1.0 起)</em>。</li>
-                <li><code>global.wssServer</code> 监听 <code>wss</code> 协议的 WebSocket 服务器 <em>(自 1.1.0 起)</em>。</li>
-                <li><code>req.session</code> 当前 HTTP 请求的会话信息。</li>
-                <li><code>req.subdomain</code> 当前 HTTP 请求的子域名。</li>
-                <li><code>req.db</code> 来自 Modelar ORM 模型系统的一个数据库连接实例。</li>
-                <li><code>socket.session</code> 当前 Socket 请求的会话信息。</li>
-                <li><code>socket.subdomain</code> 当前 Socket 请求的子域名。</li>
-                <li><code>socket.db</code> 来自 Modelar ORM 模型系统的一个数据库连接实例。</li>
-            </ul>
-            <p>你可以查看其他的 <code>req</code> 属性，它们在 Node.js 的 API 文档
-                <a href="https://nodejs.org">nodejs.org</a> 和 Express 的 API 文档
-                <a href="http://expressjs.com.cn/">expressjs.com.cn</a> 中都有详细的介绍。同时也可以在 Socket.io 的 API 文档 <a href="https://socket.io/">socket.io</a> 中查看更多关于 <code>socket</code> 的属性。</p>
-            <p>同时，项目中还有另外一些预留的属性，如果你赋值给它们，它们将会产生一些特别的意义和作 用。
-            </p>
-            <ul>
-                <li><code>req.session.UID</code> 当前 HTTP 请求的授权用户的 ID。</li>
-                <li><code>req.user</code> 当前 HTTP 请求的授权用户，如果你赋值了 <strong>req.session.UID</strong>，那么该属 性会自动被赋值为对应的用户。
-                </li>
-                <li><code>socket.session.UID</code> 当前 Socket 请求的授权用户的 ID。</li>
-                <li><code>socket.user</code> 当前 Socket 请求的授权用户。如果你赋值了 <strong>socket.session.UID</strong>， 那么该属性会自动被赋值为对应的用户。
-                </li>
-            </ul>
-            <h3 id="更多关于-Session-和数据库连接的细节">
-                <a class="heading-anchor" href="#更多关于-Session-和数据库连接的细节">
-                    <svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16">
-                        <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
-                    </svg>
-                </a>更多关于 Session 和数据库连接的细节
-            </h3>
-            <p>另一个关于 Session 的提示，由于 Cool-Node 是一个跨协议软件，在 HTTP 请求中的 Session，实际上也是对应的 Socket 请求中的 Session。因此当你设置一个属性到 Session 对象上时，无论时从 HTTP 中，还是 Socket 中，另一端也会同时被影响。这意味着，当你从 HTTP 中登录后，Socket 这一端也同时登录了，相反亦然。</p>
-            <p>同时，由于 <code>req.user</code> 只在当前请求中有效，因此你应该始终赋值 <code>req.session.UID</code>， 如果你是使用 Session 来识别用户的话。但是如果你使用其他的技术，例如 access token ， 那么你应该在对应的中间件中赋值 <code>req.user</code> 和 <code>socket.user</code>。</p>
-            <p>不必担心当每一次你调用 <code>req.db</code> 或者 <code>socket.db</code> 时，一个新的数据库连接会被创建， 并不会。Modelar ORM 能够非常高效地控制数据库连接，连接并不会在你显式地调用
-                <code>db.connect()</code>, 或者在运行一条 SQL 语句时隐式地建立。</p>
-            <p>从 1.1.0 版本起，<code>req.db</code> 和 <code>socket.db</code> 也可以被赋值或者预先定义，如果你没有赋值 给它们，当调用时，一个默认的实例则会被创建。
-            </p>
-            <p>同时，当一个 HTTP 响应或者 Socket 消息被发送后，所有的连接都会被回收到内部的连接池 中，等待下一次请求。
-            </p>
         </article>
     </div>
     <div id="anchor-pin">
@@ -154,7 +72,7 @@
     <footer>
         <p class="text-center">
             <span id="copyright">©2017
-                <a href="https://hyurl.github.io/cool-node/zh/">Cool Node</a> <a href="https://github.com/Hyurl/cool-node/blob/master/update-log.md">1.2.4</a> based on
+                <a href="https://hyurl.github.io/cool-node/">Cool Node</a> <a href="https://github.com/Hyurl/cool-node/blob/master/update-log.md">1.2.4</a> based on
                 <a href="http://nodejs.org/">Node.js</a> 6.0+.
             </span>
             <span id="license">Licensed under the

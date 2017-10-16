@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Docs: Sending E-Mail | Cool-Node</title>
+    <title>Docs: Concepts | Cool-Node</title>
     <link rel="stylesheet" href="/cool-node/css/highlightjs-theme/monokai.css" />
     <link rel="stylesheet" href="/cool-node/css/vivify.min.css">
     <link rel="stylesheet" href="/cool-node/css/style.css">
@@ -17,12 +17,12 @@
             <a href="/cool-node/">Cool-Node</a>
         </div>
         <div class="change-lang">
-            <a href="/cool-node/zh/Docs/Mail">中文</a>
+            <a href="?lang=zh">中文</a>
         </div>
         <div class="navbar">
             <ul>
                 <li><a href="/cool-node/">Home</a></li>
-                <li><a href="/cool-node/Docs">Docs</a></li>
+                <li><a href="/cool-node/cool-node/Docs">Docs</a></li>
             </ul>
         </div>
         <div class="navbar-toggle">
@@ -60,62 +60,7 @@
             </ul>
         </aside>
         <article class="content vivify fadeIn">
-            <h2 id="Send-Your-First-E-mail-from-Cool-Node-Project">
-                <a class="heading-anchor" href="#Send-Your-First-E-mail-from-Cool-Node-Project">
-                    <svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16">
-                    <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
-                </svg>
-                </a>Send Your First E-mail from Cool-Node Project
-            </h2>
-            <p>Cool-Node use <strong>Nodemailer</strong> for sending e-mails, you can check out more information about it at <a href="https://nodemailer.com">nodemailer.com</a>.</p>
-            <p>Instead of using original Nodemailer functions, Cool-Node provides a more convenient wrapper on it, The <code>Mail</code> class. You can use this class to generate a new e-mail, and send it.</p>
-            <p>Here is an example, using the Mail in a controller.</p>
-            <pre>
-<code class="lang-javascript hljs"><span class="hljs-keyword">const</span> HttpController = <span class="hljs-built_in">require</span>(<span class="hljs-string">"./HttpController"</span>);
-<span class="hljs-keyword">const</span> Mail = <span class="hljs-built_in">require</span>(ROOT + <span class="hljs-string">"./Core/Tools/Mail"</span>);
 
-<span class="hljs-built_in">module</span>.exports = <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">HttpController</span></span>{
-    <span class="hljs-comment">/** e.g. GET /HttpTest/SendEmail/email/example.gmail.com */</span>
-    getSendEmail(req){
-        <span class="hljs-comment">//Instanciate a new mail with a subject.</span>
-        <span class="hljs-keyword">var</span> mail = <span class="hljs-keyword">new</span> Mail(<span class="hljs-string">"A test e-mail from my Cool-Node project."</span>);
-        mail.to(req.params.email)
-            .text(<span class="hljs-string">"The test content of the text version."</span>)
-            .html(<span class="hljs-string">"&lt;p&gt;The test content of the HTML version.&lt;/p&gt;"</span>);
-        <span class="hljs-keyword">return</span> mail.send().then(<span class="hljs-function"><span class="hljs-params">info</span>=&gt;</span>{
-            <span class="hljs-built_in">console</span>.log(info);
-            <span class="hljs-keyword">return</span> <span class="hljs-string">"E-mail has been sent."</span>;
-        }).catch(<span class="hljs-function"><span class="hljs-params">err</span>=&gt;</span>{
-            <span class="hljs-built_in">console</span>.log(err);
-            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">"500 E-mail sent failed."</span>);
-        });
-    }
-}</code>
-            </pre>
-            <h2 id="Methods-in-Mail-Class">
-                <a class="heading-anchor" href="#Methods-in-Mail-Class">
-                    <svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16">
-                        <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
-                    </svg>
-                </a>Methods in Mail Class
-            </h2>
-            <p>Here is a list of all methods of the Mail class, most of them returns the current instance for function chaining, except <code>send()</code>, which returns a Promise:
-            </p>
-            <ul>
-                <li><code>construtor(options?: any)</code> Create a new Mail instance with specified options or a subject.</li>
-                <li><code>from(addr: string)</code> Sets the from address, normally this address is set in
-                    <code>/config.js</code>.</li>
-                <li><code>to(...addr: string | any[])</code> Sets receiver addresses, optionally you can call this method multiple times to concatenate addresses.</li>
-                <li><code>cc(...addr: string | any[])</code> Sets receiver addresses on the CC field, optionally you can call this method multiple times to concatenate addresses. </li>
-                <li><code>bcc(...addr: string | any[])</code> Sets receiver addresses on the BCC field, optionally you can call this method multiple times to concatenate addresses. </li>
-                <li><code>subject(text: string)</code> Sets the subject of the e-mail.</li>
-                <li><code>text(content: string)</code> Sets the plain text version of the e-mail.</li>
-                <li><code>html(content: string)</code> Sets the HTML version of the e-mail.</li>
-                <li><code>attchment(path: string)</code> Sets a file as an attachment sent with the e-mail, optionally you can call this method multiple times to attach multiple files.
-                </li>
-                <li><code>send()</code> Sends the e-mail to all recipients.</li>
-            </ul>
-            <p>You can use some features of the controller, like viewing system to send a e-mail in a HTML version.</p>
         </article>
     </div>
     <div id="anchor-pin">
