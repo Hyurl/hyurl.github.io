@@ -172,9 +172,19 @@
                     </p>
                 </div>
                 <div class="vivify popInBottom">
-                    <h1>Easy</h1>
+                    <h1>
+                        <script>
+                            document.write(lang == "zh" ? "简易" : "Easy");
+                        </script>
+                    </h1>
                     <p>
-                        Cool-Node doesn't double-abstract what its dependencies have, but provides more convenient and automatic features to handle the application.
+                        <script>
+                            if (lang == "zh") {
+                                document.write("Cool-Node 不二次抽象 Node.js 及依赖项的特性，但提供了更为合适的自动化的特性来处理你的应用。");
+                            } else {
+                                document.write("Cool-Node doesn't double-abstract what its dependencies have, but provides more convenient and automatic features to handle the application.");
+                            }
+                        </script>
                     </p>
                 </div>
             </div>
