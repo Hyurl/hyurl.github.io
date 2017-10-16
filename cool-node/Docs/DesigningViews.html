@@ -5,10 +5,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Docs: Concepts | Cool-Node</title>
+    <title>Cool-Node</title>
     <link rel="stylesheet" href="/cool-node/css/highlightjs-theme/monokai.css" />
     <link rel="stylesheet" href="/cool-node/css/vivify.min.css">
     <link rel="stylesheet" href="/cool-node/css/style.css">
+    <script>
+        var match = location.search.match(/lang=([\S]+)/),
+            lang = match ? match[1] : "",
+            isZh = lang == "zh";
+        if (isZh) {
+            document.title = "Cool-Node - 一个炫酷的基于 Node.js 平台的轻量级 Web 应用程序框架";
+        } else {
+            document.title = "Cool-Node - A cool and light weight framework for Node.js";
+        }
+    </script>
 </head>
 
 <body>
@@ -17,12 +27,30 @@
             <a href="/cool-node/">Cool-Node</a>
         </div>
         <div class="change-lang">
-            <a href="?lang=zh">中文</a>
+            <a href="?lang=zh">
+                <script>
+                    var target = document.querySelector("a[href=\"?lang=zh\"]");
+                    target.setAttribute("href", isZh ? "?lang=en" : "?lang=zh");
+                    document.write(isZh ? "English" : "中文");
+                </script>
+            </a>
         </div>
         <div class="navbar">
             <ul>
-                <li><a href="/cool-node/">Home</a></li>
-                <li><a href="/cool-node/cool-node/Docs">Docs</a></li>
+                <li>
+                    <a href="/cool-node/">
+                        <script>
+                            document.write(isZh ? "首页" : "Home");
+                        </script>
+                    </a>
+                </li>
+                <li>
+                    <a href="/cool-node/Docs">
+                        <script>
+                            document.write(isZh ? "文档" : "Docs");
+                        </script>
+                    </a>
+                </li>
             </ul>
         </div>
         <div class="navbar-toggle">
@@ -43,20 +71,72 @@
     <div class="container vivify fadeIn">
         <aside class="sidebar vivify fadeIn">
             <ul>
-                <li><a href="/cool-node/Docs/GettingStarted">Getting Started</a></li>
                 <li>
-                    <a href="javascript:;">The Basics</a>
+                    <a href="/cool-node/Docs/GettingStarted">
+                        <script>
+                            document.write(isZh ? "开始" : "Getting Started");
+                        </script>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:;">
+                        <script>
+                            document.write(isZh ? "基础" : "The Basics");
+                        </script>
+                    </a>
                     <ul>
-                        <li><a href="/cool-node/Docs/Concepts">Concepts</a></li>
-                        <li><a href="/cool-node/Docs/WritingHttpControllers">Writing HTTP Controllers</a></li>
-                        <li><a href="/cool-node/Docs/WritingSocketControllers">Writing Socket Controllers</a></li>
-                        <li><a href="/cool-node/Docs/DesigningViews">Designing Views</a></li>
+                        <li>
+                            <a href="/cool-node/Docs/Concepts">
+                                <script>
+                                    document.write(isZh ? "概念" : "Concepts");
+                                </script>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/cool-node/Docs/WritingHttpControllers">
+                                <script>
+                                    document.write(isZh ? "编写 HTTP 控制器" : "Writing HTTP Controllers");
+                                </script>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/cool-node/Docs/WritingSocketControllers">
+                                <script>
+                                    document.write(isZh ? "编写 Socket 控制器" : "Writing Socket Controllers");
+                                </script>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/cool-node/Docs/DesigningViews">
+                                <script>
+                                    document.write(isZh ? "设计视图" : "Designing Views");
+                                </script>
+                            </a>
+                        </li>
                     </ul>
                 </li>
                 <li><a href="/cool-node/Docs/Modelar">Modelar ORM</a></li>
-                <li><a href="/cool-node/Docs/Mail">Sending E-Mail</a></li>
-                <li><a href="/cool-node/Docs/More">More</a></li>
-                <li><a href="/cool-node/Docs/MigrationGuide">Migration Guide</a></li>
+                <li>
+                    <a href="/cool-node/Docs/Mail">
+                        <script>
+                            document.write(isZh ? "发送邮件" : "Sending E-Mail");
+                        </script>
+                    </a>
+                </li>
+                <li>
+                    <a href="/cool-node/Docs/More">
+                        <script>
+                            document.write(isZh ? "更多" : "More");
+                        </script>
+                    </a>
+                </li>
+                <li>
+                    <a href="/cool-node/Docs/MigrationGuide">
+                        <script>
+                            document.write(isZh ? "迁移向导" : "Migration Guide");
+                        </script>
+                    </a>
+                </li>
             </ul>
         </aside>
         <article class="content vivify fadeIn">
