@@ -263,7 +263,7 @@ $(function() {
 
     if (content.length) {
         var Title = document.title;
-        SoftLoader.bind(markdownContent[0]);
+        SoftLoader.bind(content[0]);
         sidebar.find("a").click(function(event) {
             var href = $(this).attr("href"),
                 text = $(this).text(),
@@ -274,9 +274,9 @@ $(function() {
                 event.preventDefault();
                 var src = href + ".md";
                 $.get(src, function(data) {
-                    // content.removeClass("fadeOut").addClass("fadeIn");
-                    content.html(markdownHTML(data)).removeClass("fadeOut").addClass("fadeIn");
-                    SoftLoader.replaceWith(data, title, href);
+                    content.removeClass("fadeOut").addClass("fadeIn");
+                    markdownContent.text(data);
+                    SoftLoader.replaceWith(markdownHTML(data), title, href);
                     // replaceLink(content);
                 });
                 sidebar.find("a").removeClass("active");
