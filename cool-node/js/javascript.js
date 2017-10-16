@@ -280,7 +280,9 @@ $(function() {
                 });
             if (href != "javascript:;") {
                 event.preventDefault();
-                getContent(href, title);
+                var src = lang == "zh" ? href.replace("cool-node", "cool-node/zh") : href;
+                src = href.split("?")[0];
+                getContent(src, title);
                 sidebar.find("a").removeClass("active");
                 $(this).addClass("active");
                 content.removeClass("fadeIn").addClass("fadeOut");
