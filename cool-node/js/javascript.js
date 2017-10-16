@@ -261,7 +261,7 @@ $(function() {
 
     if (content.length) {
         var Title = document.title,
-            lang = location.search.match(/lang=zh/) ? "zh" : "",
+            lang = match ? match[1] : "",
             getContent = function(src, title) {
                 $.get(src + ".md", function(data) {
                     content.removeClass("fadeOut").addClass("fadeIn");
