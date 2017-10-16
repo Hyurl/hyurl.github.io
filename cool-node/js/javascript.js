@@ -192,8 +192,9 @@ $(function() {
         SoftLoader.bind(content[0]);
         getContent(src, Title);
         sidebar.find("a").click(function(event) {
-            var href = $(this).attr("href"),
-                text = $(this).text(),
+            var $this = $(this),
+                href = $this.attr("href"),
+                text = $this[0].innerText || $this[0].textContent,
                 title = Title.replace(/:\s([\S\s]+)\s\|/, (match) => {
                     return ": " + text + " |";
                 });
@@ -203,7 +204,7 @@ $(function() {
                 src = src.split("?")[0];
                 getContent(src, title);
                 sidebar.find("a").removeClass("active");
-                $(this).addClass("active");
+                $this.addClass("active");
                 content.removeClass("fadeIn").addClass("fadeOut");
             }
         });
