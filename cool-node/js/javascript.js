@@ -284,7 +284,7 @@ $(function() {
             if (href != "javascript:;") {
                 event.preventDefault();
                 var src = lang == "zh" ? href.replace("cool-node", "cool-node/zh") : href;
-                src = href.split("?")[0];
+                src = src.split("?")[0];
                 getContent(src, title);
                 sidebar.find("a").removeClass("active");
                 $(this).addClass("active");
