@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Cool-Node - A cool and light weight framework for Node.js</title>
+    <link rel="stylesheet" href="/css/highlightjs-theme/monokai.css" />
+    <link rel="stylesheet" href="/css/vivify.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+    <header class="header vivify popInTop">
+        <div class="logo">
+            <a href="/">Cool-Node</a>
+        </div>
+        <div class="change-lang">
+            <a href="?lang=zh">中文</a>
+        </div>
+        <div class="navbar">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/Docs">Docs</a></li>
+            </ul>
+        </div>
+        <div class="navbar-toggle">
+            <button>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+    </header>
+    <div class="github-brand vivify fadeIn">
+        <a href="https://github.com/Hyurl/cool-node" target="_blank" class="btn btn-default">
+            <svg aria-hidden="true" class="octicon octicon-mark-github" version="1.1" viewBox="0 0 16 16" style="width:16px;height:16px;margin-bottom:-3px;">
+                <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path>
+            </svg> Fork Me on GitHub
+        </a>
+    </div>
+    <div class="container vivify fadeIn">
+        <div class="content">
+            <div class="jumbotron">
+                <h1 class="vivify popInRight">Cool-Node</h1>
+                <p class="desc vivify fadeIn">
+                    A cool and light weight framework for Node.js, with abilities of auto-routing, cross-protocol, multi-apps, and beyond.
+                </p>
+            </div>
+            <div class="command vivify flipInX">
+                <pre>npm install cool-node --save</pre>
+            </div>
+            <div class="pre-requisit">
+                <div class="vivify rollInRight">
+                    <a href="http://nodejs.org/">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="80" height="20">
+                    <linearGradient id="b" x2="0" y2="100%">
+                        <stop offset="0" stop-color="#bbb" stop-opacity=".1"/>
+                        <stop offset="1" stop-opacity=".1"/>
+                    </linearGradient>
+                    <clipPath id="a">
+                        <rect width="80" height="20" rx="3" fill="#fff"/>
+                    </clipPath>
+                    <g clip-path="url(#a)">
+                        <path fill="#555" d="M0 0h35v20H0z"/>
+                        <path fill="#007ec6" d="M35 0h45v20H35z"/>
+                        <path fill="url(#b)" d="M0 0h80v20H0z"/>
+                    </g>
+                    <g fill="#fff" text-anchor="middle" font-family="DejaVu Sans,Verdana,Geneva,sans-serif" font-size="11">
+                        <text x="17.5" y="15" fill="#010101" fill-opacity=".3">node</text>
+                        <text x="17.5" y="14">node</text>
+                        <text x="56.5" y="15" fill="#010101" fill-opacity=".3">v6.0+</text>
+                        <text x="56.5" y="14">v6.0+</text>
+                    </g>
+                </svg>
+                    </a>
+                    <a href="http://spdx.org/licenses/MIT.html">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="80" height="20">
+                    <linearGradient id="b" x2="0" y2="100%">
+                        <stop offset="0" stop-color="#bbb" stop-opacity=".1"/>
+                        <stop offset="1" stop-opacity=".1"/>
+                    </linearGradient>
+                    <clipPath id="a">
+                        <rect width="100" height="20" rx="3" fill="#fff"/>
+                    </clipPath>
+                    <g clip-path="url(#a)">
+                        <path fill="#555" d="M0 0h50v20H0z"/>
+                        <path fill="#007ec6" d="M50 0h45v20H50z"/>
+                        <path fill="url(#b)" d="M0 0h80v20H0z"/>
+                    </g>
+                    <g fill="#fff" text-anchor="middle" font-family="DejaVu Sans,Verdana,Geneva,sans-serif" font-size="11">
+                        <text x="24.5" y="15" fill="#010101" fill-opacity=".3">license</text>
+                        <text x="24.5" y="14">license</text>
+                        <text x="64.5" y="15" fill="#010101" fill-opacity=".3">MIT</text>
+                        <text x="64.5" y="14">MIT</text>
+                    </g>
+                </svg>
+                    </a>
+                    <a href="https://babeljs.io/learn-es2015/">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="80" height="20">
+                    <linearGradient id="b" x2="0" y2="100%">
+                        <stop offset="0" stop-color="#bbb" stop-opacity=".1"/>
+                        <stop offset="1" stop-opacity=".1"/>
+                    </linearGradient>
+                    <clipPath id="a">
+                        <rect width="80" height="20" rx="3" fill="#fff"/>
+                    </clipPath>
+                    <g clip-path="url(#a)">
+                        <path fill="#555" d="M0 0h35v20H0z"/>
+                        <path fill="#007ec6" d="M35 0h45v20H35z"/>
+                        <path fill="url(#b)" d="M0 0h80v20H0z"/>
+                    </g>
+                    <g fill="#fff" text-anchor="middle" font-family="DejaVu Sans,Verdana,Geneva,sans-serif" font-size="11">
+                        <text x="17.5" y="15" fill="#010101" fill-opacity=".3">ES</text>
+                        <text x="17.5" y="14">ES</text>
+                        <text x="56.5" y="15" fill="#010101" fill-opacity=".3">2015</text>
+                        <text x="56.5" y="14">2015</text>
+                    </g>
+                </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="box">
+                <div class="vivify popInBottom">
+                    <h1>Tiny</h1>
+                    <p>
+                        Cool-Node only defines some principles and a structure for your application, it based on some very mature modules, like <strong>Express</strong>, <strong>Socket.io</strong>, etc.
+                    </p>
+                </div>
+                <div class="vivify popInBottom">
+                    <h1>Easy</h1>
+                    <p>
+                        Cool-Node doesn't double-abstract what its dependencies have, but provides more convenient and automatic features to handle the application.
+                    </p>
+                </div>
+            </div>
+            <div class="list">
+                <div>
+                    <h1>Auto-Routing Development</h1>
+                    <p>Remember when you were using the Node.js internal server or Express, or other frameworks, you had to define routes for every actions; when you were using socket.io, you complained writing too much socket.on() and socket.emit(). And
+                        thinking, isn't there any way not to do this? So here comes Cool-Node.</p>
+                    <p>Cool-Node provides an API that will automatically handle these things without any of your concerns, you don't even have to call this API in your program, all actions will be automatically done by the framework itself.</p>
+                </div>
+                <div>
+                    <h1>Fast Development</h1>
+                    <p>Along with auto-routing system, you can save you time to do the real things that matter, like manipulate models, writing controllers, and design views. With the ability of <strong>Modelar</strong> <small>(a module for handling models and queries)</small>,
+                        you can handle data in just few seconds.</p>
+                </div>
+                <div>
+                    <h1>Cross-Protocol Development</h1>
+                    <p>Cool-Node also give you the ability to handle sessions and share their status across HTTP and WebSocket, what you can do with a HTTP request can also be done with a WebSocket communication.</p>
+                </div>
+                <div>
+                    <h1>Multi-Apps Development</h1>
+                    <p>Cool-Node is a framework that can build multiple applications at one time with only one server running. It can differ requests <small>(whether they come form HTTP or WebSocket)</small> by subdomains, you can use more than one subdomain
+                        to write any count of applications as you want.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p class="text-center">
+            <span id="copyright">©2017
+                <a href="http://cool-node.hyurl.com:3000/">Cool Node</a> <a href="https://github.com/Hyurl/cool-node/blob/master/update-log.md">1.2.4</a> based on
+                <a href="http://nodejs.org/">Node.js</a> 6.0+.
+            </span>
+            <span id="license">Licensed under the
+                <a target="_blank" href="http://spdx.org/licenses/MIT.html">MIT License</a>.
+            </span>
+            <span id="icp">
+                <a href="http://www.miitbeian.gov.cn" target="_blank" style="color:#777">桂ICP备15001693号</a>
+            </span>
+        </p>
+        <p class="text-center">See Other Projects:
+            <a href="http://modelar.hyurl.com/">Modelar</a> |
+            <a href="http://modphp.hyurl.com/">ModPHP</a> |
+            <a href="http://modphp.hyurl.com/ModCMS/">ModCMS</a> |
+            <a href="https://github.com/hyurl/type-storage">TypeStorage</a>
+        </p>
+    </footer>
+
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/soft-loader.js"></script>
+    <script src="/js/javascript.js"></script>
+</body>
+
+</html>
