@@ -8,11 +8,12 @@
     <title>Cool-Node</title>
     <script>
         var match = location.search.match(/lang=([\S]+)/),
-            lang = match ? match[1] : "";
+            lang = match ? match[1] : "",
+            bashUrl = location.href.split("?")[0];
         if (lang) {
-            location.href += "GettingStarted?lang=" + lang;
+            location.href = bashUrl + "GettingStarted?lang=" + lang;
         } else {
-            location.href += "GettingStarted";
+            location.href = bashUrl + "GettingStarted";
         }
     </script>
 </head>
