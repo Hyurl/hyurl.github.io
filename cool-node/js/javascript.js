@@ -34,8 +34,6 @@ $(function() {
         logoutBtn = $("#logout-btn"),
         sidebar = $(".sidebar"),
         content = $("article.content"),
-        markdownContent = $(".markdown-content"),
-        markdownText = markdownContent.text(),
         renderer = new marked.Renderer(),
         anchor = $("#anchor-pin").html(),
         navbarToggle = $(".navbar-toggle");
@@ -275,7 +273,6 @@ $(function() {
                 var src = href + ".md";
                 $.get(src, function(data) {
                     content.removeClass("fadeOut").addClass("fadeIn");
-                    markdownContent.text(data);
                     SoftLoader.replaceWith(markdownHTML(data), title, href);
                     // replaceLink(content);
                 });
