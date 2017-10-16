@@ -2,10 +2,6 @@
 <html lang="en">
 
 <head>
-    <script>
-        var match = location.search.match(/lang=([\S]+)/),
-            lang = match ? match[1] : "";
-    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -14,6 +10,8 @@
     <link rel="stylesheet" href="/cool-node/css/vivify.min.css">
     <link rel="stylesheet" href="/cool-node/css/style.css">
     <script>
+        var match = location.search.match(/lang=([\S]+)/),
+            lang = match ? match[1] : "";
         if (lang == "zh") {
             document.title = "Cool-Node - 一个炫酷的基于 Node.js 平台的轻量级 Web 应用程序框架";
         } else {
@@ -72,7 +70,13 @@
             <div class="jumbotron">
                 <h1 class="vivify popInRight">Cool-Node</h1>
                 <p class="desc vivify fadeIn">
-                    A cool and light weight framework for Node.js, with abilities of auto-routing, cross-protocol, multi-apps, and beyond.
+                    <script>
+                        if (lang == "zh") {
+                            document.write("一个炫酷的基于 Node.js 平台的轻量级 Web 应用程序框架，拥有诸如自动路由映射、跨协议开发、多应用模式等极其出色的功能。");
+                        } else {
+                            document.write("A cool and light weight framework for Node.js, with abilities of auto-routing, cross-protocol, multi-apps, and beyond.");
+                        }
+                    </script>
                 </p>
             </div>
             <div class="command vivify flipInX">
@@ -150,9 +154,19 @@
             </div>
             <div class="box">
                 <div class="vivify popInBottom">
-                    <h1>Tiny</h1>
+                    <h1>
+                        <script>
+                            document.write(lang == "zh" ? "精巧" : "Tiny");
+                        </script>
+                    </h1>
                     <p>
-                        Cool-Node only defines some principles and a structure for your application, it based on some very mature modules, like <strong>Express</strong>, <strong>Socket.io</strong>, etc.
+                        <script>
+                            if (lang == "zh") {
+                                document.write("Cool-Node 仅定义了一些基本原则和一个组织你的应用的架构，它基于很多现有的成熟的模块，如 Express, Socket.io，等等。")
+                            } else {
+                                document.write("Cool-Node only defines some principles and a structure for your application, it based on some very mature modules, like <strong>Express</strong>, <strong>Socket.io</strong>, etc.");
+                            }
+                        </script>
                     </p>
                 </div>
                 <div class="vivify popInBottom">
