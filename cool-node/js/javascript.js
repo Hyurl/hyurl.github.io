@@ -261,17 +261,17 @@ $(function() {
 
     if (content.length) {
         var Title = document.title,
-            getContent = function(src) {
-                $.get(src, function(data) {
+            getContent = function(src, title) {
+                $.get(src + ".md", function(data) {
                     content.removeClass("fadeOut").addClass("fadeIn");
-                    SoftLoader.replaceWith(markdownHTML(data), title, href);
+                    SoftLoader.replaceWith(markdownHTML(data), title, src);
                     // replaceLink(content);
                 });
             },
             lang = location.search.match(/lang=zh/) ? "zh" : "en",
             src = lang == "zh" ? path.replace("cool-node", "cool-node/zh") : path;
         SoftLoader.bind(content[0]);
-        getContent(src + ".md");
+        getContent(src, Title);
         sidebar.find("a").click(function(event) {
             var href = $(this).attr("href"),
                 text = $(this).text(),
@@ -280,8 +280,7 @@ $(function() {
                 });
             if (href != "javascript:;") {
                 event.preventDefault();
-                var src = href + ".md";
-                getContent();
+                getContent(href, title);
                 sidebar.find("a").removeClass("active");
                 $(this).addClass("active");
                 content.removeClass("fadeIn").addClass("fadeOut");
