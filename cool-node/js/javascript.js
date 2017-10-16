@@ -19,7 +19,34 @@ $(function() {
         content = $("article.content"),
         markdownContent = $(".markdown-content"),
         markdownText = markdownContent.text(),
+        renderer = new marked.Renderer(),
+        anchor = $("#anchor-pin").html(),
         navbarToggle = $(".navbar-toggle");
+
+    //Render markdown headings.
+    renderer.heading = function(text, level) {
+        var isLatin = String.byteLength(text) == text.length,
+            _text = text.replace(/\s/g, '-');
+        if (isLatin) {
+            var matches = _text.match(/[\-0-9a-zA-Z]+/g),
+                id = matches ? matches.join("_") : _text.replace(/[~`!@#\$%\^&\*\(\)\+=\{\}\[\]\|:"'<>,\.\?\/]/g, "_");
+        } else {
+            var id = _text.replace(/[~`!@#\$%\^&\*\(\)\+=\{\}\[\]\|:"'<>,\.\?\/]/g, "_");
+        }
+        return '<h' + level + ' id="' + id + '"><a class="anchor" href="#' +
+            id + '">' + anchor + '</a>' + text + '</h' + level + '>';
+    };
+
+    //Render markdown codes to be highlighted.
+    renderer.code = function(code, lang, escaped) {
+        return '<pre><code class="lang-' + lang + ' hljs">' +
+            hljs.highlightAuto(code).value + '</code></pre>';
+    }
+
+    /** Parse markdown to HTML. */
+    var markdownHTML = function(text) {
+        return marked(text, { renderer: renderer });
+    };
 
     navbarToggle.click(function() {
         navbar.parent().slideToggle();
@@ -217,26 +244,28 @@ $(function() {
     // };
     // replaceLink();
 
-    // if (content.length) {
-    //     var Title = document.title;
-    //     SoftLoader.bind(content[0]);
-    //     sidebar.find("a").click(function(event) {
-    //         var href = $(this).attr("href"),
-    //             text = $(this).text(),
-    //             title = Title.replace(/:\s([\S\s]+)\s\|/, (match) => {
-    //                 return ": " + text + " |";
-    //             });
-    //         if (href != "javascript:;") {
-    //             event.preventDefault();
-    //             $.get(href, function(data) {
-    //                 content.removeClass("fadeOut").addClass("fadeIn");
-    //                 SoftLoader.replaceWith(data, title, href);
-    //                 replaceLink(content);
-    //             });
-    //             sidebar.find("a").removeClass("active");
-    //             $(this).addClass("active");
-    //             content.removeClass("fadeIn").addClass("fadeOut");
-    //         }
-    //     });
-    // }
+    if (content.length) {
+        var Title = document.title;
+        SoftLoader.bind(markdownContent[0]);
+        sidebar.find("a").click(function(event) {
+            var href = $(this).attr("href"),
+                text = $(this).text(),
+                title = Title.replace(/:\s([\S\s]+)\s\|/, (match) => {
+                    return ": " + text + " |";
+                });
+            if (href != "javascript:;") {
+                event.preventDefault();
+                var src = href + ".md";
+                $.get(src, function(data) {
+                    // content.removeClass("fadeOut").addClass("fadeIn");
+                    content.html(markdownHTML(data)).removeClass("fadeOut").addClass("fadeIn");
+                    SoftLoader.replaceWith(data, title, href);
+                    replaceLink(content);
+                });
+                sidebar.find("a").removeClass("active");
+                $(this).addClass("active");
+                content.removeClass("fadeIn").addClass("fadeOut");
+            }
+        });
+    }
 });
