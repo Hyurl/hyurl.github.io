@@ -260,18 +260,18 @@ $(function() {
     // replaceLink();
 
     if (content.length) {
-        var Title = document.title;
-        // var changeLang = $(".change-lang").children("a");
-        var getContent = function(src) {
-            $.get(src, function(data) {
-                content.removeClass("fadeOut").addClass("fadeIn");
-                SoftLoader.replaceWith(markdownHTML(data), title, href);
-                // replaceLink(content);
-            });
-        };
-        var lang = location.search.match(/lang=zh/) ? "zh" : "en";
+        var Title = document.title,
+            getContent = function(src) {
+                $.get(src, function(data) {
+                    content.removeClass("fadeOut").addClass("fadeIn");
+                    SoftLoader.replaceWith(markdownHTML(data), title, href);
+                    // replaceLink(content);
+                });
+            },
+            lang = location.search.match(/lang=zh/) ? "zh" : "en",
+            src = lang == "zh" ? path.replace("cool-node", "cool-node/zh") : path;
         SoftLoader.bind(content[0]);
-        getContent(lang == "zh" ? path.replace("cool-node", "cool-node/zh") : path);
+        getContent(src + ".md");
         sidebar.find("a").click(function(event) {
             var href = $(this).attr("href"),
                 text = $(this).text(),
