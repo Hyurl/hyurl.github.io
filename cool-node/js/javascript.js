@@ -241,7 +241,8 @@ $(function() {
         setTimeout(type, 1500);
 
     // Add ?lang=[lang] in the URL
-    var match = location.search.match(/\?lang=(\S+)/);
+    var match = location.search.match(/\?lang=(\S+)/),
+        lang = match ? match[1] : "";
     var replaceLink = function(target) {
         if (match) {
             target = target || $("body");
@@ -252,7 +253,7 @@ $(function() {
                     href.indexOf("#") !== 0 &&
                     href != "?lang=zh" &&
                     href != "?lang=en") {
-                    $(this).attr("href", href.split("?")[0] + "?lang=" + match[1]);
+                    $(this).attr("href", href.split("?")[0] + "?lang=" + lang);
                 }
             })
         }
@@ -261,7 +262,6 @@ $(function() {
 
     if (content.length) {
         var Title = document.title,
-            lang = match ? match[1] : "",
             getContent = function(src, title) {
                 $.get(src + ".md", function(data) {
                     content.removeClass("fadeOut").addClass("fadeIn");
