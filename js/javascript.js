@@ -199,44 +199,44 @@ $(function() {
         setTimeout(type, 1500);
 
     // Add ?lang=[lang] in the URL
-    var match = location.search.match(/\?lang=(\S+)/);
-    var replaceLink = function(target){
-        if (match) {
-            target = target || $("body");
-            target.find("a").each(function() {
-                var href = $(this).attr("href");
-                if(href.indexOf("javascript:") !== 0 && 
-                    href.indexOf("http") !== 0 && 
-                    href.indexOf("#") !== 0 &&
-                    href != "?lang=zh" && 
-                    href != "?lang=en"){
-                    $(this).attr("href", href.split("?")[0] + "?lang=" + match[1]);
-                }
-            })
-        }
-    };
-    replaceLink();
+    // var match = location.search.match(/\?lang=(\S+)/);
+    // var replaceLink = function(target){
+    //     if (match) {
+    //         target = target || $("body");
+    //         target.find("a").each(function() {
+    //             var href = $(this).attr("href");
+    //             if(href.indexOf("javascript:") !== 0 && 
+    //                 href.indexOf("http") !== 0 && 
+    //                 href.indexOf("#") !== 0 &&
+    //                 href != "?lang=zh" && 
+    //                 href != "?lang=en"){
+    //                 $(this).attr("href", href.split("?")[0] + "?lang=" + match[1]);
+    //             }
+    //         })
+    //     }
+    // };
+    // replaceLink();
 
-    if (content.length) {
-        var Title = document.title;
-        SoftLoader.bind(content[0]);
-        sidebar.find("a").click(function(event) {
-            var href = $(this).attr("href"),
-                text = $(this).text(),
-                title = Title.replace(/:\s([\S\s]+)\s\|/, (match) => {
-                    return ": " + text + " |";
-                });
-            if (href != "javascript:;") {
-                event.preventDefault();
-                $.get(href, function(data) {
-                    content.removeClass("fadeOut").addClass("fadeIn");
-                    SoftLoader.replaceWith(data, title, href);
-                    replaceLink(content);
-                });
-                sidebar.find("a").removeClass("active");
-                $(this).addClass("active");
-                content.removeClass("fadeIn").addClass("fadeOut");
-            }
-        });
-    }
+    // if (content.length) {
+    //     var Title = document.title;
+    //     SoftLoader.bind(content[0]);
+    //     sidebar.find("a").click(function(event) {
+    //         var href = $(this).attr("href"),
+    //             text = $(this).text(),
+    //             title = Title.replace(/:\s([\S\s]+)\s\|/, (match) => {
+    //                 return ": " + text + " |";
+    //             });
+    //         if (href != "javascript:;") {
+    //             event.preventDefault();
+    //             $.get(href, function(data) {
+    //                 content.removeClass("fadeOut").addClass("fadeIn");
+    //                 SoftLoader.replaceWith(data, title, href);
+    //                 replaceLink(content);
+    //             });
+    //             sidebar.find("a").removeClass("active");
+    //             $(this).addClass("active");
+    //             content.removeClass("fadeIn").addClass("fadeOut");
+    //         }
+    //     });
+    // }
 });

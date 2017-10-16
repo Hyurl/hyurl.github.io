@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Docs: Designing Views | Cool-Node</title>
+    <link rel="stylesheet" href="/css/highlightjs-theme/monokai.css" />
+    <link rel="stylesheet" href="/css/vivify.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+    <header class="header vivify popInTop">
+        <div class="logo">
+            <a href="/">Cool-Node</a>
+        </div>
+        <div class="change-lang">
+            <a href="?lang=zh">中文</a>
+        </div>
+        <div class="navbar">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/Docs">Docs</a></li>
+            </ul>
+        </div>
+        <div class="navbar-toggle">
+            <button>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+    </header>
+    <div class="github-brand vivify fadeIn">
+        <a href="https://github.com/Hyurl/cool-node" target="_blank" class="btn btn-default">
+            <svg aria-hidden="true" class="octicon octicon-mark-github" version="1.1" viewBox="0 0 16 16" style="width:16px;height:16px;margin-bottom:-3px;">
+                <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path>
+            </svg> Fork Me on GitHub
+        </a>
+    </div>
+    <div class="container vivify fadeIn">
+        <aside class="sidebar vivify fadeIn">
+            <ul>
+                <li><a href="/Docs/GettingStarted">Getting Started</a></li>
+                <li>
+                    <a href="javascript:;">The Basics</a>
+                    <ul>
+                        <li><a href="/Docs/Concepts">Concepts</a></li>
+                        <li><a href="/Docs/WritingHttpControllers">Writing HTTP Controllers</a></li>
+                        <li><a href="/Docs/WritingSocketControllers">Writing Socket Controllers</a></li>
+                        <li><a href="/Docs/DesigningViews">Designing Views</a></li>
+                    </ul>
+                </li>
+                <li><a href="/Docs/Modelar">Modelar ORM</a></li>
+                <li><a href="/Docs/Mail">Sending E-Mail</a></li>
+                <li><a href="/Docs/More">More</a></li>
+                <li><a href="/Docs/MigrationGuide">Migration Guide</a></li>
+            </ul>
+        </aside>
+        <article class="content vivify fadeIn">
+            <h2 id="Create-a-View">
+                <a class="heading-anchor" href="#Create-a-View">
+                    <svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16">
+                        <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+                    </svg>
+                </a>Create a View
+            </h2>
+            <p>Cool-Node use <strong>EJS</strong> as its view system, you can check out more information about it at
+                <a href="https://www.npmjs.com/package/ejs">https://www.npmjs.com/package/ejs</a>.</p>
+            <p>Here I will just give you a hint about how to use it in Cool-Node, after learning the articles about controllers, I guess you would already figure out how.
+            </p>
+            <p>In this article, I will create a HTTP controller <code>HttpTest</code> as before to demonstrate the relations between a controller and a view. </p>
+            <p>First, create a folder in <code>/App/Views/</code>, named <code>HttpTest</code>, then create a HTML file named <code>index.html</code> under it, the path would be
+                <code>/App/Views/HttpTest/index.html</code>. This view corresponds to the method
+                <code>index()</code> in the controller.</p>
+            <p>In JavaScript (<code>/App/Controllers/HttpTest.js</code>):</p>
+            <pre>
+<code class="lang-javascript hljs">const <span class="hljs-type">HttpController</span> = require(<span class="hljs-string">"./HttpController"</span>);
+
+module.exports = <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">HttpController</span></span>{
+    index(){
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.view({
+            title: <span class="hljs-string">"Cool-Node Test"</span>,
+            content: <span class="hljs-string">"Hello, World!"</span>
+        });
+    }
+}</code>
+            </pre>
+            <p>And in the HTML (<code>/App/Views/HttpTest/index.html</code>):</p>
+            <pre>
+<code class="lang-html hljs"><span class="xml"><span class="hljs-meta">&lt;!DOCTYPE html&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"en"</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"UTF-8"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"viewport"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"width=device-width, initial-scale=1.0"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">http-equiv</span>=<span class="hljs-string">"X-UA-Compatible"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"ie=edge"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby">title</span><span class="xml"><span class="hljs-tag">%&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">%-</span></span></span><span class="ruby">content</span><span class="xml"><span class="hljs-tag">%&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span></span></code>
+            </pre>
+            <p>Done! Isn&#39;t it simple? Now restart the Cool-Node server and visit
+                <code>http://localhost/HttpTest/</code> to check it out.</p>
+            <p>EJS has many features that let you evaluate code in a HTML file like PHP, JSP and ASP does. Do forget to check its documentation at
+                <a href="https://www.npmjs.com/package/ejs">https://www.npmjs.com/package/ejs</a> if you want to learn it well.</p>
+            <p>Also, you could use <code>controller.viewMarkdown()</code> to display a markdown file, the content will be automatically parsed to HTML. By the way it use
+                <code>highlightjs</code> to prettify codes, so you have to load the theme file manually, all supported themes are stored in <code>/node_modules/highlightjs/styles/</code>, just copy the one you want to use to <code>/App/Assets/</code>,
+                and load it from the HTML.</p>
+            <p>Until now, we&#39;ve gone through all the basic lessons of Cool-Node, now let&#39;s have a look at the database level programing, meet the <strong>Modelar</strong> ORM.</p>
+        </article>
+    </div>
+
+    <footer>
+        <p class="text-center">
+            <span id="copyright">©2017
+                <a href="http://cool-node.hyurl.com:3000/">Cool Node</a> <a href="https://github.com/Hyurl/cool-node/blob/master/update-log.md">1.2.4</a> based on
+                <a href="http://nodejs.org/">Node.js</a> 6.0+.
+            </span>
+            <span id="license">Licensed under the
+                <a target="_blank" href="http://spdx.org/licenses/MIT.html">MIT License</a>.
+            </span>
+            <span id="icp">
+                <a href="http://www.miitbeian.gov.cn" target="_blank" style="color:#777">桂ICP备15001693号</a>
+            </span>
+        </p>
+        <p class="text-center">See Other Projects:
+            <a href="http://modelar.hyurl.com/">Modelar</a> |
+            <a href="http://modphp.hyurl.com/">ModPHP</a> |
+            <a href="http://modphp.hyurl.com/ModCMS/">ModCMS</a> |
+            <a href="https://github.com/hyurl/type-storage">TypeStorage</a>
+        </p>
+    </footer>
+
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/soft-loader.js"></script>
+    <script src="/js/javascript.js"></script>
+</body>
+
+</html>
