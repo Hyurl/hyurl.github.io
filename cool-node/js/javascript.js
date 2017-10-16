@@ -159,8 +159,6 @@ $(function() {
         setTimeout(type, 1500);
 
     // Add ?lang=[lang] in the URL
-    var match = location.search.match(/\?lang=(\S+)/),
-        lang = match ? match[1] : "";
     var replaceLink = function(target) {
         if (match) {
             target = target || $("body");
@@ -190,7 +188,7 @@ $(function() {
                     replaceLink(content);
                 });
             },
-            src = lang == "zh" ? path.replace("Docs", "Docs/zh") : path;
+            src = isZh ? path.replace("Docs", "Docs/zh") : path;
         SoftLoader.bind(content[0]);
         getContent(src, Title);
         sidebar.find("a").click(function(event) {
@@ -201,7 +199,7 @@ $(function() {
                 });
             if (href != "javascript:;") {
                 event.preventDefault();
-                var src = lang == "zh" ? href.replace("Docs", "Docs/zh") : href;
+                var src = isZh ? href.replace("Docs", "Docs/zh") : href;
                 src = src.split("?")[0];
                 getContent(src, title);
                 sidebar.find("a").removeClass("active");
