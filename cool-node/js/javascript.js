@@ -183,14 +183,14 @@ $(function() {
             getContent = function(src, title) {
                 $.get(src + ".md", function(data) {
                     content.removeClass("fadeOut").addClass("fadeIn");
-                    var path = src.replace("cool-node/zh", "cool-node");
+                    var path = src.replace("Docs/zh", "Docs");
                     if (lang)
                         path += "?lang=" + lang;
                     SoftLoader.replaceWith(markdownHTML(data), title, path);
                     replaceLink(content);
                 });
             },
-            src = lang == "zh" ? path.replace("cool-node", "cool-node/zh") : path;
+            src = lang == "zh" ? path.replace("Docs", "Docs/zh") : path;
         SoftLoader.bind(content[0]);
         getContent(src, Title);
         sidebar.find("a").click(function(event) {
@@ -201,7 +201,7 @@ $(function() {
                 });
             if (href != "javascript:;") {
                 event.preventDefault();
-                var src = lang == "zh" ? href.replace("cool-node", "cool-node/zh") : href;
+                var src = lang == "zh" ? href.replace("Docs", "Docs/zh") : href;
                 src = src.split("?")[0];
                 getContent(src, title);
                 sidebar.find("a").removeClass("active");
