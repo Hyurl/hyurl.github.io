@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>文档: 开始 | Cool-Node</title>
+    <link rel="stylesheet" href="/cool-node/css/highlightjs-theme/monokai.css" />
+    <link rel="stylesheet" href="/cool-node/css/vivify.min.css">
+    <link rel="stylesheet" href="/cool-node/css/style.css">
+</head>
+
+<body>
+    <header class="header vivify popInTop">
+        <div class="logo">
+            <a href="/">Cool-Node</a>
+        </div>
+        <div class="change-lang">
+            <a href="?lang=en">English</a>
+        </div>
+        <div class="navbar">
+            <ul>
+                <li><a href="/">首页</a></li>
+                <li><a href="/Docs">文档</a></li>
+            </ul>
+        </div>
+        <div class="navbar-toggle">
+            <button>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+    </header>
+    <div class="github-brand vivify fadeIn">
+        <a href="https://github.com/Hyurl/cool-node" target="_blank" class="btn btn-default">
+            <svg aria-hidden="true" class="octicon octicon-mark-github" version="1.1" viewBox="0 0 16 16" style="width:16px;height:16px;margin-bottom:-3px;">
+                <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path>
+            </svg> Fork Me on GitHub
+        </a>
+    </div>
+    <div class="container vivify fadeIn">
+        <aside class="sidebar vivify fadeIn">
+            <ul>
+                <li><a href="/Docs/GettingStarted">开始</a></li>
+                <li>
+                    <a href="javascript:;">基础</a>
+                    <ul>
+                        <li><a href="/Docs/Concepts">概念</a></li>
+                        <li><a href="/Docs/WritingHttpControllers">编写 HTTP 控制器</a></li>
+                        <li><a href="/Docs/WritingSocketControllers">编写 Socket 控制器</a></li>
+                        <li><a href="/Docs/DesigningViews">设计视图</a></li>
+                    </ul>
+                </li>
+                <li><a href="/Docs/Modelar">Modelar ORM</a></li>
+                <li><a href="/Docs/Mail">发送邮件</a></li>
+                <li><a href="/Docs/More">更多</a></li>
+                <li><a href="/Docs/MigrationGuide">迁移向导</a></li>
+            </ul>
+        </aside>
+        <article class="content vivify fadeIn">
+            <h2 id="初始化项目">
+                <a class="heading-anchor" href="#初始化项目">
+                    <svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16">
+                        <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+                    </svg>
+                </a>初始化项目
+            </h2>
+            <p>要开始你的 Cool-Node 项目，首先，在你的 Shell 或者 CMD 控制台中输入和运行下面的命令 （假设你已经安装了 Node.js 和 NPM）。</p>
+            <pre>
+<code class="lang-sh hljs"><span class="hljs-built_in">npm</span> init</code>
+            </pre>
+            <p>这条命令将会引导你编辑一些关于你的项目的细节，如果你还不熟悉 <strong>NPM</strong>，但是想要获取 一些关于它的知识，你可以在 <a href="https://docs.npmjs.com/">docs.npmjs.com</a> 上查阅关于它 的文档。
+            </p>
+            <p>在初始化之后，一个新的 <code>package.json</code> 文件将会被创建在你的项目目录中，这样你就完成了 你在网站建设上的第一个工作。接下来，让我向你展示如何在你的项目中安装 Cool-Node。</p>
+            <h2 id="安装">
+                <a class="heading-anchor" href="#安装">
+                    <svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16">
+                        <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+                    </svg>
+                </a>安装
+            </h2>
+            <p>要安装 Cool-Node，在你的 Shell 或者 CMD 控制台中输入和运行下面的命令：</p>
+            <pre>
+<code class="lang-sh hljs">npm install cool-<span class="hljs-keyword">node</span> <span class="hljs-title">--save</span></code>
+            </pre>
+            <p>这和你安装任何其他 Node.js 模块一样，但是 Cool-Node 可不是一个普通的模块，它并不是 像平常的模块那样时被 <code>require</code> 进来的。实际上，它是一个用来组织你的代码文件的顶级 结构。
+            </p>
+            <p><strong>对于 1.1.x 或者 1.0.x</strong></p>
+            <p>要在你的项目中使用 Cool-Node，你必须要将除了 <code>package.json</code> 外的所有文件，从
+                <code>node_modules/cool-node</code> 复制到你的项目的根目录中。</p>
+            <p><strong>对于 1.2.0 以及更新版本</strong></p>
+            <p>要在你的项目中使用 Cool-Node，你必须要将 <code>App-example</code>、<code>Middleware</code> 和
+                <code>config.js</code> 从 <code>node_modules/cool-node</code> 复制到你的项目根目录中。你也可以同时复制 入口文件 <code>index.js</code>，但是如果你不这么做，那你必须要创建自己的入口文件，并且确保它 使用 <code>require(&quot;cool-node&quot;)</code> 导入 Cool-Node。</p>
+            <p>当你完成这些之后，安装环节中的最重要的工作就完成了，你可以继续查看下面的章节来学习 如何配置你的软件。
+            </p>
+            <h2 id="配置">
+                <a class="heading-anchor" href="#配置">
+                    <svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16">
+                        <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+                    </svg>
+                </a>配置
+            </h2>
+            <p>你可能会想要自己设置一些配置来定义你的网站。在项目根目录中的 <code>config.js</code> 文件 定义了一些非常有用的设置，它们被应用在整个软件当中。如服务器监听的主机名和端口、 数据库信息、邮件，等等。你可以更改这些选项，从而来影响你所有的 Cool-Node 应用。</p>
+            <h2 id="你的第一个应用">
+                <a class="heading-anchor" href="#你的第一个应用">
+                    <svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16">
+                        <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+                    </svg>
+                </a>你的第一个应用
+            </h2>
+            <p>Cool-Node 提供了一个示例的应用，要开始你的第一个应用，只需要重命名文件夹
+                <code>App-example</code> 为 <code>App</code>，就可以了。你可以编辑文件夹中的一些内容，然后在服务器重启 之后看看会发生什么。
+            </p>
+            <h2 id="开启服务器">
+                <a class="heading-anchor" href="#开启服务器">
+                    <svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16">
+                        <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+                    </svg>
+                </a>开启服务器
+            </h2>
+            <p>在完成了所有前面提到的事情之后，你现在可以在你的 Shell 或 CMD 控制台中输入并运行下面 的命令，来启动 Cool-Node 服务器并等待请求了。</p>
+            <pre>
+<code class="lang-sh hljs"><span class="hljs-keyword">node</span> <span class="hljs-title">index</span>.js</code>
+            </pre>
+            <p>Cool-Node 服务器包含两个部分，一个 HTTP 服务器，和一个 WebSocket 服务器，它们都会 在运行命令之后被启动。自 1.2.3 版本起，你可以更改这个行为，通过设置
+                <code>config.server.socket.autoStart</code> 选项来禁止 WebSocket 服务器自启动，然后在你需要 时再手动启动它。
+            </p>
+            <p>你现在可以在浏览器中访问 <code>http://localhost/</code> 来看看将会展现给你的是什么东西了。</p>
+            <h2 id="保持更新">
+                <a class="heading-anchor" href="#保持更新">
+                    <svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16">
+                        <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+                    </svg>
+                </a>保持更新
+            </h2>
+            <p>Cool-Node 依旧在成长中，更多的特性将会被增加到新版本中，所以保持你的软件获取更新是 特别建议的。你可以在你的 Shell 或 CMD 控制台中使用下面的命令来查看你正在使用的版本：</p>
+            <pre>
+<code class="lang-sh hljs">npm list cool-<span class="hljs-keyword">node</span><span class="hljs-title"></span></code>
+            </pre>
+            <p>然后使用这条命令来检查最新的版本：</p>
+            <pre>
+<code class="lang-sh hljs">npm view cool-<span class="hljs-keyword">node</span><span class="hljs-title"></span></code>
+            </pre>
+            <p>如果你发现有新的版本可用，则可以使用下面的命令来下载最新的版本：</p>
+            <pre>
+<code class="lang-sh hljs">npm update cool-<span class="hljs-keyword">node</span><span class="hljs-title"></span></code>
+            </pre>
+            <p><strong>对于更新到 1.1.x 版本</strong></p>
+            <p>当新版本下载完成后，你需要将除了 <code>config.js</code> 和 <code>package.json</code> 外的所有文件复制到 你的项目的根目录下，并覆盖原来的文件。
+            </p>
+            <p><strong>从 1.1.x 更新到 1.2.x</strong></p>
+            <p>1.2.0 版本更改了项目的一些细节，更新方法请查看
+                <a href="/Docs/MigrationGuide">迁移向导</a>。</p>
+            <p>配置选项可能会在新版本中发生改变，从而增加更多的设置，所以你还需要自己检查
+                <code>config.js</code> 文件来查看有哪些内容是被修改过的，然后将它们添加到你自己的项目的配置文件 中。
+            </p>
+            <p>这些是不是很简单呢？好了，现在让我们进入到真正的网站建设中去。</p>
+        </article>
+    </div>
+
+    <footer>
+        <p class="text-center">
+            <span id="copyright">©2017
+                <a href="http://cool-node.hyurl.com">Cool Node</a> <a href="https://github.com/Hyurl/cool-node/blob/master/update-log.md">1.2.4</a> based on
+                <a href="http://nodejs.org/">Node.js</a> 6.0+.
+            </span>
+            <span id="license">Licensed under the
+                <a target="_blank" href="http://spdx.org/licenses/MIT.html">MIT License</a>.
+            </span>
+            <span id="icp">
+                <a href="http://www.miitbeian.gov.cn" target="_blank" style="color:#777">桂ICP备15001693号</a>
+            </span>
+        </p>
+        <p class="text-center">See Other Projects:
+            <a href="http://modelar.hyurl.com/">Modelar</a> |
+            <a href="http://modphp.hyurl.com/">ModPHP</a> |
+            <a href="http://modphp.hyurl.com/ModCMS/">ModCMS</a> |
+            <a href="https://github.com/hyurl/type-storage">TypeStorage</a>
+        </p>
+    </footer>
+
+    <script src="/cool-node/js/jquery.min.js"></script>
+    <script src="/cool-node/js/soft-loader.js"></script>
+    <script src="/cool-node/js/marked.min.js"></script>
+    <script src="/cool-node/js/highlight.pack.min.js"></script>
+    <script src="/cool-node/js/javascript.js"></script>
+</body>
+
+</html>
