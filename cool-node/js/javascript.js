@@ -1,5 +1,22 @@
 "use strict";
 
+String.byteLength = function(str) {
+    var b = 0,
+        l = str.length;
+    if (l) {
+        for (var i = 0; i < l; i++) {
+            if (str.charCodeAt(i) > 255) {
+                b += 2;
+            } else {
+                b++;
+            }
+        }
+        return b;
+    } else {
+        return 0;
+    }
+}
+
 var path = location.pathname,
     hash = location.hash;
 
