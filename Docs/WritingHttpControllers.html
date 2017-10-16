@@ -75,10 +75,8 @@
                 <em>Controller</em> part away in a Cool-Node project.</p>
             <p>This is a simple definition of the HttpTest controller:</p>
             <pre>
-                <code class="lang-javascript hljs">
-const <span class="hljs-type">HttpController</span> = require(<span class="hljs-string">"./HttpController"</span>);
-module.exports = <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">HttpController</span></span>{}
-                </code>
+                <code class="lang-javascript hljs">const <span class="hljs-type">HttpController</span> = require(<span class="hljs-string">"./HttpController"</span>);
+module.exports = <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">HttpController</span></span>{}</code>
             </pre>
             <p>At the first line, you need to import the <code>HttpController</code>, and this file must export a class that extends HttpController, you don&#39;t need to give it a name, just leave it anonymous and it is ok.</p>
             <p>This controller doesn&#39;t do anything now, the next step I will show you how to define methods that are fulfilled with the <strong>auto-routing system</strong>.</p>
@@ -99,8 +97,7 @@ module.exports = <span class="hljs-class"><span class="hljs-keyword">class</span
             </blockquote>
             <p>Isn&#39;t it simple? let me show you:</p>
             <pre>
-                <code class="lang-javascript hljs">
-<span class="hljs-keyword">const</span> HttpController = <span class="hljs-built_in">require</span>(<span class="hljs-string">"./HttpController"</span>);
+                <code class="lang-javascript hljs"><span class="hljs-keyword">const</span> HttpController = <span class="hljs-built_in">require</span>(<span class="hljs-string">"./HttpController"</span>);
 
 <span class="hljs-built_in">module</span>.exports = <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">HttpController</span></span>{
     <span class="hljs-comment">/**
@@ -150,8 +147,7 @@ module.exports = <span class="hljs-class"><span class="hljs-keyword">class</span
             }, <span class="hljs-number">1000</span>);
         });
     }
-}
-                </code>
+}</code>
             </pre>
             <p>Now you&#39;ve already learn the most important part of the HttpController, but, this is more, let&#39;s continue on.</p>
             <h2 id="Showing-Index-Page-and-RESTful-API">
@@ -172,8 +168,7 @@ module.exports = <span class="hljs-class"><span class="hljs-keyword">class</span
             <p>When calling these methods, you don&#39;t need to explicitly give the method name in the URL, just the controller name is OK, the framework will automatically match them by detecting the request type.</p>
             <p>But, if you both have a <code>index()</code> and a <code>get()</code> in the controller, if no method name is present in the URL, only the index() will be called. In such a case, you need to explicitly point out the method name.</p>
             <pre>
-                <code class="lang-javascript hljs">
-const <span class="hljs-type">HttpController</span> = require(<span class="hljs-string">"./HttpController"</span>);
+                <code class="lang-javascript hljs">const <span class="hljs-type">HttpController</span> = require(<span class="hljs-string">"./HttpController"</span>);
 
 module.exports = <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">HttpController</span></span>{
     <span class="hljs-comment">/** GET http://localhost/HttpTest */</span>
@@ -193,8 +188,7 @@ module.exports = <span class="hljs-class"><span class="hljs-keyword">class</span
 
     <span class="hljs-comment">/** DELETE http://localhost/HttpTest */</span>
     delete(){}
-}
-                </code>
+}</code>
             </pre>
             <p>You can change the RESTful map by reassigning the <code>controller.RESTfulMap</code> property, even add more methods. <strong>Since version 1.2.4, this property is set</strong>
                 <strong>by a setter, so you must define a new setter if you want to rewrite it.</strong></p>
@@ -217,8 +211,7 @@ module.exports = <span class="hljs-class"><span class="hljs-keyword">class</span
             <p>This method returns a <strong>Promise</strong>, and the only argument passed to the callback of <code>then()</code> is the returning contents of the template.</p>
             <p>The reason why <code>tplName</code> is optional is because the framework will automatically set a default view when the method is called by a client request. let me show yo how it works:</p>
             <pre>
-                <code class="lang-javascript hljs">
-const <span class="hljs-type">HttpController</span> = require(<span class="hljs-string">"./HttpController"</span>);
+                <code class="lang-javascript hljs">const <span class="hljs-type">HttpController</span> = require(<span class="hljs-string">"./HttpController"</span>);
 
 module.exports = <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">HttpController</span></span>{
     index(){
@@ -239,8 +232,7 @@ module.exports = <span class="hljs-class"><span class="hljs-keyword">class</span
         <span class="hljs-comment">//match the method name.</span>
         <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.view(<span class="hljs-string">"HttpTest/show-another"</span>);
     }
-}
-                </code>
+}</code>
             </pre>
             <p>There is another method <code>controller.viewMarkdown()</code>, it is used to display a markdown file (which extension name is <code>.md</code>) and parse it to HTML. It acts almost the same as <code>controller.view()</code>, except it only
                 accept the argument
