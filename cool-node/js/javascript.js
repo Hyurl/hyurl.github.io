@@ -248,11 +248,13 @@ $(function() {
         var Title = document.title;
         SoftLoader.bind(markdownContent[0]);
         sidebar.find("a").click(function(event) {
+            event.preventDefault();
             var href = $(this).attr("href"),
                 text = $(this).text(),
                 title = Title.replace(/:\s([\S\s]+)\s\|/, (match) => {
                     return ": " + text + " |";
                 });
+            console.log(href);
             if (href != "javascript:;") {
                 event.preventDefault();
                 var src = href + ".md";
