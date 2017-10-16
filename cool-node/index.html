@@ -29,6 +29,8 @@
             <a href="?lang=zh">
                 <script>
                     document.write(lang == "zh" ? "English" : "中文");
+                    var target = document.querySelector("a[href=\"?lang=zh\"]");
+                    target.setAttribute("href", lang == "zh" ? "?lang=en" : "?lang=zh");
                 </script>
             </a>
         </div>
