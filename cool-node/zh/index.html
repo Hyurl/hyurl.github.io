@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Cool-Node - A cool and light weight framework for Node.js</title>
+    <title>Cool-Node - 一个炫酷的基于 Node.js 平台的轻量级 Web 应用程序框架</title>
     <link rel="stylesheet" href="/cool-node/css/highlightjs-theme/monokai.css" />
     <link rel="stylesheet" href="/cool-node/css/vivify.min.css">
     <link rel="stylesheet" href="/cool-node/css/style.css">
@@ -14,15 +14,15 @@
 <body>
     <header class="header vivify popInTop">
         <div class="logo">
-            <a href="/cool-node/">Cool-Node</a>
+            <a href="/cool-node/zh/">Cool-Node</a>
         </div>
         <div class="change-lang">
-            <a href="/cool-node/zh">中文</a>
+            <a href="/cool-node/">English</a>
         </div>
         <div class="navbar">
             <ul>
-                <li><a href="/cool-node/">Home</a></li>
-                <li><a href="/cool-node/Docs">Docs</a></li>
+                <li><a href="/cool-node/zh/">首页</a></li>
+                <li><a href="/cool-node/zh/Docs">文档</a></li>
             </ul>
         </div>
         <div class="navbar-toggle">
@@ -45,7 +45,7 @@
             <div class="jumbotron">
                 <h1 class="vivify popInRight">Cool-Node</h1>
                 <p class="desc vivify fadeIn">
-                    A cool and light weight framework for Node.js, with abilities of auto-routing, cross-protocol, multi-apps, and beyond.
+                    一个炫酷的基于 Node.js 平台的轻量级 Web 应用程序框架，拥有诸如自动路由映射、跨协议开发、多应用模式等极其出色的功能。
                 </p>
             </div>
             <div class="command vivify flipInX">
@@ -123,38 +123,35 @@
             </div>
             <div class="box">
                 <div class="vivify popInBottom">
-                    <h1>Tiny</h1>
+                    <h1>精巧</h1>
                     <p>
-                        Cool-Node only defines some principles and a structure for your application, it based on some very mature modules, like <strong>Express</strong>, <strong>Socket.io</strong>, etc.
+                        Cool-Node 仅定义了一些基本原则和一个组织你的应用的架构，它基于很多现有的成熟的模块，如 <strong>Express</strong>, <strong>Socket.io</strong>，等等。
                     </p>
                 </div>
                 <div class="vivify popInBottom">
-                    <h1>Easy</h1>
+                    <h1>简易</h1>
                     <p>
-                        Cool-Node doesn't double-abstract what its dependencies have, but provides more convenient and automatic features to handle the application.
+                        Cool-Node 不二次抽象 Node.js 及依赖项的特性，但提供了更为合适的自动化的特性来处理你的应用。
                     </p>
                 </div>
             </div>
             <div class="list">
                 <div>
-                    <h1>Auto-Routing Development</h1>
-                    <p>Remember when you were using the Node.js internal server or Express, or other frameworks, you had to define routes for every actions; when you were using socket.io, you complained writing too much socket.on() and socket.emit(). And
-                        thinking, isn't there any way not to do this? So here comes Cool-Node.</p>
-                    <p>Cool-Node provides an API that will automatically handle these things without any of your concerns, you don't even have to call this API in your program, all actions will be automatically done by the framework itself.</p>
+                    <h1>自动路由化开发</h1>
+                    <p>还记得当你使用 Node.js 内置服务器或者 Express 时，或者其他的框架，你必须为每一个操作定义它们的路由；当你使用 Socket.io 时，你抱怨编写太多的 socket.on() 和 socket.emit()。然后开始思考，是不是有更好的方法可以不必这么做呢？于是 Cool-Node 出来了。</p>
+                    <p>Cool-Node 提供了一个 API，它能够自动地处理这些事务，而不需要你操任何心，你甚至都不需要在应用中手动调用这个 API，所有的操作都会由框架自己来自动地处理。</p>
                 </div>
                 <div>
-                    <h1>Fast Development</h1>
-                    <p>Along with auto-routing system, you can save you time to do the real things that matter, like manipulate models, writing controllers, and design views. With the ability of <strong>Modelar</strong> <small>(a module for handling models and queries)</small>,
-                        you can handle data in just few seconds.</p>
+                    <h1>快速开发</h1>
+                    <p>伴随着自动路由系统，你可以省下时间来做真正的有用的事情，诸如操控模型、编写控制器和设计视图等等。使用 <strong>Modelar</strong>（一个操作模型和数据库查询的模块） 模型系统所提供的强大能力，你可以在短短几秒钟的时间内就能自由地操作数据。</p>
                 </div>
                 <div>
-                    <h1>Cross-Protocol Development</h1>
-                    <p>Cool-Node also give you the ability to handle sessions and share their status across HTTP and WebSocket, what you can do with a HTTP request can also be done with a WebSocket communication.</p>
+                    <h1>跨协议开发</h1>
+                    <p>Cool-Node 同时给予你操作会话的能力，并在 HTTP 和 WebSocket 协议之间共享它们的状态，你在一个 HTTP 请求中所能做的操作，也可以使用 WebSocket 通讯来完成。</p>
                 </div>
                 <div>
-                    <h1>Multi-Apps Development</h1>
-                    <p>Cool-Node is a framework that can build multiple applications at one time with only one server running. It can differ requests <small>(whether they come form HTTP or WebSocket)</small> by subdomains, you can use more than one subdomain
-                        to write any count of applications as you want.</p>
+                    <h1>多应用开发</h1>
+                    <p>Cool-Node 是一个可以同时开发多个应用的 Web 框架，并且只需要运行一个服务器来托管它们。它能够通过不同的子域名来区分请求（无论它们是来自 HTTP，还是来自 WebSocket），你可以使用多个子域名来编写任何数目的应用，只要你想做，就能做。</p>
                 </div>
             </div>
         </div>
