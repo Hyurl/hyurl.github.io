@@ -277,7 +277,7 @@ $(function() {
                     // content.removeClass("fadeOut").addClass("fadeIn");
                     content.html(markdownHTML(data)).removeClass("fadeOut").addClass("fadeIn");
                     SoftLoader.replaceWith(data, title, href);
-                    replaceLink(content);
+                    // replaceLink(content);
                 });
                 sidebar.find("a").removeClass("active");
                 $(this).addClass("active");
