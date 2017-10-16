@@ -2,10 +2,22 @@
 <html lang="en">
 
 <head>
+    <script>
+        var match = location.search.match(/lang=([\S]+)/),
+            lang = match ? match[1] : "";
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Cool-Node - A cool and light weight framework for Node.js</title>
+    <title>
+        <script>
+            if (lang == "zh") {
+                document.write("Cool-Node - 一个炫酷的基于 Node.js 平台的轻量级 Web 应用程序框架");
+            } else {
+                document.write("Cool-Node - A cool and light weight framework for Node.js");
+            }
+        </script>
+    </title>
     <link rel="stylesheet" href="/cool-node/css/highlightjs-theme/monokai.css" />
     <link rel="stylesheet" href="/cool-node/css/vivify.min.css">
     <link rel="stylesheet" href="/cool-node/css/style.css">
@@ -17,12 +29,28 @@
             <a href="/cool-node/">Cool-Node</a>
         </div>
         <div class="change-lang">
-            <a href="?lang=zh">中文</a>
+            <a href="?lang=zh">
+                <script>
+                    document.write(lang == "zh" ? "English" : "中文");
+                </script>
+            </a>
         </div>
         <div class="navbar">
             <ul>
-                <li><a href="/cool-node/">Home</a></li>
-                <li><a href="/cool-node/Docs">Docs</a></li>
+                <li>
+                    <a href="/cool-node/">
+                        <script>
+                            document.write(lang == "zh" ? "首页" : "Home");
+                        </script>
+                    </a>
+                </li>
+                <li>
+                    <a href="/cool-node/Docs">
+                        <script>
+                            document.write(lang == "zh" ? "文档" : "Docs");
+                        </script>
+                    </a>
+                </li>
             </ul>
         </div>
         <div class="navbar-toggle">

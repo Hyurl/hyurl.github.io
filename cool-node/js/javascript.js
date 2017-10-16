@@ -24,14 +24,6 @@ location.hash = "";
 
 $(function() {
     var navbar = $(".navbar>ul"),
-        loginBtn = $("#login-btn"),
-        loginPanel = $(".login-panel"),
-        loginPanelCloser = loginPanel.find(".close"),
-        loginForm = loginPanel.find("form"),
-        username = $("#user-name"),
-        userBtn = $("#user-btn"),
-        userMenu = $(".user-dropdown"),
-        logoutBtn = $("#logout-btn"),
         sidebar = $(".sidebar"),
         content = $("article.content"),
         renderer = new marked.Renderer(),
@@ -84,85 +76,11 @@ $(function() {
         }
     });
 
-    //Display login panel when click login button.
-    loginBtn.on("click", function(event) {
-        event.preventDefault();
-        loginPanel.fadeIn(function() {
-            username.focus();
-        });
-    });
-
-    //Hide login panel when click close button.
-    loginPanelCloser.on('click', function() {
-        loginPanel.fadeOut();
-    });
-
-    //Display user dropdown menu.
-    userBtn.on("click", function(event) {
-        event.preventDefault();
-        userMenu.fadeIn("fast");
-    });
-
     //Hide user dropdown menu when click areas outer the menu.
     $(document).on('click', function(event) {
         var target = $(event.target);
         if (target.closest(".user-dropdown").length === 0 &&
-            !target.is("#user-btn")) {
-            userMenu.fadeOut("fast");
-        }
-    });
-
-    //When submit the login form, replace the native action with Ajax.
-    loginForm.on("submit", function(event) {
-        event.preventDefault();
-        var user = username.val(),
-            password = $("#user-password").val(),
-            // remember = loginForm.find("input[name=remember]")[0].checked,
-            args = {
-                user: user,
-                password: password,
-                // remember: remember,
-            };
-        $.ajax({
-            url: "/login",
-            type: "POST",
-            contentType: "application/json; charset=utf-8",
-            data: JSON.stringify(args),
-            dataType: "json",
-            timeout: 2000,
-            success: function(result) {
-                if (result.success) {
-                    alert("User logged in.");
-                    window.location.reload();
-                } else {
-                    alert(result.msg);
-                }
-            },
-            error: function() {
-                alert("Connection failed.");
-            }
-        });
-    });
-
-    //When click the logout button, logout the user.
-    logoutBtn.click(function(event) {
-        event.preventDefault();
-        $.ajax({
-            url: "/logout",
-            dataType: "json",
-            timeout: 2000,
-            success: function(result) {
-                if (result.success) {
-                    alert("User logged out.");
-                    window.location.reload();
-                } else {
-                    alert(result.msg);
-                }
-            },
-            error: function() {
-                alert("Connection failed.");
-            }
-        })
+            !target.is("#user-btn")) {}
     });
 
     //Handle anchor clicking.
