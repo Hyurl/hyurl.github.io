@@ -261,14 +261,17 @@ $(function() {
 
     if (content.length) {
         var Title = document.title,
+            lang = location.search.match(/lang=zh/) ? "zh" : "en",
             getContent = function(src, title) {
                 $.get(src + ".md", function(data) {
                     content.removeClass("fadeOut").addClass("fadeIn");
-                    SoftLoader.replaceWith(markdownHTML(data), title, src);
+                    var path = src.replace("cool-node/zh", "cool-node");
+                    if (lang)
+                        path += "?lang=" + lang;
+                    SoftLoader.replaceWith(markdownHTML(data), title, path);
                     replaceLink(content);
                 });
             },
-            lang = location.search.match(/lang=zh/) ? "zh" : "en",
             src = lang == "zh" ? path.replace("cool-node", "cool-node/zh") : path;
         SoftLoader.bind(content[0]);
         getContent(src, Title);
