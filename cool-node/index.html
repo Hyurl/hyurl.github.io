@@ -17,10 +17,9 @@
                 var target = document.currentScript.parentElement;
                 if (isZh) {
                     target.innerHTML = str;
+                } else {
+                    target.innerHTML = target.innerHTML.split("<script>")[0];
                 }
-                //  else {
-                //     target.innerHTML = target.innerHTML.split("/n")[0];
-                // }
             };
         if (isZh) {
             document.title = "Cool-Node - 一个炫酷的基于 Node.js 平台的轻量级 Web 应用程序框架";
