@@ -15,11 +15,13 @@
             isZh = lang == "zh" || (!lang && navigator.language.indexOf("zh") >= 0),
             _ = function(str) {
                 var target = document.currentScript.parentElement;
-                if (isZh) {
-                    target.innerHTML = str;
-                } else {
-                    target.innerHTML = target.innerHTML.split("<script>")[0];
+                if (!isZh) {
+                    str = target.innerHTML.split("<script>")[0];
                 }
+                if (str.trim instanceof Function) {
+                    str = str.trim();
+                }
+                target.innerHTML = str;
             };
         if (isZh) {
             document.title = "Cool-Node - 一个炫酷的基于 Node.js 平台的轻量级 Web 应用程序框架";

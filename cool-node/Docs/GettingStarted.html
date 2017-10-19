@@ -10,9 +10,19 @@
     <link rel="stylesheet" href="/cool-node/css/vivify.min.css">
     <link rel="stylesheet" href="/cool-node/css/style.css">
     <script>
-        var match = location.search.match(/lang=([\S]+)/),
+        var match = location.search.match(/\?lang=([\S]+)/),
             lang = match ? match[1] : "",
-            isZh = lang == "zh" || (!lang && navigator.language.indexOf("zh") >= 0);
+            isZh = lang == "zh" || (!lang && navigator.language.indexOf("zh") >= 0),
+            _ = function(str) {
+                var target = document.currentScript.parentElement;
+                if (!isZh) {
+                    str = target.innerHTML.split("<script>")[0];
+                }
+                if (str.trim instanceof Function) {
+                    str = str.trim();
+                }
+                target.innerHTML = str;
+            };
     </script>
 </head>
 
@@ -22,27 +32,27 @@
             <a href="/cool-node/">Cool-Node</a>
         </div>
         <div class="change-lang">
-            <a href="?lang=zh">
+            <a href="?lang=zh">中文
                 <script>
-                    var target = document.querySelector("a[href=\"?lang=zh\"]");
+                    _("English");
+                    var target = document.currentScript.parentElement;
                     target.setAttribute("href", isZh ? "?lang=en" : "?lang=zh");
-                    document.write(isZh ? "English" : "中文");
                 </script>
             </a>
         </div>
         <div class="navbar">
             <ul>
                 <li>
-                    <a href="/cool-node/">
+                    <a href="/cool-node/">Home
                         <script>
-                            document.write(isZh ? "首页" : "Home");
+                            _("首页");
                         </script>
                     </a>
                 </li>
                 <li>
-                    <a href="/cool-node/Docs">
+                    <a href="/cool-node/Docs">Docs
                         <script>
-                            document.write(isZh ? "文档" : "Docs");
+                            _("文档");
                         </script>
                     </a>
                 </li>
@@ -67,44 +77,44 @@
         <aside class="sidebar vivify fadeIn">
             <ul>
                 <li>
-                    <a href="/cool-node/Docs/GettingStarted">
+                    <a href="/cool-node/Docs/GettingStarted">Getting Started
                         <script>
-                            document.write(isZh ? "开始" : "Getting Started");
+                            _("开始");
                         </script>
                     </a>
                 </li>
                 <li>
-                    <a href="javascript:;">
+                    <a href="javascript:;">The Basics
                         <script>
-                            document.write(isZh ? "基础" : "The Basics");
+                            _("基础");
                         </script>
                     </a>
                     <ul>
                         <li>
-                            <a href="/cool-node/Docs/Concepts">
+                            <a href="/cool-node/Docs/Concepts">Concepts
                                 <script>
-                                    document.write(isZh ? "概念" : "Concepts");
+                                    _("概念");
                                 </script>
                             </a>
                         </li>
                         <li>
-                            <a href="/cool-node/Docs/WritingHttpControllers">
+                            <a href="/cool-node/Docs/WritingHttpControllers">Writing HTTP Controllers
                                 <script>
-                                    document.write(isZh ? "编写 HTTP 控制器" : "Writing HTTP Controllers");
+                                    _("编写 HTTP 控制器");
                                 </script>
                             </a>
                         </li>
                         <li>
-                            <a href="/cool-node/Docs/WritingSocketControllers">
+                            <a href="/cool-node/Docs/WritingSocketControllers">Writing Socket Controllers
                                 <script>
-                                    document.write(isZh ? "编写 Socket 控制器" : "Writing Socket Controllers");
+                                    _("编写 Socket 控制器");
                                 </script>
                             </a>
                         </li>
                         <li>
-                            <a href="/cool-node/Docs/DesigningViews">
+                            <a href="/cool-node/Docs/DesigningViews">Designing Views
                                 <script>
-                                    document.write(isZh ? "设计视图" : "Designing Views");
+                                    _("设计视图");
                                 </script>
                             </a>
                         </li>
@@ -112,23 +122,23 @@
                 </li>
                 <li><a href="/cool-node/Docs/Modelar">Modelar ORM</a></li>
                 <li>
-                    <a href="/cool-node/Docs/Mail">
+                    <a href="/cool-node/Docs/Mail">Sending E-Mail
                         <script>
-                            document.write(isZh ? "发送邮件" : "Sending E-Mail");
+                            _("发送邮件");
                         </script>
                     </a>
                 </li>
                 <li>
-                    <a href="/cool-node/Docs/More">
+                    <a href="/cool-node/Docs/More">More
                         <script>
-                            document.write(isZh ? "更多" : "More");
+                            _("更多");
                         </script>
                     </a>
                 </li>
                 <li>
-                    <a href="/cool-node/Docs/MigrationGuide">
+                    <a href="/cool-node/Docs/MigrationGuide">Migration Guide
                         <script>
-                            document.write(isZh ? "迁移向导" : "Migration Guide");
+                            _("迁移向导");
                         </script>
                     </a>
                 </li>
