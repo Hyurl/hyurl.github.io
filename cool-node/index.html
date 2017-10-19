@@ -5,18 +5,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Cool-Node</title>
+    <title>Cool-Node - A cool and light weight framework for Node.js</title>
     <link rel="stylesheet" href="/cool-node/css/highlightjs-theme/monokai.css" />
     <link rel="stylesheet" href="/cool-node/css/vivify.min.css">
     <link rel="stylesheet" href="/cool-node/css/style.css">
     <script>
-        var match = location.search.match(/lang=([\S]+)/),
+        var match = location.search.match(/\?lang=([\S]+)/),
             lang = match ? match[1] : "",
-            isZh = lang == "zh" || (!lang && navigator.language.indexOf("zh") >= 0);
+            isZh = lang == "zh" || (!lang && navigator.language.indexOf("zh") >= 0),
+            _ = function(str) {
+                var target = document.currentScript.parentElement;
+                if (isZh) {
+                    target.innerHTML = str;
+                }
+                //  else {
+                //     target.innerHTML = target.innerHTML.split("/n")[0];
+                // }
+            };
         if (isZh) {
             document.title = "Cool-Node - 一个炫酷的基于 Node.js 平台的轻量级 Web 应用程序框架";
-        } else {
-            document.title = "Cool-Node - A cool and light weight framework for Node.js";
         }
     </script>
 </head>
@@ -27,27 +34,27 @@
             <a href="/cool-node/">Cool-Node</a>
         </div>
         <div class="change-lang">
-            <a href="?lang=zh">
+            <a href="?lang=zh">中文
                 <script>
-                    var target = document.querySelector("a[href=\"?lang=zh\"]");
+                    _("English");
+                    var target = document.currentScript.parentElement;
                     target.setAttribute("href", isZh ? "?lang=en" : "?lang=zh");
-                    document.write(isZh ? "English" : "中文");
                 </script>
             </a>
         </div>
         <div class="navbar">
             <ul>
                 <li>
-                    <a href="/cool-node/">
+                    <a href="/cool-node/">Home
                         <script>
-                            document.write(isZh ? "首页" : "Home");
+                            _("首页");
                         </script>
                     </a>
                 </li>
                 <li>
-                    <a href="/cool-node/Docs">
+                    <a href="/cool-node/Docs">Docs
                         <script>
-                            document.write(isZh ? "文档" : "Docs");
+                            _("文档");
                         </script>
                     </a>
                 </li>
@@ -73,12 +80,9 @@
             <div class="jumbotron">
                 <h1 class="vivify popInRight">Cool-Node</h1>
                 <p class="desc vivify fadeIn">
+                    A cool and light weight framework for Node.js, with abilities of auto-routing, cross-protocol, multi-apps, and beyond.
                     <script>
-                        if (isZh) {
-                            document.write("一个炫酷的基于 Node.js 平台的轻量级 Web 应用程序框架，拥有诸如自动路由映射、跨协议开发、多应用模式等极其出色的功能。");
-                        } else {
-                            document.write("A cool and light weight framework for Node.js, with abilities of auto-routing, cross-protocol, multi-apps, and beyond.");
-                        }
+                        _("一个炫酷的基于 Node.js 平台的轻量级 Web 应用程序框架，拥有诸如自动路由映射、跨协议开发、多应用模式等极其出色的功能。");
                     </script>
                 </p>
             </div>
@@ -157,109 +161,91 @@
             </div>
             <div class="box">
                 <div class="vivify popInBottom">
-                    <h1>
+                    <h1>Tiny
                         <script>
-                            document.write(isZh ? "精巧" : "Tiny");
+                            _("精巧");
                         </script>
                     </h1>
                     <p>
+                        Cool-Node only defines some principles and a structure for your application, it based on some very mature modules, like <strong>Express</strong>, <strong>Socket.io</strong>, etc.
                         <script>
-                            if (isZh) {
-                                document.write("Cool-Node 仅定义了一些基本原则和一个组织你的应用的架构，它基于很多现有的成熟的模块，如 Express, Socket.io，等等。")
-                            } else {
-                                document.write("Cool-Node only defines some principles and a structure for your application, it based on some very mature modules, like <strong>Express</strong>, <strong>Socket.io</strong>, etc.");
-                            }
+                            _("Cool-Node 仅定义了一些基本原则和一个组织你的应用的架构，它基于很多现有的成熟的模块，如 Express, Socket.io，等等。");
                         </script>
                     </p>
                 </div>
                 <div class="vivify popInBottom">
-                    <h1>
+                    <h1>Easy
                         <script>
-                            document.write(isZh ? "简易" : "Easy");
+                            _("简易");
                         </script>
                     </h1>
                     <p>
+                        Cool-Node doesn't double-abstract what its dependencies have, but provides more convenient and automatic features to handle the application.
                         <script>
-                            if (isZh) {
-                                document.write("Cool-Node 不二次抽象 Node.js 及依赖项的特性，但提供了更为合适的自动化的特性来处理你的应用。");
-                            } else {
-                                document.write("Cool-Node doesn't double-abstract what its dependencies have, but provides more convenient and automatic features to handle the application.");
-                            }
+                            _("Cool-Node 不二次抽象 Node.js 及依赖项的特性，但提供了更为合适的自动化的特性来处理你的应用。");
                         </script>
                     </p>
                 </div>
             </div>
             <div class="list">
                 <div>
-                    <h1>
+                    <h1>Auto-Routing Development
                         <script>
-                            document.write(isZh ? "自动路由化开发" : "Auto-Routing Development");
+                            _("自动路由化开发");
                         </script>
                     </h1>
                     <p>
+                        Remember when you were using the Node.js internal server or Express, or other frameworks, you had to define routes for every actions; when you were using socket.io, you complained writing too much socket.on() and socket.emit(). And thinking, isn't there
+                        any way not to do this? So here comes Cool-Node.
                         <script>
-                            if (isZh) {
-                                document.write("还记得当你使用 Node.js 内置服务器或者 Express 时，或者其他的框架，你必须为每一个操作定义它们的路由；当你使用 Socket.io 时，你抱怨编写太多的 socket.on() 和 socket.emit()。然后开始思考，是不是有更好的方法可以不必这么做呢？于是 Cool-Node 出来了。");
-                            } else {
-                                document.write("Remember when you were using the Node.js internal server or Express, or other frameworks, you had to define routes for every actions; when you were using socket.io, you complained writing too much socket.on() and socket.emit(). And thinking, isn't there any way not to do this? So here comes Cool-Node.");
-                            }
+                            _("还记得当你使用 Node.js 内置服务器或者 Express 时，或者其他的框架，你必须为每一个操作定义它们的路由；当你使用 Socket.io 时，你抱怨编写太多的 socket.on() 和 socket.emit()。然后开始思考，是不是有更好的方法可以不必这么做呢？于是 Cool-Node 出来了。");
                         </script>
                     </p>
                     <p>
+                        Cool-Node provides an API that will automatically handle these things without any of your concerns, you don't even have to call this API in your program, all actions will be automatically done by the framework itself.
                         <script>
-                            if (isZh) {
-                                document.write("Cool-Node 提供了一个 API，它能够自动地处理这些事务，而不需要你操任何心，你甚至都不需要在应用中手动调用这个 API，所有的操作都会由框架自己来自动地处理。");
-                            } else {
-                                document.write("Cool-Node provides an API that will automatically handle these things without any of your concerns, you don't even have to call this API in your program, all actions will be automatically done by the framework itself.");
-                            }
+                            _("Cool-Node 提供了一个 API，它能够自动地处理这些事务，而不需要你操任何心，你甚至都不需要在应用中手动调用这个 API，所有的操作都会由框架自己来自动地处理。");
                         </script>
                     </p>
                 </div>
                 <div>
-                    <h1>
+                    <h1>Fast Development
                         <script>
-                            document.write(isZh ? "快速开发" : "Fast Development");
+                            _("快速开发");
                         </script>
                     </h1>
                     <p>
+                        Along with auto-routing system, you can save you time to do the real things that matter, like manipulate models, writing controllers, and design views. With the ability of <strong>Modelar</strong> <small>(a module for handling models and queries)</small>,
+                        you can handle data in just few seconds.
                         <script>
-                            if (isZh) {
-                                document.write("伴随着自动路由系统，你可以省下时间来做真正的有用的事情，诸如操控模型、编写控制器和设计视图等等。使用 Modelar（一个操作模型和数据库查询的模块） 模型系统所提供的强大能力，你可以在短短几秒钟的时间内就能自由地操作数据。");
-                            } else {
-                                document.write("Along with auto-routing system, you can save you time to do the real things that matter, like manipulate models, writing controllers, and design views. With the ability of <strong>Modelar</strong> <small>(a module for handling models and queries)</small>, you can handle data in just few seconds.");
-                            }
+                            _("伴随着自动路由系统，你可以省下时间来做真正的有用的事情，诸如操控模型、编写控制器和设计视图等等。使用 Modelar（一个操作模型和数据库查询的模块） 模型系统所提供的强大能力，你可以在短短几秒钟的时间内就能自由地操作数据。");
                         </script>
                     </p>
                 </div>
                 <div>
-                    <h1>
+                    <h1>Cross-Protocol Development
                         <script>
-                            document.write(isZh ? "跨协议开发" : "Cross-Protocol Development");
+                            _("跨协议开发");
                         </script>
                     </h1>
                     <p>
+                        Cool-Node also give you the ability to handle sessions and share their status across HTTP and WebSocket, what you can do with a HTTP request can also be done with a WebSocket communication.
                         <script>
-                            if (isZh) {
-                                document.write("Cool-Node 同时给予你操作会话的能力，并在 HTTP 和 WebSocket 协议之间共享它们的状态，你在一个 HTTP 请求中所能做的操作，也可以使用 WebSocket 通讯来完成。");
-                            } else {
-                                document.write("Cool-Node also give you the ability to handle sessions and share their status across HTTP and WebSocket, what you can do with a HTTP request can also be done with a WebSocket communication.");
-                            }
+                            _("Cool-Node 同时给予你操作会话的能力，并在 HTTP 和 WebSocket 协议之间共享它们的状态，你在一个 HTTP 请求中所能做的操作，也可以使用 WebSocket 通讯来完成。");
                         </script>
                     </p>
                 </div>
                 <div>
-                    <h1>
+                    <h1>Multi-Apps Development
                         <script>
-                            document.write(isZh ? "多应用开发" : "Multi-Apps Development");
+                            _("多应用开发");
                         </script>
                     </h1>
                     <p>
+                        Cool-Node is a framework that can build multiple applications at one time with only one server running. It can differ requests <small>(whether they come form HTTP or WebSocket)</small> by subdomains, you can use more than one subdomain
+                        to write any count of applications as you want.
                         <script>
-                            if (isZh) {
-                                document.write("Cool-Node 是一个可以同时开发多个应用的 Web 框架，并且只需要运行一个服务器来托管它们。它能够通过不同的子域名来区分请求（无论它们是来自 HTTP，还是来自 WebSocket），你可以使用多个子域名来编写任何数目的应用，只要你想做，就能做。");
-                            } else {
-                                document.write("Cool-Node is a framework that can build multiple applications at one time with only one server running. It can differ requests <small>(whether they come form HTTP or WebSocket)</small> by subdomains, you can use more than one subdomain to write any count of applications as you want.");
-                            }
+                            _("Cool-Node 是一个可以同时开发多个应用的 Web 框架，并且只需要运行一个服务器来托管它们。它能够通过不同的子域名来区分请求（无论它们是来自 HTTP，还是来自 WebSocket），你可以使用多个子域名来编写任何数目的应用，只要你想做，就能做。");
                         </script>
                     </p>
                 </div>
