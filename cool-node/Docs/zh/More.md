@@ -175,7 +175,7 @@ socket.on("http-broadcast", function(data){
 
 自 Node.js 7.6.0 起，你可以使用 `async` 来定义异步的函数或者方法，它是 Promise 的
 另一个替代方案。同时通过协程的能力，你可以将你的代码写得更具可读性，并且更高效。使用 
-Cool-Node ，这很容易这么做到。
+Cool-Node，这很容易这么做到。
 
 ```javascript
 const HttpController = require("./HttpController");
