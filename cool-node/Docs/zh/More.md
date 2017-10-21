@@ -171,6 +171,27 @@ socket.on("http-broadcast", function(data){
 });
 ```
 
+## 在控制器中使用 Async/Await
+
+自 Node.js 7.6.0 起，你可以使用 `async` 来定义异步的函数或者方法，它是 Promise 的
+另一个替代方案。同时通过协程的能力，你可以将你的代码写得更具可读性，并且更高效。
+
+```javascript
+const HttpController = require("./HttpController");
+
+module.exports = class extends HttpController {
+    /** e.g. GET /User/id/1 */
+    async get(req) {
+        if (!req.params.id) {
+            throw new Error("400 Bad Request!");
+        }
+        var user = await User.use(req.db).get(req.params.id);
+        console.log(user);
+        return user;
+    }
+}
+```
+
 ## 永久地运行你的服务器
 
 `forever` 是一个简单的 CLI 工具，用来确保所设置的脚本能够持续地运行。我向你介绍它的

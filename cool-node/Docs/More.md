@@ -187,6 +187,28 @@ socket.on("http-broadcast", function(data){
 });
 ```
 
+## Use Async/Await in a Controller
+
+Since Node.js 7.6.0, you can use `async` to define an asynchronous function or
+method, it's an alternative way of Promise. And with the ability of coroutine,
+you can write you code more readable and efficient.
+
+```javascript
+const HttpController = require("./HttpController");
+
+module.exports = class extends HttpController {
+    /** e.g. GET /User/id/1 */
+    async get(req) {
+        if (!req.params.id) {
+            throw new Error("400 Bad Request!");
+        }
+        var user = await User.use(req.db).get(req.params.id);
+        console.log(user);
+        return user;
+    }
+}
+```
+
 ## Run Your Server Forever
 
 `forever` is a simple CLI tool for ensuring that a given script runs 

@@ -195,7 +195,7 @@ $(function() {
             var $this = $(this),
                 href = $this.attr("href"),
                 text = $this[0].innerText || $this[0].textContent,
-                title = Title.replace(/:\s([\S\s]+)\s\|/, (match) => {
+                title = Title.replace(/:\s([\S\s]+)\s\|/, function(match) {
                     return ": " + text + " |";
                 });
             if (href != "javascript:;") {
