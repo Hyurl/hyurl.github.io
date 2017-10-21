@@ -191,10 +191,12 @@ socket.on("http-broadcast", function(data){
 
 Since Node.js 7.6.0, you can use `async` to define an asynchronous function or
 method, it's an alternative way of Promise. And with the ability of coroutine,
-you can write you code more readable and efficient.
+you can write you code more readable and efficient. Using Cool-Node, this 
+could be easily done for you.
 
 ```javascript
 const HttpController = require("./HttpController");
+const User = require("modelar/User");
 
 module.exports = class extends HttpController {
     /** e.g. GET /User/id/1 */
