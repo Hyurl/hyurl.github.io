@@ -18,6 +18,7 @@ module.exports = class extends HttpController{
      * rewrite the constructor, you must define it.
      * The second parameter, judging by the controller type, can be either 
      * `req` or `socket`.
+     * Since Cool-Node 1.2.5, HttpController accepts a third parameter `res`.
      */
     constructor(options = {}, req = null){
         super(options, req);
@@ -96,7 +97,7 @@ your views. If you have a `404.html` in `/App/Views/`, then the view file will
 be displayed, otherwise, the error message will be shown. This rule applies to
 all error types, like 400, 401, 403, 500, etc.
 
-If the error is thrown in a socket controller, then a failed message (like
+If the error is thrown in a socket controller, then a failed message (e.g.
 `{success: false, msg: '404 Not Found!', code: 404}`) will be sent to the 
 client.
 
@@ -115,7 +116,7 @@ There are two examples showing you how to write your own middleware.
 module.exports = function(app){
     // /App/Middleware/http/test.js
     app.use((req, res, next) => {
-        //Do stuffs here...
+        // Do stuffs here...
         next();
     });
 };
@@ -125,10 +126,27 @@ module.exports = function(app){
 // /App/Middleware/socket/test.js
 module.exports = function(io){
     io.use((socket, next)=>{
-        //Do stuffs here...
+        // Do stuffs here...
         next();
     });
 };
+```
+
+If you're using Node.js 7.6.0+, you can also using `async` functions in 
+middleware, like this:
+
+```javascript
+// For Express:
+app.use(async (req, res, next)=>{
+    // Do staffs here...
+    await next();
+});
+
+// For Socket.io
+io.use(async (socket, next)=>{
+    // Do staffs here...
+    await next();
+})
 ```
 
 Be aware, because middleware files in `Middleware` are loaded automatically, 
@@ -159,7 +177,7 @@ module.exports = class extends HttpController{
 Version 1.1.0 adds two global variables `wsServer` and `wssServer`, they 
 reference to the corresponding WebSocket servers created by *Socket.io*, which
 can be used in HTTP controllers to broadcast message through the WebSocket 
-Channel.
+channel.
 
 ```javascript
 const HttpController = require("./HttpController");

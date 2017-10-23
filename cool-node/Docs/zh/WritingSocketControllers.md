@@ -55,9 +55,11 @@ module.exports = class extends SocketController{
     }
 
     /**
-     * 所有的 Socket 控制器都接受两个参数：
+     * 所有的 Socket 控制器都接受两个或两个以上的参数：
      * `data` 客户端发送的数据。
      * `socket` 对应的 Socket 对象。
+     * 其它的参数位于 `data` 和 `socket` 中间，方法接受的参数个数取决于客户端 
+     * socket.emit() 传入的参数个数。
      * 这个方法可以用这种方式来访问：
      * socket.on("SocketTest/sayHello", function(data){
      *     console.log(data); // data 将会是 'Hello, Client!'.

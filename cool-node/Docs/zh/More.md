@@ -13,6 +13,7 @@ module.exports = class extends HttpController{
     /**
      * 控制器的构造方法支持一个参数：options，当你重写构造方法时，必须定义这个参数。
      * 第二个参数，根据控制器类型的不同，它可能时 `req` 或者 `socket`。
+     * 自 Cool-Node 1.2.5 起，HttpController 接受第三个参数 `res`.
      */
     constructor(options = {}, req = null){
         super(options, req);
@@ -117,6 +118,22 @@ module.exports = function(io){
         next();
     });
 };
+```
+
+如果你使用 Node.js 7.6.0 以上版本，你也可以在中间件中使用 `async` 异步函数，像这样：
+
+```javascript
+// For Express:
+app.use(async (req, res, next)=>{
+    // 在这里执行操作...
+    await next();
+});
+
+// For Socket.io
+io.use(async (socket, next)=>{
+    // 在这里执行操作...
+    await next();
+})
 ```
 
 请注意，因为在 `Middleware` 中的中间件是自动加载的，其加载顺序是按照字母表来的，因此

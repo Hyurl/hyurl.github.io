@@ -37,14 +37,19 @@
 
 - `global.ROOT` 一个表示项目根目录的字符串路径。
 - `global.config` 项目的配置。
-- `global.wsServer` 监听 `ws` 协议的 WebSocket 服务器 *(自 1.1.0 起)*。
-- `global.wssServer` 监听 `wss` 协议的 WebSocket 服务器 *(自 1.1.0 起)*。
+- `global.wsServer` 监听 `ws` 协议的 WebSocket 服务器。*(自 1.1.0 起)*
+- `global.wssServer` 监听 `wss` 协议的 WebSocket 服务器。*(自 1.1.0 起)*
 - `req.session` 当前 HTTP 请求的会话信息。
 - `req.subdomain` 当前 HTTP 请求的子域名。
 - `req.db` 来自 Modelar ORM 模型系统的一个数据库连接实例。
 - `socket.session` 当前 Socket 请求的会话信息。
 - `socket.subdomain` 当前 Socket 请求的子域名。
 - `socket.db` 来自 Modelar ORM 模型系统的一个数据库连接实例。
+- `socket.protocol` `ws` 和 `wss` 两者中的一个。*(自 1.2.5 起)*
+- `socket.hostname` 从握手的 `Host` 头部信息中获取的主机名称。*(自 1.2.5 起)*
+- `socket.ip` 客户端 IP。*(自 1.2.5 起)*
+- `socket.ips` 一个包含客户端 IP 和代理 IP 地址（如果有）的数组。*(自 1.2.5 起)*
+- `socket.secure` 握手是否是安全的（当使用 `wss` 协议时为安全的）。*(自 1.2.5 起)*
 
 你可以查看其他的 `req` 属性，它们在 Node.js 的 API 文档 
 [nodejs.org](https://nodejs.org) 和 Express 的 API 文档
