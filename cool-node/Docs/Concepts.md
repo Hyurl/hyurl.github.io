@@ -39,14 +39,22 @@ them, but **DO NOT** try to reassign them.
 
 - `global.ROOT` A path string indicates the project root directory.
 - `global.config` Configurations of the project.
-- `global.wsServer` WebSocket server listens `ws` protocol *(Since 1.1.0)*.
-- `global.wssServer` WebSocket server listens `wss` protocol *(Since 1.1.0)*.
+- `global.wsServer` WebSocket server listens `ws` protocol. *(Since 1.1.0)*
+- `global.wssServer` WebSocket server listens `wss` protocol. *(Since 1.1.0)*
 - `req.session` The session of the current request.
 - `req.subdomain` The subdomain of the current request.
 - `req.db` A database instance from the Modelar ORM.
 - `socket.session` The session of the current socket.
 - `socket.subdomain` The subdomain of the current socket.
 - `socket.db` A database instance from the Modelar ORM.
+- `socket.protocol` Either `ws` or `wss`. *(Since 1.2.5)*
+- `socket.hostname` The hostname derived from the handshake `Host` header. 
+    *(Since 1.2.5)*
+- `socket.ip` The client IP. *(Since 1.2.5)*
+- `socket.ips` An array including client IP and proxy IPs, if any. 
+    *(Since 1.2.5)*
+- `socket.secure` Whether the handshake is secure or not (secure when using 
+    `wss` protocol). *(Since 1.2.5)*
 
 You can see other `req` properties in the Node.js API documentation at 
 [nodejs.org](https://nodejs.org) and the Express API documentation at 

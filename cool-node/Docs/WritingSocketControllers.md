@@ -61,9 +61,12 @@ module.exports = class extends SocketController{
     }
 
     /**
-     * All socket controller methods accept two parameters:
+     * All socket controller methods accept two or more parameters:
      * `data` the data sent from the client side.
      * `socket` the corresponding socket object.
+     * Other parameters place between `data` and `socket`, how many parameters
+     * a method will accept is determined by how many parameters the client 
+     * socket.emit() will pass.
      * This method can be accessed like this:
      * socket.on("SocketTest/sayHello", function(data){
      *     console.log(data); //data will be 'Hello, Client!'.
