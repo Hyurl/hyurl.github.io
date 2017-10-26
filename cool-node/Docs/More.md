@@ -18,10 +18,16 @@ module.exports = class extends HttpController{
      * rewrite the constructor, you must define it.
      * The second parameter, judging by the controller type, can be either 
      * `req` or `socket`.
-     * Since Cool-Node 1.2.5, HttpController accepts a third parameter `res`.
+     * 
+     * Since version 1.2.5, HttpController accepts a third parameter `res`.
+     * 
+     * Since version 1.2.6, All controllers' constructor accept an extra 
+     * parameter `next`, if such a parameter is defined, then the constructor 
+     * can handle asynchronous actions. And at where you want to call the real
+     * method, use `next(this);` to call it.
      */
-    constructor(options = {}, req = null){
-        super(options, req);
+    constructor(options, req, res){
+        super(options, req, res);
 
         //If requireAuth is true, when calling the controller unauthorized, a 
         //401 error will be thrown.
@@ -29,18 +35,22 @@ module.exports = class extends HttpController{
 
         //You can even set the property authorized to indicate wheter the 
         //operation is permitted, by default, it's:
-        this.authorized = req && req.user !== null;
+        this.authorized = req.user !== null;
 
-        //Also, because this is a HTTP controller, you can define a rollbackTo
+        //Also, because this is a HTTP controller, you can define a fallbackTo
         //property, when calling the controller unauthorized, instead of 
         //throwing a 401 error, the client will be redirect to the given URL.
-        this.rollbackTo = "/Login";
+        this.fallbackTo = "/Login";
     }
 }
 ```
 
 But, remember this feature only works when the controller is called from the 
 client side, if it is called from the server side, it won't work.
+
+Since version 1.2.6, a HttpController's constructor shall at least pass 
+`options` and `req`, and all parameters must be required; a SocketController's
+constructor shall at least pass `options` and `socket`, also required.
 
 ## Create Multiple Applications in One Project
 

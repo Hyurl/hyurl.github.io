@@ -13,9 +13,6 @@ A typical Cool-Node project has a structure like this:
 |   |-- Models/ ------- Contains all model files.
 |   |-- Views/ -------- Contains all view files.
 |
-|-- Core/ ------------- Contains all Cool-Node core files (do not modify),
-|                       This folder has been removed since 1.2.0.
-|
 |-- Middleware/ -------- Contains all middleware files.
 |   |-- http/ ---------- A folder contains HTTP middleware files.
 |   |-- socket/ -------- A folder contains socket middleware files.

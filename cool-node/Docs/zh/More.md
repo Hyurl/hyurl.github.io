@@ -13,10 +13,15 @@ module.exports = class extends HttpController{
     /**
      * 控制器的构造方法支持一个参数：options，当你重写构造方法时，必须定义这个参数。
      * 第二个参数，根据控制器类型的不同，它可能时 `req` 或者 `socket`。
-     * 自 Cool-Node 1.2.5 起，HttpController 接受第三个参数 `res`.
+     * 
+     * 自 1.2.5 版本起，HttpController 接受第三个参数 `res`。
+     * 
+     * 自 1.2.6 版本起，所有的控制器构造方法接受一个额外的参数 `next`，如果
+     * 该参数被定义，那么这个构造方法就可以实现异步操作。然后在想要继续执行真正的
+     * 控制器方法的地方，使用 `next(this);` 来调用执行它。
      */
-    constructor(options = {}, req = null){
-        super(options, req);
+    constructor(options, req, res){
+        super(options, req, res);
 
         // 如果 requireAuth 为真，当未授权时调用这个控制器，一个 404 错误将会被
         // 抛出。
@@ -24,18 +29,22 @@ module.exports = class extends HttpController{
 
         // 你甚至可以设置 authorized 属性来表名调用操作是否一斤被授权，默认地，它是
         // 这样定义的：
-        this.authorized = req && req.user !== null;
+        this.authorized = req.user !== null;
 
-        // 同时，因为这是一个 HTTP 控制器，你因此可以定义一个 `rollbackTo` 属性，
+        // 同时，因为这是一个 HTTP 控制器，你因此可以定义一个 `fallbackTo` 属性，
         // 当未授权而调用控制器时，与其抛出 404 错误，链接将会被重定向到你所设置的 
         // URL 地址中。
-        this.rollbackTo = "/Login";
+        this.fallbackTo = "/Login";
     }
 }
 ```
 
 但是记住，这个特性只在控制器被客户端访问时才会生效，如果控制器是在服务器端被调用的，
 它不会有任何作用。
+
+自版本 1.2.6 起，HttpController 的构造方法应至少传入 `options` 和 `req`，并且所有
+参数都是必须的；SocketController 的构造方法则至少传入 `options` 和 `socket`，也是
+必须的。
 
 ## 在一个项目中创建多个应用
 
