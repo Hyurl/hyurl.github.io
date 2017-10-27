@@ -94,6 +94,10 @@ module.exports = class extends HttpController{
 }
 ```
 
+Since version 1.3.0, you can set a controller property `urlParams` to define 
+what URL parameters the controller may accept, it's `null` by default, means 
+accepting any parameters.
+
 Now you've already learn the most important part of the HttpController, but, 
 this is more, let's continue on.
 
@@ -198,3 +202,5 @@ almost the same as `controller.view()`, except it only accept the argument
 
 More details will be covered at the article [Designing Views](DesigningViews),
 Now let's move to the next step, learning how to write a socket controller.
+
+[Next Chapter](WritingSocketControllers)

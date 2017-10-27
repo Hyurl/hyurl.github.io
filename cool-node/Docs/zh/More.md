@@ -15,10 +15,6 @@ module.exports = class extends HttpController{
      * 第二个参数，根据控制器类型的不同，它可能时 `req` 或者 `socket`。
      * 
      * 自 1.2.5 版本起，HttpController 接受第三个参数 `res`。
-     * 
-     * 自 1.2.6 版本起，所有的控制器构造方法接受一个额外的参数 `next`，如果
-     * 该参数被定义，那么这个构造方法就可以实现异步操作。然后在想要继续执行真正的
-     * 控制器方法的地方，使用 `next(this);` 来调用执行它。
      */
     constructor(options, req, res){
         super(options, req, res);
@@ -42,9 +38,43 @@ module.exports = class extends HttpController{
 但是记住，这个特性只在控制器被客户端访问时才会生效，如果控制器是在服务器端被调用的，
 它不会有任何作用。
 
-自版本 1.2.6 起，HttpController 的构造方法应至少传入 `options` 和 `req`，并且所有
+自版本 1.3.0 起，HttpController 的构造方法应至少传入 `options` 和 `req`，并且所有
 参数都是必须的；SocketController 的构造方法则至少传入 `options` 和 `socket`，也是
 必须的。
+
+## 在构造方法中使用异步处理
+
+控制器的构造方法，本来的设计目的是使其做一些初始化的操作，并能够像一个中间件那样工作，
+但是构造方法本身是不能被设置为异步的。为了解决这个问题，Cool-Node 1.3.0 也学习真正
+的中间件那样，允许你在构造器中传入一个额外的 `next` 参数，借由它来实现异步地调用真正
+的控制器方法。
+
+```javascript
+module.exports = class extends HttpController{
+    // 必须将所有的参数依次传入，并且是必须参数，即没有默认值。
+    constructor(options, req, res, next){
+        // async 需要你的 Node.js 版本在 7.6.0 以上，之前的版本，可以使用
+        // Promise 或者回调函数。
+        (async ()=>{
+            // 做一些异步的操作...
+            next(this); // 必须传入 this。
+        })();
+    }
+}
+```
+
+这个特性也可以用在 Socket 控制器中，实际上，除非特别说明，否则这份文档所介绍到的所有
+特性都可以同时在 HTTP 和 Socket 控制器中使用。
+
+在 Socket 控制器中，构造器则是这样定义的：
+
+```javascript
+module.exports = class extends SocketController{
+    constructor(options, socket, next){
+        // ...
+    }
+}
+```
 
 ## 在一个项目中创建多个应用
 
@@ -96,7 +126,7 @@ module.exports = class extends HttpController{
 显示到客户端。这个规则同时也适用于其他类型的错误，如 400、401、403、500，等等。
 
 如果错误是在 Socket 控制器中抛出的，那么一个表示操作失败的消息就会被发送到客户端，如
-`{success: false, msg: '404 Not Found!', code: 404}`。
+`{success: false, error: '404 Not Found!', code: 404}`。
 
 ## 编写你自己的中间件
 

@@ -34,12 +34,18 @@ To use Cool-Node in your project, you have to copy all the files except
 `package.json` from `node_modules/cool-node` to the root directory of the 
 project.
 
-**For 1.2.0 and Newer**
+**For 1.2.x**
 
 To use Cool-Node in your project, you have to copy `App-example`, `Middleware`
 and `config.js` from `node_modules/cool-node` to the root directory of the 
 project. You can also copy the entry file `index.js`, but if you don't, you 
 must create your own entry file, and make sure it will `require("cool-node")`.
+
+**For 1.3.0 or Higher**
+
+Version 1.3.0 introduced a new feature, when you have installed Cool-Node, the
+project will be automatically initiate with the main `App`, you don't need to 
+copy any files, all work will be done by the framework itself.
 
 After you've done this, the most important part of installation is done, you 
 can keep reading the following sections to learn how to configure the program.
@@ -53,6 +59,8 @@ information, email, etc., you can change these options to affect all your
 Cool-Node applications.
 
 ## You First App
+
+If you've installed version 1.3.0 or higher, please ignore this section.
 
 Cool-Node provides an example app, to start your first app, just rename the 
 folder `App-example` to `App`, and that will be fine. You may edit the 
@@ -81,7 +89,7 @@ the browser.
 
 Cool-Node is still growing, more features will be added to new versions, so
 keep your program up-to-date is very recommended. You can type the following 
-command in you shell or CMD to see what version you're use:
+command in you shell or CMD to see what version you're using:
 
 ```sh
 npm list cool-node
@@ -100,13 +108,13 @@ update to the new version.
 npm update cool-node
 ```
 
-**For updating to 1.1.x**
+**For Updating to 1.1.x**
 
 Once the new version has been downloaded, you need to copy all its files, 
 except `config.js` and `package.json`, to the project root directory from 
 `node_modules/cool-node`.
 
-**From 1.1.x to 1.2.x**
+**From 1.1.x to 1.2.x or higher**
 
 Version 1.2.0 has changed some details of the project, please check the 
 [Migration Guide](/Docs/MigrationGuide).
@@ -117,3 +125,5 @@ you own file in the project.
 
 Isn't that simple? Alright, let's dive into the real depth of building your 
 website.
+
+[Next Chapter](Concepts)

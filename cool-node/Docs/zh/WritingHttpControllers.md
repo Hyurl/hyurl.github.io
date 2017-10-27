@@ -85,6 +85,9 @@ module.exports = class extends HttpController{
 }
 ```
 
+自 1.3.0 版本起，你可以设置一个控制器属性 `urlParams`，来定义控制器可能接受的 URL 
+参数，它默认为 `null`，意味着接受任何参数。
+
 现在你已经学习了关于 HttpController 最重要的部分，但是，还有更多的特性，让我们继续
 前行。
 
@@ -113,7 +116,7 @@ module.exports = class extends HttpController{
     index(){}
 
     /** 
-     * GET http://localhost/HttpTest 如果 index() 未被定义, 否则, 使用
+     * GET http://localhost/HttpTest，如果 index() 未被定义；否则, 使用
      * GET http://localhost/HttpTest/get
      */
     get(){}
@@ -178,3 +181,5 @@ module.exports = class extends HttpController{
 
 更多细节将会在文章  [设计视图](DesigningViews) 中被提到，现在让我们进入到
 下一环节，学习如何编写一个 Socket 控制器。
+
+[下一章](WritingSocketControllers)

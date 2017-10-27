@@ -63,3 +63,5 @@ copy the one you want to use to `/App/Assets/`, and load it from the HTML.
 
 Until now, we've gone through all the basic lessons of Cool-Node, now let's 
 have a look at the database level programing, meet the **Modelar** ORM.
+
+[Next Chapter](Modelar)

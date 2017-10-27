@@ -24,15 +24,10 @@ A typical Cool-Node project has a structure like this:
 |-- package.json ------- A file manages the project and dependencies.
 </pre>
 
-This tutorial is based on Node.js 6.0+, which is not yet support all features 
-of ECMAScript 2015, so if you want to learn about something like `async`, 
-`await` or `import`, you may want to learn them on 
-[MDN](https://developer.mozilla.org) yourself.
-
 ## Reserved Properties
 
 In a Cool-Node project, there are several properties reserved, you can use 
-them, but **DO NOT** try to reassign them.
+them, but **BE CAREFUL** when you're trying to reassign them.
 
 - `global.ROOT` A path string indicates the project root directory.
 - `global.config` Configurations of the project.
@@ -41,6 +36,8 @@ them, but **DO NOT** try to reassign them.
 - `req.session` The session of the current request.
 - `req.subdomain` The subdomain of the current request.
 - `req.db` A database instance from the Modelar ORM.
+- `req.files` An object that carries uploaded files information. 
+    *(Since 1.3.1)*
 - `socket.session` The session of the current socket.
 - `socket.subdomain` The subdomain of the current socket.
 - `socket.db` A database instance from the Modelar ORM.
@@ -93,3 +90,5 @@ be used when accessing them.
 
 Also, all connections will be recycled to a internal pool and wait for the 
 next time acquiring after a HTTP response or a socket message is sent.
+
+[Next Chapter](WritingHttpControllers)

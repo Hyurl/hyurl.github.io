@@ -20,11 +20,6 @@ module.exports = class extends HttpController{
      * `req` or `socket`.
      * 
      * Since version 1.2.5, HttpController accepts a third parameter `res`.
-     * 
-     * Since version 1.2.6, All controllers' constructor accept an extra 
-     * parameter `next`, if such a parameter is defined, then the constructor 
-     * can handle asynchronous actions. And at where you want to call the real
-     * method, use `next(this);` to call it.
      */
     constructor(options, req, res){
         super(options, req, res);
@@ -48,9 +43,45 @@ module.exports = class extends HttpController{
 But, remember this feature only works when the controller is called from the 
 client side, if it is called from the server side, it won't work.
 
-Since version 1.2.6, a HttpController's constructor shall at least pass 
+Since version 1.3.0, a HttpController's constructor shall at least pass 
 `options` and `req`, and all parameters must be required; a SocketController's
 constructor shall at least pass `options` and `socket`, also required.
+
+## Asynchronous Actions in Constructor
+
+The constructor of a controller, is designed to do some initial operations, 
+and acts like middleware, but constructor cannot be set asynchronous. To 
+resolve this problem, Cool-Node 1.3.0, like real middleware, allows you pass 
+an additional parameter `next` to the constructor, and use it to accomplish 
+calling the real method asynchronously.
+
+```javascript
+module.exports = class extends HttpController{
+    // Must pass all params ordered, and must be required, no default values.
+    constructor(options, req, res, next){
+        // async requires your Node.js higher than 7.6.0, before that, you can
+        // use Promise or callback functions instead.
+        (async ()=>{
+            // Do some asynchronous actions...
+            next(this); // Must pass this.
+        })();
+    }
+}
+```
+
+This feature can also be used in a cocket controller, in fact, unless 
+specified, all features this documentation references can be used in both HTTP
+and socket controllers.
+
+In a socket controller, the constructor is defined like this:
+
+```javascript
+module.exports = class extends SocketController{
+    constructor(options, socket, next){
+        // ...
+    }
+}
+```
 
 ## Create Multiple Applications in One Project
 
@@ -108,7 +139,7 @@ be displayed, otherwise, the error message will be shown. This rule applies to
 all error types, like 400, 401, 403, 500, etc.
 
 If the error is thrown in a socket controller, then a failed message (e.g.
-`{success: false, msg: '404 Not Found!', code: 404}`) will be sent to the 
+`{success: false, error: '404 Not Found!', code: 404}`) will be sent to the 
 client.
 
 ## Write Your Own Middleware

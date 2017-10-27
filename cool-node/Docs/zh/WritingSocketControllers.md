@@ -93,7 +93,7 @@ Controller 类（包含 HTTP 和 Socket）中有两个方法，你可以使用�
 
 **返回值：**
 
-返回一个 Promise，传递给 `then()` 的唯一参数是一个对象并包含这些信息：
+返回一个对象，它包含这些信息：
 - `success` 表示操作是否成功，总是 `true`。
 - `data` 上文中给出的 `data`。
 - `code` 上文中给出的 `code`。
@@ -109,9 +109,9 @@ Controller 类（包含 HTTP 和 Socket）中有两个方法，你可以使用�
 
 **返回值：**
 
-返回一个 Promise，传递给 `then()` 的唯一参数是一个对象并包含这些信息：
+返回一个对象，它包含这些信息：
 - `success` 表示操作是否成功，总是 `false`。
-- `msg` 上文中给出的 `msg`。
+- `error` 上文中给出的 `msg`。
 - `code` 上文中给出的 `code`。
 
 ```javascript
@@ -129,3 +129,5 @@ module.exports = class extends SocketController{
 ```
 
 现在我们已经讨论了如何编写控制器，接下来，让我向你展示如何编写一个视图文件。
+
+[下一章](DesigningViews)

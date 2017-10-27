@@ -60,3 +60,5 @@ EJS 拥有许多优秀的特性，它使你能够像 PHP、JSP、和 APS 那样�
 
 直到现在，我们已经走过了所有 Cool-Node 的基本课程。现在，让我们目睹一下数据库层面上
 的开发体验，参见 **Modelar** ORM 模型系统。
+
+[Next Chapter](Modelar)

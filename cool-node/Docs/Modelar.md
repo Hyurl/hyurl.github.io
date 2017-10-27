@@ -78,3 +78,5 @@ module.exports = class extends HttpController {
 Isn't it cool? Of course it is. But, you have to visit 
 [modelar.hyurl.com](http://modelar.hyurl.com) for more details about
 Modelar. I assure you, once you are familiar with it, you will love it.
+
+[Next Chapter](UploadingFiles)

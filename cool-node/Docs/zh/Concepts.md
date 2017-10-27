@@ -23,14 +23,10 @@
 |-- package.json ------- 管理项目及其依赖的文件。
 </pre>
 
-这份向导是基于 Node.js 6.0+ 的，它还没有支持所有的 ECMAScript 2015 特性，因此如果
-你想要学习一些像 `async`、`await` 或者 `import` 之类的知识，你可能需要自己在
-[MDN](https://developer.mozilla.org) 上学习。
-
 ## 预留的属性
 
-在一个 Cool-Node 项目中，有一些属性是预留的，你可以使用它们，但是**不要**尝试去重新
-定义它们。
+在一个 Cool-Node 项目中，有一些属性是预留的，你可以使用它们，但是一定要**小心**，当
+你尝试去重新定义它们时。
 
 - `global.ROOT` 一个表示项目根目录的字符串路径。
 - `global.config` 项目的配置。
@@ -39,6 +35,7 @@
 - `req.session` 当前 HTTP 请求的会话信息。
 - `req.subdomain` 当前 HTTP 请求的子域名。
 - `req.db` 来自 Modelar ORM 模型系统的一个数据库连接实例。
+- `req.files` 携带上传文件信息的对象。*(自 1.3.1 起)*
 - `socket.session` 当前 Socket 请求的会话信息。
 - `socket.subdomain` 当前 Socket 请求的子域名。
 - `socket.db` 来自 Modelar ORM 模型系统的一个数据库连接实例。
@@ -83,3 +80,5 @@ HTTP 中登录后，Socket 这一端也同时登录了，相反亦然。
 
 同时，当一个 HTTP 响应或者 Socket 消息被发送后，所有的连接都会被回收到内部的连接池
 中，等待下一次请求。
+
+[下一章](WritingHttpControllers)

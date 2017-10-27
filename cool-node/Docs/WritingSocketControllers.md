@@ -103,8 +103,7 @@ use them to send successful or failed message to the client.
 
 **return:**
 
-Returns a Promise, and the only argument passed to the callback of `then()` is
-a object which carries these information:
+Returns an object which carries these information:
 - `success` Indicates if the action is successful, always true.
 - `data` The same `data` given above.
 - `code` The same `code` given above.
@@ -120,10 +119,9 @@ a object which carries these information:
 
 **return:**
 
-Returns a Promise, and the only argument passed to the callback of `then()` is
-a object which carries these information:
+Returns an object which carries these information:
 - `success` Indicates if the action is successful, always false.
-- `msg` The same `msg` given above.
+- `error` The same `msg` given above.
 - `code` The same `code` given above.
 
 ```javascript
@@ -142,3 +140,5 @@ module.exports = class extends SocketController{
 
 Now we've talked about how to write controllers, next, let me show you how to 
 write a view file.
+
+[Next Chapter](DesigningViews)
