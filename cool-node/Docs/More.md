@@ -86,10 +86,16 @@ module.exports = class extends SocketController{
 ## Create Multiple Applications in One Project
 
 Yes, that's right, you can build more than one application in just one 
-Cool-Node project. And more important is, it's very easy. All you have to do, 
-is making another copy of the `node_modules/cool-node/App-example`, and name 
-it with the style of `App.subdomain`, and the job is done. The rest work is 
-just the same as you will do with the main application in `App`.
+Cool-Node project. And more important is, it's very easy. 
+
+- Before version 1.3.0, you only need to make another copy of the 
+    `node_modules/cool-node/App-example`, and name it with the style of 
+    `App.subdomain`;
+- Since version 1.3.0, you can use command line app generator to produce a new
+    app, just type the command like this: `cool-node subdomain`.
+
+And the job is done. The rest work is just the same as you will do with the 
+main application in `App`.
 
 Actually, the main application in `App` is also one of the apps in the
 project, it reserves the subdomain `www`, which means, if you visit 

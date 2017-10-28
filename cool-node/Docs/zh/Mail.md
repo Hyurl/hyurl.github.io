@@ -53,4 +53,4 @@ module.exports = class extends HttpController{
 
 你也可以使用控制器的一些特性，例如视图系统，来发送 HTML 版本的邮件。
 
-[下一章](More)
+[下一章](CommandLine)

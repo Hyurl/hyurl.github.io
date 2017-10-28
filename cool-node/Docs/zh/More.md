@@ -78,10 +78,14 @@ module.exports = class extends SocketController{
 
 ## 在一个项目中创建多个应用
 
-是的，你可以在一个 Cool-Node 项目中建立一个以上的应用。更重要的是，这非常简单。你所
-需要做的，就是拷贝一份 `node_modules/cool-node/App-example` 到项目的根目录下，并
-将其以 `App.subdomain` 的形式命名，这样工作就做完了。其他的工作，就如同你在主应用 
-`App` 中会做的那样。
+是的，你可以在一个 Cool-Node 项目中建立一个以上的应用。更重要的是，这非常简单。
+
+- 在 1.3.0 版本以前，你只需要拷贝一份 `node_modules/cool-node/App-example` 到项目
+    的根目录下，并将其以 `App.subdomain` 的形式命名；
+- 在 1.3.0 版本以后，你可以使用命令行应用生成器来快速生成新应用，只需要使用这样的
+    命令：`cool-node subdomain`。
+
+这样工作就做完了。其他的工作，就如同你在主应用 `App` 中会做的那样。
 
 实际上，在 `App` 目录下的主应用，也是项目中的一个子应用，它保留着子域名 `www`, 这
 意味着，如果你访问 `http://www.localhost`，将会和访问 `http://localhost` 一样。

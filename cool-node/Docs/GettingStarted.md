@@ -25,16 +25,16 @@ npm install cool-node --save
 ```
 
 It's just the same as you installing other Node.js modules, but Cool-Node is 
-not a normal module, it is not just `require`d as ordinary modules are. In 
-fact, its a top structure that organize you code files.
+not a normal module, it is not just `require`d as ordinary modules are, in 
+fact, it's a top structure that organizes you code files.
 
-**For 1.1.x or 1.0.x**
+**For 1.1.x or 1.0.x (deprecated)**
 
 To use Cool-Node in your project, you have to copy all the files except 
 `package.json` from `node_modules/cool-node` to the root directory of the 
 project.
 
-**For 1.2.x**
+**For 1.2.x (deprecated)**
 
 To use Cool-Node in your project, you have to copy `App-example`, `Middleware`
 and `config.js` from `node_modules/cool-node` to the root directory of the 
@@ -122,6 +122,9 @@ Version 1.2.0 has changed some details of the project, please check the
 Configurations might have been changed in new versions to add more settings, 
 so you can also check what has been modified in `config.js`, and add them to 
 you own file in the project.
+
+This documentation may also be updated along with new versions, so 
+occasionally re-visit this website is also very recommended. 
 
 Isn't that simple? Alright, let's dive into the real depth of building your 
 website.
