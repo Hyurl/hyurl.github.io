@@ -10,6 +10,8 @@ configuring one or several properties in a HTTP controller, they are:
     default, they will be stored in `App/Uploads`.
 - `uploadConfig.filter` A function, returns `true` to accept the file, 
     `false` or throw an error to reject.
+- `uploadConfig.filename` Could be `auto-increment`(default), `random` or a 
+    function that returns the final name (path exclusive). *(Since 1.3.4)*
 
 Please check this example:
 

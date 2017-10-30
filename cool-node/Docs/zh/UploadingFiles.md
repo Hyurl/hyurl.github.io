@@ -9,6 +9,8 @@
     `App/Uploads` 中。
 - `uploadConfig.filter` 一个函数，返回 `true` 表示接受文件，`false` 或者抛出错误
     则拒绝。
+- `uploadConfig.filename` 可以是 `auto-increment`(默认), `random` 或一个函数返回
+    最终文件名（不包含路径）。*(自 1.3.4 版本起)*
 
 请查看这个示例：
 

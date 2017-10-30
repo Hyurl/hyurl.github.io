@@ -62,14 +62,18 @@
 
 ### 更多关于 Session 和数据库连接的细节
 
-另一个关于 Session 的提示，由于 Cool-Node 是一个跨协议软件，在 HTTP 请求中的 
-Session，实际上也是对应的 Socket 请求中的 Session。因此当你设置一个属性到 Session 
-对象上时，无论时从 HTTP 中，还是 Socket 中，另一端也会同时被影响。这意味着，当你从
-HTTP 中登录后，Socket 这一端也同时登录了，相反亦然。
+由于 Cool-Node 是一个跨协议软件，在 HTTP 请求中的 Session，实际上也是对应的 Socket
+请求中的 Session。因此当你设置一个属性到 Session 对象上时，无论时从 HTTP 中，还是 
+Socket 中，另一端也会同时被影响。这意味着，当你从 HTTP 中登录后，Socket 这一端也
+同时登录了，相反亦然。
 
 同时，由于 `req.user` 只在当前请求中有效，因此你应该始终赋值 `req.session.UID`，
 如果你是使用 Session 来识别用户的话。但是如果你使用其他的技术，例如 access token ，
 那么你应该在对应的中间件中赋值 `req.user` 和 `socket.user`。
+
+另一个关于 Session 的提示，Cool-Node 默认将 session 存储在内存中，在生产环境中，这
+可能并不理想，因此，你应该在 `config.js` 中手动配置其它存储引擎，例如 
+`connect-redis`。
 
 不必担心当每一次你调用 `req.db` 或者 `socket.db` 时，一个新的数据库连接会被创建，
 并不会。Modelar ORM 能够非常高效地控制数据库连接，连接并不会在你显式地调用 

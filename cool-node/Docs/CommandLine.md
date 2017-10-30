@@ -42,4 +42,4 @@ cool-node command help.
 
 ![cool-node command](../images/cool-node.png "cool-node -h")
 
-[Next Chapter](More)
+[Next Chapter](Advanced)

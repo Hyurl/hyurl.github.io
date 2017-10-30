@@ -68,16 +68,20 @@ something if you assign values to them.
 
 ### More Details about Sessions and Database Connections
 
-Another tip for sessions, since Cool-Node is a cross-protocol program, the 
-session in a HTTP request is actually the session in a corresponding socket. 
-So when you assigning a property to the session object, whether from HTTP or 
-socket, the other one will also be affected. Meaning, when you logged-in from 
-a HTTP request, the socket will be logged-in as well, and vise versa.
+Since Cool-Node is a cross-protocol program, the session in a HTTP request is 
+actually the session in a corresponding socket. So when you assigning a 
+property to the session object, whether from HTTP or socket, the other one 
+will also be affected. Meaning, when you logged-in from a HTTP request, the 
+socket will be logged-in as well, and vise versa.
 
 And since `req.user` is only available in the current request, you should 
 always assign `req.session.UID` instead, if you are using session to recognize 
 the user. But if you are using other techniques like access token, then you 
 should assign `req.user` and `socket.user` in a middleware instead.
+
+Another tip for sessions, By default, Cool-Node stores sessions in memory, in 
+production environment, it may not be ideal, so, you should set another 
+storage engine in `config.js` manually, e.g. `connect-redis`.
 
 Don't worry that when you call `req.db` or `socket.db`, a new database 
 connection will be created, it won't. Modelar ORM handle database connections 
