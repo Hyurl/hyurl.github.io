@@ -45,6 +45,24 @@ module.exports = class extends HttpController {
 }
 ```
 
+Since version 1.4.0, when calling the methods above to make logs, the log 
+won't be immediately saved to files, frequent IO operation will affect 
+server's efficiency. So, Cool-Node provides a temporary scheme, now logs will 
+be firstly saved to memory, then after a while, flushed to the file. By 
+default, the time is `1000`ms, you can change it by reassigning 
+`controller.logConfig.ttl`.
+
+The new log scheme will affect to all controllers, which means if share the 
+same log file, only one controller's configuration will work, and which one 
+cannot be predicted. If you want all controllers sharing the same 
+configuration, you can modify the `HttpController` and `SocketController` 
+which under the `App/Controllers/` to do so.
+
+You can create and export a new controller, so that all their children classes
+will inherit its behavior. In fact, the reason why the framework keeps a copy 
+of `HttpController` and `SocketController` in `App/Controllers/` is for 
+handling such a scenario, you can customize the parent class freely.
+
 Speaking of Email, the next chapter, I will give you more details about it.
 
 [Next Chapter](Mail)

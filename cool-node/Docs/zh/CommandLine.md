@@ -35,4 +35,4 @@ Node.js 的模块目录添加进操作系统的环境变量即可。
 
 ![cool-node command](../images/cool-node.png "cool-node -h")
 
-[下一章](Advanced)
+[下一章](MultiProcessing)

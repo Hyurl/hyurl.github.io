@@ -77,7 +77,7 @@ module.exports = class extends SocketController{
 
 如果你不熟悉 Socket.io，我建议你在 [socket.io](http://socket.io) 上瞄一眼它。
 
-## 发送具有通用结构的数据
+## 发送具有固定结构的数据
 
 Controller 类（包含 HTTP 和 Socket）中有两个方法，你可以使用它们来发送成功或者失败
 的消息到客户端。

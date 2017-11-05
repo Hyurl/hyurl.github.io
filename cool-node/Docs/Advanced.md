@@ -87,81 +87,6 @@ Since version 1.3.0, a HttpController's constructor shall at least pass
 `options` and `req`, and all parameters must be required; a SocketController's
 constructor shall at least pass `options` and `socket`, also required.
 
-## Turn On CSRF Protection
-
-Since version 1.3.4, CSRF protection is supported by the framework itself, all
-you need to do, is just set the property `csrfToken` to `true` in a HTTP 
-controller, and on the client side, when you submit a form, send a 
-`x-csrf-token` field along with data.
-
-```javascript
-// CsrfTokenTest.js
-module.exports = class extends HttpController{
-    constructor(options, req, res){
-        super(options, req, res);
-        // Enable CSRF token checking.
-        this.csrfToken = true;
-    }
-
-    index(req){
-        // When CSRF token checking is enabled, you can call req.csrfToken to 
-        // get the auto-generated token, and pass it to a view.
-        return this.view({
-            crsfToken: req.csrfToken
-        });
-    }
-
-    create(req){
-        // Do some stuffs here...
-        return this.success("Resource created.");
-    }
-}
-```
-
-In the view:
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <!-- Output the csrfToken as a meta -->
-    <meta name="x-csrf-token" content="<%= csrfToken %>">
-    <title>Document</title>
-</head>
-<body>
-    <!-- contents -->
-</body>
-</html>
-```
-
-When enabled, the framework will automatically generate tokens and store them 
-in the session when a `GET` request fires, and when you start a `DELETE`, 
-`PATCH`, `POST` or `PUT` request, you must send a `x-csrf-token` field on the 
-client via header, URL parameters, URL query or the request body (priority 
-left to right). The framework will check whether the token a client provides 
-matches the one on the server or not, if not, then a `403 Forbiden!` error 
-will be thrown. There is an example with jQuery:
-
-```javascript
-$.ajax({
-    url: "/CsrfTokenTest",
-    type: "POST",
-    data: {},
-    headers: {
-        "X-CSRF-Token": $('meta[name="x-csrf-token"]').attr("content")
-    },
-    success: function(res){
-        console.log(res);
-    }
-});
-```
-
-CSRF tokens are differed by actions, so you don't need to worry that if you 
-open several form pages, the token will be massed.
-
 ## Asynchronous Actions in Constructor
 
 The constructor of a controller, is designed to do some initial operations, 
@@ -257,8 +182,7 @@ Since version 1.3.4, JSONP is supported by the framework, **BUT** it's not a
 recommended approach for Cross-Domain request, and it only supports `GET`.
 
 To enable JSONP, you need to set a property `jsonp` to a callback function 
-name in a HTTP controller, it's enable and set to `callback` by default, but 
-this could be changed in the future, so you'd better set it yourself.
+name in a HTTP controller.
 
 ```javascript
 module.exports = class extends HttpController{
@@ -266,6 +190,7 @@ module.exports = class extends HttpController{
         super(options, req, res);
         this.jsonp = "callback"; // by default, jQuery uses callback.
     }
+}
 ```
 
 The framework will automatically transfer returning data to jsonp style, you 
@@ -287,10 +212,6 @@ module.exports = class extends HttpController {
         //running.
         if(wsServer){
             wsServer.emit("http-broadcast", req.body);
-            // Since version 1.3.4, all clients automatically join into the 
-            // room named by subdmain, so you can just broadcast to that room,
-            // like this:
-            wsServer.to("www").emit("http-broadcast", req.body);
         }
         if(wssServer){
             wssServer.emit("http-broadcast", req.body);

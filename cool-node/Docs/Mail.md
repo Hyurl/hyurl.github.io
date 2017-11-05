@@ -11,7 +11,7 @@ Here is an example, using the Mail in a controller.
 
 ```javascript
 const HttpController = require("./HttpController");
-const Mail = require("cool-node/Core/Tools/Mail");
+const Mail = require("cool-node").Mail;
 
 module.exports = class extends HttpController{
     /** e.g. GET /HttpTest/SendEmail/email/example.gmail.com */

@@ -34,11 +34,15 @@ them, but **BE CAREFUL** when you're trying to reassign them.
 - `global.wsServer` WebSocket server listens `ws` protocol. *(Since 1.1.0)*
 - `global.wssServer` WebSocket server listens `wss` protocol. *(Since 1.1.0)*
 - `req.session` The session of the current request.
+- `req.cookies` The cookies of the current request. *(Since 1.4.0)*
+- `req.lang` The accepting language of the current request. *(Since 1.4.0)*
 - `req.subdomain` The subdomain of the current request.
 - `req.db` A database instance from the Modelar ORM.
 - `req.files` An object that carries uploaded files information. 
     *(Since 1.3.1)*
 - `socket.session` The session of the current socket.
+- `socket.cookies` The cookies of handshake.
+- `socket.lang` The accepting language of handshake. *(Since 1.4.0)*
 - `socket.subdomain` The subdomain of the current socket.
 - `socket.db` A database instance from the Modelar ORM.
 - `socket.protocol` Either `ws` or `wss`. *(Since 1.2.5)*

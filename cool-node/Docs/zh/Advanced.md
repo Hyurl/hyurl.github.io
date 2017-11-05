@@ -82,78 +82,6 @@ module.exports = class extends HttpController{
 参数都是必须的；SocketController 的构造方法则至少传入 `options` 和 `socket`，也是
 必须的。
 
-## 开启 CSRF 防御
-
-自 1.3.4 版本起，框架自身实现了 CSRF 防御的支持，你所需要做的，只是简单地在 HTTP 
-控制器中设置一个 `csrfToken` 属性为 `true`，然后在客户端中，当你提交一个表单的时候，
-伴随数据，同时发送一个 `x-csrf-token` 字段到服务器上。
-
-```javascript
-// CsrfTokenTest.js
-module.exports = class extends HttpController{
-    constructor(options, req, res){
-        super(options, req, res);
-        // 启用 CSRF token 检查
-        this.csrfToken = true;
-    }
-
-    index(req){
-        // 当 CSRF token 检查开启时，你可以调用 `req.csrfToken` 来获取自动生成的
-        // token，并将它传递到视图中。
-        return this.view({
-            crsfToken: req.csrfToken
-        });
-    }
-
-    create(req){
-        // Do some stuffs here...
-        return this.success("Resource created.");
-    }
-}
-```
-
-在视图中：
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <!-- Output the csrfToken as a meta -->
-    <meta name="x-csrf-token" content="<%= csrfToken %>">
-    <title>Document</title>
-</head>
-<body>
-    <!-- contents -->
-</body>
-</html>
-```
-
-启用后，当一个 `GET` 请求发生时，框架会自动地生成 token 并将它们存储在 session 中，
-然后当你在客户端开始另一个 `DELETE`、`PATCH`、`POST` 或 `PUT` 请求时，你必须同时
-发送一个 `x-csrf-token` 字段，可以通过 header、URL 参数、URL 查询字符串或请求主体
-数据的方式（优先级从左到右）来发送。框架会检查客户端提供的 token 与服务器上的是否
-匹配，如果不匹配，那么一个 `403 Forbiden!` 错误将会被抛出。下面是一个使用 jQuery 的
-示例。
-
-```javascript
-$.ajax({
-    url: "/CsrfTokenTest",
-    type: "POST",
-    data: {},
-    headers: {
-        "X-CSRF-Token": $('meta[name="x-csrf-token"]').attr("content")
-    },
-    success: function(res){
-        console.log(res);
-    }
-});
-```
-
-CSRF token 是通过操作来区分存储的，因此不必担心如果你打开了多个表单页面它们会混乱。
-
 ## 在构造方法中使用异步处理
 
 控制器的构造方法，本来的设计目的是使其做一些初始化的操作，并能够像一个中间件那样工作，
@@ -240,9 +168,7 @@ module.exports = class extends HttpController{
 自 1.3.4 版本起，JSONP 被框架所支持，**但是**，它并不是一个值得建议的跨域请求方式，
 并且也仅支持 `GET` 请求。
 
-要开启 JSONP 支持，你需要在 HTTP 控制器中设置一个 `jsonp` 属性为一个回调函数名，
-默认地，它是启用的，并被设置为 `callback`，但这个选项可能会在未来发生改变，因此你
-最好手动设置它。
+要开启 JSONP 支持，你需要在 HTTP 控制器中设置一个 `jsonp` 属性为一个回调函数名。
 
 ```javascript
 module.exports = class extends HttpController{
@@ -250,6 +176,7 @@ module.exports = class extends HttpController{
         super(options, req, res);
         this.jsonp = "callback"; // 默认地，jQuery 使用的就是 callback。
     }
+}
 ```
 
 框架会自动将返回的数据转换成 jsonp 风格，你不需要在服务器上再做其他配置。
@@ -268,9 +195,6 @@ module.exports = class extends HttpController {
         // wsServer 或 wssServer 可能为 null，如果对应的服务器没有启动的话。
         if(wsServer){
             wsServer.emit("http-broadcast", req.body);
-            // 自 1.3.4 版本起，每一个连接到服务器的客户端都自动加入名称为 
-            // subdomain 的房间，因此可以只广播到子域名下，像这样：
-            wsServer.to("www").emit("http-broadcast", req.body);
         }
         if(wssServer){
             wssServer.emit("http-broadcast", req.body);

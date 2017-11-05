@@ -73,8 +73,8 @@ module.exports = class extends HttpController{
      * http://localhost/HttpTest/ShowParams/id/1/name/test
      */
     getShowParams(req){
-        //If an object is returned, then a json response will be sent to the 
-        //client.
+        // If an object is returned, then a json response will be sent to the 
+        // client.
         return req.params; //{id: 1, name: 'test'}
     }
 
@@ -86,7 +86,7 @@ module.exports = class extends HttpController{
     getShowPromisedData(){
         return new Promise((resolve, reject)=>{
             setTimeout(()=>{
-                //This message will be sent after 1 second timeout.
+                // This message will be sent after 1 second timeout.
                 resolve("Hello, World!");
             }, 1000);
         });
@@ -175,21 +175,21 @@ const HttpController = require("./HttpController");
 
 module.exports = class extends HttpController{
     index(){
-        //This operation will send the template /App/Views/HttpTest/index.html
-        //to the client.
+        // This action will send the template /App/Views/HttpTest/index.html
+        // to the client.
         return this.view();
     }
 
     getShowOther(){
-        //This operation will send the template 
+        // This action will send the template 
         // /App/Views/HttpTest/ShowOther.html to the client, and pass the 
-        //variable `title` to it.
+        // variable `title` to it.
         return this.view({title: "Cool-Node"});
     }
 
     getShowAnother(){
-        //You can explicitly give the template name if the template does not
-        //match the method name.
+        // You can explicitly give the template name if the template does not
+        // match the method name.
         return this.view("HttpTest/show-another");
     }
 }

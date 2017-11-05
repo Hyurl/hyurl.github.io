@@ -119,6 +119,11 @@ except `config.js` and `package.json`, to the project root directory from
 Version 1.2.0 has changed some details of the project, please check the 
 [Migration Guide](/Docs/MigrationGuide).
 
+**Migrate to 1.4.**
+
+Version 1.4.0 changed the way to launch the server, please check the 
+[Migration Guide](/Docs/MigrationGuide).
+
 Configurations might have been changed in new versions to add more settings, 
 so you can also check what has been modified in `config.js`, and add them to 
 you own file in the project.

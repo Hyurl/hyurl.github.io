@@ -33,10 +33,14 @@
 - `global.wsServer` 监听 `ws` 协议的 WebSocket 服务器。*(自 1.1.0 起)*
 - `global.wssServer` 监听 `wss` 协议的 WebSocket 服务器。*(自 1.1.0 起)*
 - `req.session` 当前 HTTP 请求的会话信息。
+- `req.cookies` 请求时发送的 Cookie。*(自 1.4.0 起)*
+- `req.lang` 请求时客户端接受的语言。*(自 1.4.0 起)*
 - `req.subdomain` 当前 HTTP 请求的子域名。
 - `req.db` 来自 Modelar ORM 模型系统的一个数据库连接实例。
 - `req.files` 携带上传文件信息的对象。*(自 1.3.1 起)*
 - `socket.session` 当前 Socket 请求的会话信息。
+- `socket.cookies` 握手时发送的 Cookie。*(自 1.4.0 起)*
+- `socket.lang` 握手时客户端接受的语言。*(自 1.4.0 起)*
 - `socket.subdomain` 当前 Socket 请求的子域名。
 - `socket.db` 来自 Modelar ORM 模型系统的一个数据库连接实例。
 - `socket.protocol` `ws` 和 `wss` 两者中的一个。*(自 1.2.5 起)*

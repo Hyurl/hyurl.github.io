@@ -10,7 +10,7 @@ Cool-Node 使用 **Nodemailer** 来发送邮件，你可以在其网站
 
 ```javascript
 const HttpController = require("./HttpController");
-const Mail = require("cool-node/Core/Tools/Mail");
+const Mail = require("cool-node").Mail;
 
 module.exports = class extends HttpController{
     /** e.g. GET /HttpTest/SendEmail/email/example.gmail.com */

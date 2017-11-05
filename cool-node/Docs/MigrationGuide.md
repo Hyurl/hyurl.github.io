@@ -1,3 +1,20 @@
+## Migrate to 1.4.0
+
+Since this version, the server won't start automatically, you have to call 
+`CoolNode.startServer()` in your entry file to launch the server. The reason 
+why this version made this change is to allow you `require`ing Cool-Node 
+anywhere before the server is started, say in a controller, Cool-Node exposes 
+some useful and powerful tools that will make your applications even more 
+stronger.
+
+This is the only thing you need to do if you update to 1.4.0, edit your entry 
+file (`index.js` by default), add a new line says:
+
+`CoolNode.startServer();`
+
+And that will be fine, you can now enjoin programming with Cool-Node like the 
+old times.
+
 ## Migrate to 1.2.0 from 1.1.x or 1.0.x.
 
 For convenience reasons, Cool-Node 1.2.0 changed the structure of the project,
