@@ -3,7 +3,7 @@ let showICP = (location.pathname.indexOf("/modelar") === 0
     && isZH;
 
 const Locals = {
-    icp: showICP ? "" : "桂ICP备15001693号",
+    icp: showICP ? "桂ICP备15001693号" : "",
     module: "sfn",
     moduleName: "SFN",
     lang: isZH ? "?lang=en-US" : "?lang=zh-CN",
