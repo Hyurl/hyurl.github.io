@@ -184,7 +184,7 @@ Vue.component("vue-header", {
     props: ["module", "locals", "menu"],
     template: `<header class="header vivify popInTop" id="header">
         <div class="logo">
-            <a :href="'/' + module"> {{ locals.moduleName }} </a>
+            <a :href="'/' + module + '/'"> {{ locals.moduleName }} </a>
         </div>
         <div class="change-lang">
             <a :href="locals.lang">{{ locals.langLabel }}</a>
