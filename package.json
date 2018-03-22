@@ -1,0 +1,26 @@
+{
+  "private": true,
+  "name": "hyurl.github.io",
+  "version": "1.0.0",
+  "description": "Github page of Hyurl",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hyurl/hyurl.github.io.git"
+  },
+  "author": "Ayon Lee",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hyurl/hyurl.github.io/issues"
+  },
+  "homepage": "https://github.com/hyurl/hyurl.github.io#readme",
+  "dependencies": {
+    "@types/fs-extra": "^5.0.1",
+    "fs-extra": "^5.0.0",
+    "lodash": "^4.17.5",
+    "webium": "^0.3.1"
+  }
+}
