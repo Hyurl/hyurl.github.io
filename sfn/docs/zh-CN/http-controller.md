@@ -308,7 +308,7 @@ HttpController.httpErrorView = function httpErrorView(
 
 ```typescript
 import { HttpController, route } from "sfn";
-import { User } from "modelar";
+import { User, NotFoundError } from "modelar";
 
 export default class extends HttpController {
 

@@ -327,7 +327,7 @@ indicates a successful or failed operation.
 
 ```typescript
 import { HttpController, route } from "sfn";
-import { User } from "modelar";
+import { User, NotFoundError } from "modelar";
 
 export default class extends HttpController {
 
