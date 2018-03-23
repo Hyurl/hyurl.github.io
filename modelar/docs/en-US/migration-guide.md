@@ -21,6 +21,27 @@ const { Model } = require("modelar");
 This is not a compatible change, if you used it in you old code, you must 
 change it to the new way.
 
+Another change is the iterator implementation, in 2.X you could use the 
+following way to walk through a model's data:
+
+```javascript
+for (let [key, value] of model) {
+    // ...
+}
+```
+
+Since 3.0, this feature is now fixed to:
+
+```javascript
+for (let { key, value } of model) {
+    // ...
+}
+```
+
+To be compatible to 2.X code, you can set `Model.oldIterator` to `true` to use
+old iterator, but it will trigger a warning, you should use the new way 
+instead.
+
 ## Migration from 1.X to 2.0+
 
 Modelar 2.0 changed some details of the core, thus programs written with 1.X 
