@@ -1,3 +1,6 @@
+/// <reference types="jquery"/>
+/// <reference types="jquery.typein"/>
+
 "use strict";
 
 String.byteLength = function byteLength(str) {
