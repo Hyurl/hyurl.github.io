@@ -60,6 +60,7 @@ export default class extends HttpController {
 
 - [sfn-pug-engine](https://github.com/Hyurl/sfn-pug-engine)
 - [sfn-nunjucks-engine](https://github.com/Hyurl/sfn-nunjuncks-engine)
+- [sfn-sdopx-engine](https://github.com/Hyurl/sfn-sdopx-engine)
 
 你必须自己去学习这些模板引擎，这份文档将不会介绍任何关于它们的细节。
 
@@ -119,6 +120,7 @@ export class MyEngine extends TemplateEngine {
 ```
 
 如果你想要更多的细节，你可以看一下
-[sfn-pug-engine](https://github.com/Hyurl/sfn-pug-engine) 和 
-[sfn-nunjucks-engine](https://github.com/Hyurl/sfn-nunjuncks-engine)，看它们在
+[sfn-pug-engine](https://github.com/Hyurl/sfn-pug-engine)、 
+[sfn-nunjucks-engine](https://github.com/Hyurl/sfn-nunjuncks-engine) 和 
+[sfn-sdopx-engine](https://github.com/Hyurl/sfn-sdopx-engine)，看它们在
 适配器中到底做了什么。

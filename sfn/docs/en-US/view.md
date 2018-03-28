@@ -61,6 +61,7 @@ several optional engines available:
 
 - [sfn-pug-engine](https://github.com/Hyurl/sfn-pug-engine)
 - [sfn-nunjucks-engine](https://github.com/Hyurl/sfn-nunjuncks-engine)
+- [sfn-sdopx-engine](https://github.com/Hyurl/sfn-sdopx-engine)
 
 You must learn these engines yourself, this documentation won't introduce them
 in detail.
@@ -122,6 +123,7 @@ export class MyEngine extends TemplateEngine {
 ```
 
 If you want more specific details, you can have a look at 
-[sfn-pug-engine](https://github.com/Hyurl/sfn-pug-engine) and 
-[sfn-nunjucks-engine](https://github.com/Hyurl/sfn-nunjuncks-engine), see what 
+[sfn-pug-engine](https://github.com/Hyurl/sfn-pug-engine), 
+[sfn-nunjucks-engine](https://github.com/Hyurl/sfn-nunjuncks-engine) and 
+[sfn-sdopx-engine](https://github.com/Hyurl/sfn-sdopx-engine), see what 
 they really do in the adapter.
