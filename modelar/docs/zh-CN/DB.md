@@ -51,14 +51,20 @@
 
 - `type?: string` 设置数据库类型（默认：`mysql`）。
 - `database: string` 设置需要打开的数据库名称。
+- `protocol?: string` socket、TCP、TCPIP (default)、pipe、UNIX (UNIX socket)、
+    memory，等等.
 - `host?: string` 设置数据库服务器的主机名称。
 - `port?: number` 设置服务器的端口。
+- `socketPath?: string` 指向 UNIX domain socket (如果支持)，当 `host` 和 `port` 
+    未提供时需要。
 - `user?: string` 设置用于登录数据库的用户名。
 - `password?: string` 设置用户对应的密码。
 - `charset?: string` 设置数据库采用的字符集（默认：`utf8`）。
 - `timeout?: number` 同时设置连接的超时时长和查询的超时时长（默认：`5000` 毫秒）。
-- `ssl?: { rejectUnauthorized?: Boolean, ca?: String, key?: String, cert?: String }`。
+- `ssl?: string | { rejectUnauthorized?: Boolean, ca?: String, key?: String, cert?: String }`。
 - `max?: number` 设置数据库连接池的最大连接数（默认：`50`）。
+- `connectionString?: string` 当需要时自定义连接字符串，需要注意不同的适配器支持
+    不同的连接字符串格式。
 
 ```javascript
 var db = new DB({
@@ -78,6 +84,44 @@ var db = new DB("modelar");
 
 另外，DB 类保存连接是根据连接的描述符来区分的，因此你不需要担心它们在连接池中会造成
 混乱。
+
+#### 关于 `connectionString`
+
+在 DB2 (ibm_db) 中，它为一个 ODBC 连接字符串，格式类似下面这样：
+
+```plain
+PROTOCOL=TCPIP;HOSTNAME=localhost;PORT=5000;DATABASE=dbname;UID=db2user;PWD=password
+```
+
+在 SQL Server (mssql) 中，它支持两种格式，一种是传统的 ADODB 形式：
+
+```plain
+Server=localhost,1433;Database=database;User Id=username;Password=password;Encrypt=true
+```
+
+另一种是 URI 形式：
+
+```plain
+mssql://username:password@localhost:1433/database?encrypt=true
+```
+
+在 MySQL/MariaDB (mysql) 中，也是支持 URI 形式：
+
+```plain
+mysql://user:pass@host/db?debug=true&charset=BIG5_CHINESE_CI&timezone=-0700
+```
+
+在 Oracle DB (oracledb) 中，使用如下的类 URI 形式：
+
+```plain
+[//]host_name[:port][/service_name][:server_type][/instance_name]
+```
+
+在 PostgreSQL (postgres) 中，同样使用 URI 形式：
+
+```plain
+postgresql://dbuser:secretpassword@database.server.com:3211/mydb
+```
 
 ### db.set()
 

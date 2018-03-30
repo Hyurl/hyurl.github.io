@@ -55,16 +55,22 @@ listeners to events, but be aware of the difference they act.
 
 - `type?: string` Sets the database type (default: `sqlite`).
 - `database: string` Sets the database name that needs to open.
+- `protocol?: string` socket, TCP, TCPIP (default), pipe, UNIX (UNIX socket), 
+    memory, etc.
 - `host?: string` Sets the server name of the database.
 - `port?: number` Sets the server port.
+- `socketPath?: string` The path to a UNIX domain socket (if supported), when 
+    `host` and `port` are missing.
 - `user?: string` Sets the username that used to log in.
 - `password?: string` Sets the password of the user.
 - `charset?: string` Sets the charset (default: `utf8`).
 - `timeout?: number` Sets both the connection timeout and query timeout 
     (default: `5000` msec.).
-- `ssl?: { rejectUnauthorized?: Boolean, ca?: String, key?: String, cert?: String }`.
+- `ssl?: string | { rejectUnauthorized?: Boolean, ca?: String, key?: String, cert?: String }`.
 - `max?: number` (Since 1.0.7) Sets the maximum count of connections in the 
     database pool (default: `50`).
+- `connectionString?: string` Customize connection string when necessary, be 
+    aware different adapters support different string formats.
 
 ```javascript
 var db = new DB({
@@ -87,6 +93,44 @@ connection will be established, well, there will be not.
 
 Also, DB class saves connections by there specifications, so you don't need to
 worry that they will mess up in the connection pool.
+
+#### About `connectionString`
+
+With DB2 (ibm_db), it's a ODBC connection string look like this:：
+
+```plain
+PROTOCOL=TCPIP;HOSTNAME=localhost;PORT=5000;DATABASE=dbname;UID=db2user;PWD=password
+```
+
+With SQL Server (mssql), it supports two formats, the lagecy ADODB style:
+
+```plain
+Server=localhost,1433;Database=database;User Id=username;Password=password;Encrypt=true
+```
+
+And the URI string:
+
+```plain
+mssql://username:password@localhost:1433/database?encrypt=true
+```
+
+With MySQL/MariaDB (mysql), it also supports URI:
+
+```plain
+mysql://user:pass@host/db?debug=true&charset=BIG5_CHINESE_CI&timezone=-0700
+```
+
+With Oracle DB (oracledb), uses a URI-like string like this:
+
+```plain
+[//]host_name[:port][/service_name][:server_type][/instance_name]
+```
+
+With PostgreSQL (postgres), also uses URI:
+
+```plain
+postgresql://dbuser:secretpassword@database.server.com:3211/mydb
+```
 
 ### db.set()
 
