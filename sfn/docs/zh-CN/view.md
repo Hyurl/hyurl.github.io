@@ -124,3 +124,57 @@ export class MyEngine extends TemplateEngine {
 [sfn-nunjucks-engine](https://github.com/Hyurl/sfn-nunjuncks-engine) 和 
 [sfn-sdopx-engine](https://github.com/Hyurl/sfn-sdopx-engine)，看它们在
 适配器中到底做了什么。
+
+### 附录：在 EJS 模板中使用布局（或者叫“模板继承”）
+
+默认地，EJS 并不支持模板布局（也叫“模板继承”），但这个模块为你提供了这个能力。
+
+如果你想要在目标模板中使用布局模板，只需要加上一句注释，格式为 
+`<!-- layout: filename -->` ，到目标模板的第一行第一列，就像这样：
+
+```html
+<!-- layout: ./layout -->
+<p>
+    This is the target template.
+</p>
+```
+
+而在布局模板中，使用变量 `$LayoutContents` 来附上目标模板渲染的内容，就像这样（使用
+标签 `<%-` 而不是 `<%=`）：
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <%- $LayoutContents %>
+</body>
+</html>
+```
+
+然后当目标模板被渲染时，他就会输出像下面这样的内容：
+
+```html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <p>
+        This is contents in a layout.
+    </p>
+</body>
+</html>
+```
+
+记住，这只是 **sfn** 框架提供的一个小技巧，如果你使用其它的框架，它将会毫无作用，但
+你依旧可以使用 `include()` 语句来加载相关的模板，它已经适合了大多数情况。
