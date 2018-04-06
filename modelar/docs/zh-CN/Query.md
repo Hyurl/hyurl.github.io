@@ -111,17 +111,10 @@ query.select(["id", "name", "email"]);
 
 - `from(table: string): this`
 
-**别名：**
-
-- `from()`
-
 ```javascript
 var query = new Query(); // 如果你不在这里传入表名，
 
-// 那你可以在这里传入。
-query.table("users").select("id", "name", "email");
-
-// 你也可以使用它的别名，其可读性在 select 语句中更好。
+// 你也可以在这里设置，其可读性在 select 语句中更好。
 query.select("id", "name", "email").from("users");
 ```
 

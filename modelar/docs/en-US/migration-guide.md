@@ -6,6 +6,11 @@ started with a prefix `_`, e.g. `model._data` is now `model.data`, but for
 compatible to 2.X, old property names are still working, though you should 
 avoid using them in your code form now on.
 
+And there is a incompatible change, in the new version, `query.table` replaced
+the `query._table`, where in the old version, `query.table()` is a method. 
+That means if you want to run the code based on 2.X, you must change all 
+locations that used `query.table()` in your code.
+
 Also, version 2.X allows you import `Model` in the following way:
 
 ```javascript

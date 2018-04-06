@@ -5,6 +5,10 @@ Modelar 3.0+ 采用 TypeScript 编写，但你依旧可以使用纯 JavaScript �
 `model._data` 已经变成了 `model.data`，但为了兼容 2.X 版本的程序，旧属性名称依旧
 是可用的，不过你应该在以后书写代码时避免再使用旧属性。
 
+这里有一个不兼容的修改，因为新版中 `query.table` 属性替代了 `query._table` 属性，
+而在旧版本中，`query.table()` 是一个方法，这也就意味着，如果想要正常在 3.0+ 版本中
+运行基于 2.X 编写的代码，必须修改你代码中所有使用了 `query.table()` 的地方。
+
 另外，2.X 之前的版本允许你使用下面的方式来导入 `Model` 类：
 
 ```javascript
