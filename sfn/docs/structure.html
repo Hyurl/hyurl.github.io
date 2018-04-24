@@ -5,18 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Modelar - An expressive ORM with query builder and supports multiple databases.</title>
+    <title>Structure | SFN</title>
     <link rel="stylesheet" href="/css/highlightjs-theme/monokai.css" />
     <link rel="stylesheet" href="/css/vivify.min.css">
     <link rel="stylesheet" href="/css/common.css">
 </head>
 
 <body>
-    <div id="docs">
-        <vue-header :module="Locals.module" :locals="Locals" :menu="NavbarMenu"></vue-header>
-        <vue-fork-github :module="Locals.module"></vue-fork-github>
-        <vue-docs-container :module="Locals.module" :menu="SidebarMenu"></vue-docs-container>
-        <vue-footer :locals="Locals"></vue-footer>
+    <div id="app">
+        <layout file="/layout.html"></layout>
+        <import target="fork-github, docs-container" from="/components.html"></import>
+        <fork-github></fork-github>
+        <docs-container></docs-container>
     </div>
     <script src="/js/marked.min.js"></script>
     <script src="/js/highlight.pack.min.js"></script>
@@ -24,7 +24,7 @@
     <script src="/js/jquery.min.js"></script>
     <script src="/js/jquery.typein.js"></script>
     <script src="/js/soft-loader.js"></script>
-    <script src="/js/vue.min.js"></script>
+    <script src="/js/whatstpl.min.js"></script>
     <script src="/js/common.js"></script>
     <script src="/sfn/javascript.js"></script>
 </body>

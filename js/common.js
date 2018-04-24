@@ -1,5 +1,6 @@
 /// <reference types="jquery"/>
 /// <reference types="jquery.typein"/>
+/// <reference types="whatstpl"/>
 
 "use strict";
 
@@ -30,7 +31,7 @@ var path = location.pathname,
 
 location.hash = "";
 
-$(function () {
+function onRendered() {
     let navbar = $(".navbar>ul"),
         sidebar = $(".sidebar"),
         content = $("article.content"),
@@ -172,7 +173,7 @@ $(function () {
             let $this = $(this),
                 href = $this.attr("href").split("?")[0],
                 text = $this[0].innerText || $this[0].textContent,
-                title = document.title.replace(/:.+\|/, `: ${text} |`);
+                title = $this.attr("data-title");//document.title.replace(/:.+\|/, `: ${text} |`);
 
             getContent(getMarkdownPath(href), title);
 
@@ -181,69 +182,68 @@ $(function () {
             content.removeClass("fadeIn").addClass("fadeOut");
         });
     }
-});
+};
 
-Vue.component("vue-header", {
-    props: ["module", "locals", "menu"],
-    template: `<header class="header vivify popInTop" id="header">
-        <div class="logo">
-            <a :href="'/' + module + '/'"> {{ locals.moduleName }} </a>
-        </div>
-        <div class="change-lang">
-            <a :href="locals.lang">{{ locals.langLabel }}</a>
-        </div>
-        <div class="navbar">
-            <ul>
-                <li v-for="(label, url) in menu"><a :href="url">{{ label }}</a></li>
-            </ul>
-        </div>
-        <div class="navbar-toggle">
-            <button>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-        </div>
-    </header>`,
-});
+whatstpl.Template.register("/layout.html", `
+<header class="header vivify popInTop" id="header">
+    <div class="logo">
+        <a href="/@{module}">@{ moduleName }</a>
+    </div>
+    <div class="change-lang">
+        <a href="@{ lang }">@{ langLabel }</a>
+    </div>
+    <div class="navbar">
+        <ul>
+            <for statement="let url in navbarMenu">
+                <li><a href="@{ url }">@{ navbarMenu[url] }</a></li>
+            </for>
+        </ul>
+    </div>
+    <div class="navbar-toggle">
+        <button>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+    </div>
+</header>
+@{ __contents }
+<footer>
+    <p class="text-center">
+        <span id="copyright">©@{ year } Hyurl
+            <a href="http://nodejs.org/">Node.js</a> 6.0+.
+        </span>
+        <span id="license">Licensed under the
+            <a target="_blank" href="http://spdx.org/licenses/MIT.html">MIT License</a>.
+        </span>
+        <span id="icp">
+            <if condition="icp">
+                <a href="http://www.miitbeian.gov.cn" target="_blank" style="color:#777">@{ icp }</a>
+            </if>
+        </span>
+    </p>
+</footer>
+`);
 
-Vue.component("vue-footer", {
-    props: ["locals"],
-    template: `<footer>
-        <p class="text-center">
-            <span id="copyright">©{{ locals.year }} Hyurl
-                <a href="http://nodejs.org/">Node.js</a> 6.0+.
-            </span>
-            <span id="license">Licensed under the
-                <a target="_blank" href="http://spdx.org/licenses/MIT.html">MIT License</a>.
-            </span>
-            <span id="icp">
-                <a v-if="locals.icp != false" href="http://www.miitbeian.gov.cn" target="_blank" style="color:#777">{{ locals.icp }}</a>
-            </span>
-        </p>
-    </footer>`,
-});
-
-Vue.component("vue-fork-github", {
-    props: ["module"],
-    template: `<div class="github-brand vivify fadeIn">
-        <a :href="'https://github.com/Hyurl/' + module" target="_blank" class="btn btn-default">
+whatstpl.Template.register(`/components.html`, `
+<block name="fork-github" export>
+    <div class="github-brand vivify fadeIn">
+        <a href="https://github.com/Hyurl/@{module}" target="_blank" class="btn btn-default">
             <img src="/svg/github.svg" alt=""> Fork Me on GitHub
         </a>
-    </div>`,
-});
+    </div>
+</block>
 
-Vue.component("vue-home-jumbotron", {
-    props: ["locals"],
-    template: `<div>
+<block name="jumbotron" export params="desc">
+    <div>
         <div class="jumbotron">
-            <h1 class="vivify popInRight"> {{ locals.moduleName }} </h1>
+            <h1 class="vivify popInRight"> @{ moduleName } </h1>
             <p class="desc vivify fadeIn">
-                {{ locals.desc }}
+                @{ desc }
             </p>
         </div>
         <div class="command vivify flipInX">
-            <pre>npm install {{ locals.module }} --save</pre>
+            <pre>npm install @{ module } --save</pre>
         </div>
         <div class="pre-requisit">
             <div class="vivify rollInRight">
@@ -258,17 +258,30 @@ Vue.component("vue-home-jumbotron", {
                 </a>
             </div>
         </div>
-    </dv>`,
-});
+    </div>
+</block>
 
-Vue.component("vue-docs-container", {
-    props: ["module", "menu"],
-    template: `<div class="container vivify fadeIn">
-            <aside class="sidebar vivify fadeIn">
+<block name="docs-container" export>
+    <div class="container vivify fadeIn">
+        <aside class="sidebar vivify fadeIn">
             <ul>
-                <li v-for="(label, filename) in menu"><a :href="'/' + module + '/docs/' + filename">{{ label }}</a></li>
+                <for statement="let filename in sidebarMenu">
+                    <li><a href="/@{module}/docs/@{filename}" data-title="@{ sidebarMenu[filename].title } | @{moduleName}">@{ sidebarMenu[filename].label }</a></li>
+                </for>
             </ul>
         </aside>
         <article class="content vivify fadeIn">Loading...</article>
-    </div>`,
+    </div>
+</block>
+`);
+
+$(function () {
+    let app = $("#app"),
+        tpl = app.html();
+
+    new whatstpl.Template("app.html").render(tpl, window.locals).then(html => {
+        app.html(html);
+
+        onRendered();
+    });
 });

@@ -12,35 +12,35 @@
 </head>
 
 <body>
-    <div id="home">
-        <vue-header :module="Locals.module" :locals="Locals" :menu="NavbarMenu"></vue-header>
-        <vue-fork-github :module="Locals.module"></vue-fork-github>
+    <div id="app">
+        <layout file="/layout.html"></layout>
+        <import target="fork-github, jumbotron" from="/components.html"></import>
+        <fork-github></fork-github>
         <div class="container vivify fadeIn" id="container">
             <div class="content">
-                <vue-home-jumbotron :locals="Locals"></vue-home-jumbotron>
+                <jumbotron data="jumbotronDesc"></jumbotron>
                 <div class="box">
                     <div class="vivify popInBottom">
-                        <h1>{{ fast }}</h1>
+                        <h1>@{ fast }</h1>
                         <p>
-                            {{ fastDesc }}
+                            @{ fastDesc }
                         </p>
                     </div>
                     <div class="vivify popInBottom">
-                        <h1>{{ easy }}</h1>
+                        <h1>@{ easy }</h1>
                         <p>
-                            {{ easyDesc }}
+                            @{ easyDesc }
                         </p>
                     </div>
                     <div class="vivify popInBottom">
-                        <h1>{{ functional }}</h1>
+                        <h1>@{ functional }</h1>
                         <p>
-                            {{ functionalDesc }}
+                            @{ functionalDesc }
                         </p>
                     </div>
                 </div>
             </div>
         </div>
-        <vue-footer :locals="Locals"></vue-footer>
     </div>
     <script src="/js/marked.min.js"></script>
     <script src="/js/highlight.pack.min.js"></script>
@@ -48,7 +48,7 @@
     <script src="/js/jquery.min.js"></script>
     <script src="/js/jquery.typein.js"></script>
     <script src="/js/soft-loader.js"></script>
-    <script src="/js/vue.min.js"></script>
+    <script src="/js/whatstpl.min.js"></script>
     <script src="/js/common.js"></script>
     <script src="/modelar/javascript.js"></script>
 </body>

@@ -62,6 +62,7 @@ several optional engines available:
 - [sfn-pug-engine](https://github.com/Hyurl/sfn-pug-engine)
 - [sfn-nunjucks-engine](https://github.com/Hyurl/sfn-nunjuncks-engine)
 - [sfn-sdopx-engine](https://github.com/Hyurl/sfn-sdopx-engine)
+- [sfn-whatstpl-engine](https://github.com/Hyurl/sfn-whatstpl-engine)
 
 You must learn these engines yourself, this documentation won't introduce them
 in detail.

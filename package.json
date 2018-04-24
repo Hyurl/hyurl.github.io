@@ -24,6 +24,7 @@
     "jquery.typein": "^0.1.0",
     "lodash": "^4.17.5",
     "vue": "^2.5.16",
-    "webium": "^0.3.1"
+    "webium": "^0.3.1",
+    "whatstpl": "^0.1.6"
   }
 }

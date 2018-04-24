@@ -61,6 +61,7 @@ export default class extends HttpController {
 - [sfn-pug-engine](https://github.com/Hyurl/sfn-pug-engine)
 - [sfn-nunjucks-engine](https://github.com/Hyurl/sfn-nunjuncks-engine)
 - [sfn-sdopx-engine](https://github.com/Hyurl/sfn-sdopx-engine)
+- [sfn-whatstpl-engine](https://github.com/Hyurl/sfn-whatstpl-engine)
 
 你必须自己去学习这些模板引擎，这份文档将不会介绍任何关于它们的细节。
 
