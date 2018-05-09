@@ -25,9 +25,11 @@ export var config: SFNConfig = {
         name: "sfn-sid",
         resave: true,
         saveUninitialized: true,
-        secure: true,
         unset: "destroy",
-        store: new Store()
+        store: new Store(),
+        cookie: {
+            secure: true
+        }
     },
     // ...
 }

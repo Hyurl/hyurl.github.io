@@ -1,6 +1,6 @@
 # 基本概念
 
-在 **SFN** 框架中，会话使默认开启的，并且在 HTTP 和 WebSocket 中共享。框架使用 
+在 **SFN** 框架中，会话是默认开启的，并且在 HTTP 和 WebSocket 中共享。框架使用 
 [express-session](https://www.npmjs.com/package/express-session) 来实现会话支持，
 并且使用 [session-file-store](https://www.npmjs.com/package/session-file-store)
 作为其默认的存储引擎。
@@ -23,9 +23,11 @@ export var config: SFNConfig = {
         name: "sfn-sid",
         resave: true,
         saveUninitialized: true,
-        secure: true,
         unset: "destroy",
-        store: new Store()
+        store: new Store(),
+        cookie: {
+            secure: true
+        }
     },
     // ...
 }
