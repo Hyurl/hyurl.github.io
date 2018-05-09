@@ -19,7 +19,7 @@ npm i -g typescript
 如果你对 TypeScript 还不了解，你可能需要自己首先去学习它，但如果你不打算使用它，这个
 步骤则可以跳过。
 
-### 开启 TypeScript Support
+### 启用 TypeScript 支持
 
 要为你的项目开启 TypeScript 支持，只需要添加一个新文件，名为 `tsconfig.json` 到你的
 项目目录下，它的内容应该类似下面这样：
