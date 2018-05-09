@@ -1,7 +1,7 @@
 # Concept
 
 [sfn-mail](https://github.com/hyurl/sfn-mail) is a very simple wrapper of 
-[NodeMailer](https://github.com/nodemailer/nodemailer) for **sfn** framework 
+[NodeMailer](https://github.com/nodemailer/nodemailer) for **SFN** framework 
 to send e-mails.
 
 ## How to use?

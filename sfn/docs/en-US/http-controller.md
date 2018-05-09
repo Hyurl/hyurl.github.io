@@ -197,7 +197,7 @@ export default class extends HttpController {
 
 What if I want to do **asynchronous operations in the constructor**? 
 JavaScript will not allow you define an `async constructor()`, but don't worry,
-**sfn** provides you the way to do it. All you need to do, is just passing the 
+**SFN** provides you the way to do it. All you need to do, is just passing the 
 third parameter `next` to the `constructor()`, and calling `next(this)` when 
 you're ready to call the actual method.
 
@@ -236,7 +236,7 @@ those checking will never work.
 ### One tip of Request and Response
 
 `Request` and `Response` are TypeScript interfaces, actually there are a lot 
-of interfaces (and `type`s) in **sfn**, they are not class, so can't be 
+of interfaces (and `type`s) in **SFN**, they are not class, so can't be 
 instantiated, or check `instanceof`, if you have any of these code in your 
 application, you just got yourself troubles.
 

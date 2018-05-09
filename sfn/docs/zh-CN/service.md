@@ -1,6 +1,6 @@
 # 基本概念
 
-`Service` 类是 **sfn** 框架中的基本类，其他类如 `HttpController`、
+`Service` 类是 **SFN** 框架中的基本类，其他类如 `HttpController`、
 `WebSocketController` 都继承自它。它提供了一些有用的特性，如 `i18n`、`logger`、
 `cache` 等，能够让你用来做真正的事情。
 

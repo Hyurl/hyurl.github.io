@@ -1,6 +1,6 @@
 # Concept
 
-**sfn** uses [Modelar](https://github.com/hyurl/modelar) as its ORM system, 
+**SFN** uses [Modelar](https://github.com/hyurl/modelar) as its ORM system, 
 it's a very easy-to-use but functional ORM module with full featured SQL and
 Query builder supports. Here I will just give you some simple examples to 
 demonstrate the styles of using **Modelar**, you need to learn it for other 
@@ -110,14 +110,14 @@ var table = new Table(new Article);
 
 ## In sfn
 
-In a **sfn** application, you should put your model files in `src/models/`, 
+In a **SFN** application, you should put your model files in `src/models/`, 
 and import them wherever you want.
 
 About the database connection configuration, although here I‘ve shown you how 
 to initiate the **DB** constructor, but it's not what we are going to do in 
 the framework.
 
-In **sfn** framework, you should always modify the configuration file 
+In **SFN** framework, you should always modify the configuration file 
 `config.ts` to set configurations.
 
 ```typescript

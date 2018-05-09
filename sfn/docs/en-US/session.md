@@ -1,6 +1,6 @@
 # Concept
 
-Session is enabled by default in **sfn** framework, and shared between HTTP 
+Session is enabled by default in **SFN** framework, and shared between HTTP 
 and WebSocket. the framework uses 
 [express-session](https://www.npmjs.com/package/express-session) to back 
 session support, and uses 
@@ -37,7 +37,7 @@ Also, you can change to other available storage engine if you want to.
 
 ## Share state between HTTP and WebSocket
 
-This feature is very important in **sfn** framework, session sharing allows 
+This feature is very important in **SFN** framework, session sharing allows 
 you changing the state in one end and affecting the other without doing 
 repeating work, it guarantees that once you logged in from a HTTP request, 
 and you WebSocket will be in as well (and vice versa).

@@ -1,6 +1,6 @@
 # Concept
 
-A **sfn** application will start at least two processes, a master and a worker.
+A **SFN** application will start at least two processes, a master and a worker.
 The master host all workers, but itself doesn't start any server, the worker 
 will start servers and listen ports.
 
@@ -12,7 +12,7 @@ start three workers, A, B and C.
 
 ## Communications between workers and the master
 
-Multi-processing in **sfn** is backed by 
+Multi-processing in **SFN** is backed by 
 [sfn-worker](https://github.com/hyurl/sfn-worker), it provides a very 
 easy-to-use, however efficient way that allows you send and receive messages 
 from one worker to another, or to/from the master, please go learn it if you 

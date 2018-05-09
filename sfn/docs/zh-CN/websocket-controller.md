@@ -132,7 +132,7 @@ export default class extends WebSocketController {
 ```
 
 如果我想要 **在构造函数中做一些异步的操作呢**？JavaScript 是不会允许你定义一个 
-`async constructor()` 的，但不用担心，**sfn** 提供了一个特别的方式让你可以这么做。
+`async constructor()` 的，但不用担心，**SFN** 提供了一个特别的方式让你可以这么做。
 你所需要做的，就是传递第三个参数 `next` 到 `constructor()` 中，然后在你准备好调用
 实际方法时，调用 `next(this)`。
 
@@ -168,7 +168,7 @@ export default class extends WebSocketController {
 
 ### 关于 WebSocket 的提示
 
-`WebSocekt` 是一个 TypeScript 接口，实际上在 **sfn** 框架中存在着很多的接口（和 
+`WebSocekt` 是一个 TypeScript 接口，实际上在 **SFN** 框架中存在着很多的接口（和 
 `type` 类型）。它们并不是类，因此也不能被实例化，或者使用 `instanceof` 来检测，如果
 你在代码中有任何这样的代码，那只会给你自己造成麻烦。
 

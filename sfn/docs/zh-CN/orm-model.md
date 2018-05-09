@@ -1,6 +1,6 @@
 # 基本概念
 
-**sfn** 使用 [Modelar](https://github.com/hyurl/modelar) 来作为它的 ORM 系统， 
+**SFN** 使用 [Modelar](https://github.com/hyurl/modelar) 来作为它的 ORM 系统， 
 这是一个简单易用但是却功能丰富的 ORM 模块，携带着全功能的 SQL 和查询语句构造器支持。
 在这里我只会向你展示一些简单例子，来加深你对 **Modelar** 使用风格的印象，你需要自己
 去学习它的其他特性。
@@ -108,13 +108,13 @@ var table = new Table(new Article);
 
 ## 在 sfn 中
 
-在一个 **sfn** 应用程序中，你应该将你的模型文件都存储在 `src/models/` 目录中，然后
+在一个 **SFN** 应用程序中，你应该将你的模型文件都存储在 `src/models/` 目录中，然后
 在任何你想要的地方导入它们。
 
 关于数据库连接配置，虽然这儿我已经为你展示了如何初始化 **DB** 构造器对象，但这并不是
 我们将要在框架中使用的方式。
 
-在 **sfn** 框架中，你应该始终修改配置文件 `config.ts` 来设置配置选项。
+在 **SFN** 框架中，你应该始终修改配置文件 `config.ts` 来设置配置选项。
 
 ```typescript
 export var config: SFNConfig = {

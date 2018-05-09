@@ -2,7 +2,7 @@
 
 你可能已经在 [Service](./service) 页面中看到了 `logger` 属性，它实际上是由 
 [sfn-logger](https://github.com/hyurl/sfn-logger) 模块提供支持的。你也许会想要
-了解更多关于这个模块的复杂细节，但是在 **sfn** 框架中，这不是必须的，在大多数时候，你
+了解更多关于这个模块的复杂细节，但是在 **SFN** 框架中，这不是必须的，在大多数时候，你
 只需要从 `logger` 属性中调用它。
 
 默认地，日志文件将会保存在 `src/logs/` 目录中。
@@ -73,9 +73,9 @@ export default class extends HttpController {
 }
 ```
 
-## 在 **sfn** 框架中的特殊表现
+## 在 **SFN** 框架中的特殊表现
 
-在 **sfn** 框架中，服务中的 `logger` 属性会有一些特殊的表现，不同于来自 
+在 **SFN** 框架中，服务中的 `logger` 属性会有一些特殊的表现，不同于来自 
 **sfn-logger** 模块的原始的 `new Logger()`。
 
 首先，`logger` 的实例会被缓存到内存中且根据文件名作为区分，这意味着即使在不同的服务

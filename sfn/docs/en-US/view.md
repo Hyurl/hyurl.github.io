@@ -1,6 +1,6 @@
 # Concept
 
-In a **sfn** application, view system is bound to `HttpController`.
+In a **SFN** application, view system is bound to `HttpController`.
 
 # How to use?
 
@@ -90,7 +90,7 @@ export default class extends HttpController {
 ### Adapt your own engines
 
 If you have written a template engine, or want to use one that already exists 
-but hasn't been adapt to **sfn**, you can make the adapter yourself, it 
+but hasn't been adapt to **SFN**, you can make the adapter yourself, it 
 wouldn't be hard.
 
 All you have to do, is define a new class that extends the abstract class 
@@ -184,6 +184,6 @@ as the following one:
 </html>
 ```
 
-Remember, this is just a trick in **sfn** framework, if you're using other 
+Remember, this is just a trick in **SFN** framework, if you're using other 
 frameworks, it wouldn't work, but you can still use the `include()` syntax to 
 load relative templates, which suits most of the case already.

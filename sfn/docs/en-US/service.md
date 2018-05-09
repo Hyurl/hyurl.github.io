@@ -1,6 +1,6 @@
 # Concept
 
-The `Service` class is the base class in **sfn**, classes like 
+The `Service` class is the base class in **SFN**, classes like 
 `HttpController`, `WebSocketController` is inherited from it. It provides some
 useful features like `i18n`, `logger`, `cache` that you can use to do real 
 jobs.

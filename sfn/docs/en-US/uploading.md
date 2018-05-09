@@ -5,7 +5,7 @@ files via an HTTP POST request.
 
 ## How to use?
 
-Uploading a file is just easy as you doing other stuffs in a **sfn** 
+Uploading a file is just easy as you doing other stuffs in a **SFN** 
 application, you just need to configure some options, and the rest work will 
 be handled by the framework automatically.
 

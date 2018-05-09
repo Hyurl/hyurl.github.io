@@ -3,7 +3,7 @@
 You may have seen the `logger` property in the [Service](./service) page, its 
 backed by [sfn-logger](https://github.com/hyurl/sfn-logger) module actually.
 You may want to learn more complicated details about this module, but in 
-**sfn**, it's not necessary, for most of the case, you would only need to call
+**SFN**, it's not necessary, for most of the case, you would only need to call
 it from the `logger` property.
 
 By default, logs are stored in `src/logs/` directory.
@@ -76,9 +76,9 @@ export default class extends HttpController {
 }
 ```
 
-## Special performance in **sfn**
+## Special performance in **SFN**
 
-In the **sfn** framework, the `logger` property in the service, has some 
+In the **SFN** framework, the `logger` property in the service, has some 
 special performance different to the original `new Logger()` from 
 **sfn-logger** module. 
 

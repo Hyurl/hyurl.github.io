@@ -1,6 +1,6 @@
 # Relations Map
 
-In **sfn**, there are many entities, and they're related to each other, this 
+In **SFN**, there are many entities, and they're related to each other, this 
 map shows the relations of them.
 
 <pre>
@@ -35,7 +35,7 @@ map shows the relations of them.
 
 # Files and Folders
 
-In a standard **sfn** application, there are always some files and folders 
+In a standard **SFN** application, there are always some files and folders 
 appear in you project directory, some of them are necessary, some of them are 
 just recommended.
 

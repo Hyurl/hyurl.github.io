@@ -12,7 +12,7 @@
 这个默认类将会被使用。
 
 因此如果你想要设置一个用户的状态为已登录，你只需要设置 `req.session.uid` 或者 
-`socket.session.uid` 为一个用户 ID 即可。记住，会话在 **sfn** 框架中是共享于 HTTP 
+`socket.session.uid` 为一个用户 ID 即可。记住，会话在 **SFN** 框架中是共享于 HTTP 
 和 WebSocket 之间的，这意味着一旦你修改了其中一端，另一端也会同时被改变。
 
 在控制器中，存在着一个属性 `authorized`，如果它的值是 `true`，那就意味着操作是被
@@ -71,7 +71,7 @@ export default class extends HttpController {
 CSRF 安全问题其实是一个非常老的话题，根据我的经验，现代浏览器已经为你提供了足够多的
 保护。但某些情况下，你可能需要做一些自己保护。
 
-在 **sfn** 框架中使用 CSRF 保护是很简单的，你只要在 HttpController 中打开它即可。
+在 **SFN** 框架中使用 CSRF 保护是很简单的，你只要在 HttpController 中打开它即可。
 
 ```typescript
 import { HttpController, route } from "sfn";
@@ -140,7 +140,7 @@ export default class extends HttpController {
 允许来自不受信任的访问源进行请求会产生一些问题，虽然现代浏览器更倾向于屏蔽来自跨域的
 响应，但是在服务端，其操作已经被正常地执行，即使远程客户端永远不会意识到。
 
-**sfn** 框架赋予你完全控制 CORS 地能力，并且它很容易配置。如平时一样，你需要在控制器
+**SFN** 框架赋予你完全控制 CORS 地能力，并且它很容易配置。如平时一样，你需要在控制器
 中开启它。
 
 ### CORS 示例
@@ -201,7 +201,7 @@ XSS 攻击远比 CRSF 和 CORS 要危险得多。在任何时候，这条黄金�
 信任用户输入。”如果没有进行任何过滤，黑客可能会注入危险的代码到你的网站中，然后在其他
 用户访问危险页面时危害到网站和用户的安全。
 
-要防止你的网站被来自 XSS 的攻击所入侵，**sfn** 提供了一些非常实用的函数，允许你过滤
+要防止你的网站被来自 XSS 的攻击所入侵，**SFN** 提供了一些非常实用的函数，允许你过滤
 用户输入内容中不安全的代码。
 
 框架使用 [sfn-xss](https://github.com/Hyurl/sfn-xss) 模块来提供过滤支持。

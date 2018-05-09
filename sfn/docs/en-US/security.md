@@ -15,7 +15,7 @@ class that **Modelar** provides, otherwise the default one will be used.
 
 So if you want to set a user's state to logged-in, you just need to set 
 `req.session.uid` or `socket.session.uid` to the user ID, and that's done. 
-Remember, sessions in a **sfn** application are shared between HTTP and 
+Remember, sessions in a **SFN** application are shared between HTTP and 
 WebSocket, that means once you changed one side, the other side will be 
 modified as well.
 
@@ -78,7 +78,7 @@ CSRF security issue is a very old topic actually, in my experience, modern
 browsers have done a lot of work to protect it for you. But just in case, you 
 may need to do your own protection as well.  
 
-CSRF protection in an **sfn** application is very easy, you just need to turn 
+CSRF protection in an **SFN** application is very easy, you just need to turn 
 it on in the HttpController.
 
 ```typescript
@@ -151,7 +151,7 @@ modern browsers more intend to block response from cross origin requests, but
 on the server side, the operation will perform as usual, even the remote 
 client will never notice.
 
-**sfn** framework give you the ability to fully control CORS, and it is very 
+**SFN** framework give you the ability to fully control CORS, and it is very 
 easy to configure. As usual, you just need to turn it on in the controller.
 
 ### Example of CORS
@@ -216,7 +216,7 @@ works at any time: "Never trust user input". If without any escaping, the
 hacker may inject dangerous code in your website, and do harm when other users
 visit the dangerous pages.
 
-To protect your website being hacked from an XSS attack, **sfn** provides some
+To protect your website being hacked from an XSS attack, **SFN** provides some
 useful functions that allow you escape unsafe code in the user input.
 
 The framework uses [sfn-xss](https://github.com/Hyurl/sfn-xss) module to back 

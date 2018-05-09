@@ -2,7 +2,7 @@
 
 [sfn-mail](https://github.com/hyurl/sfn-mail) 对 
 [NodeMailer](https://github.com/nodemailer/nodemailer) 模块进行了一些的封装，
-以便在 **sfn** 框架中发送邮件。
+以便在 **SFN** 框架中发送邮件。
 
 ## 如何使用？
 
