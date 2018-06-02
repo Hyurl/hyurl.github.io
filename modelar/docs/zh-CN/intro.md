@@ -1,3 +1,7 @@
+## 前提条件
+
+- `NodeJS` 版本高于 4.0.0。
+
 ## 安装
 
 要在你的项目中安装 Modelar，只需要在你的 Shell 或者 CMD 中输入下面的命令：
@@ -17,10 +21,10 @@ npm install modelar --save
 - `OracleDB` see [modelar-oracle-adapter](https://github.com/Hyurl/modelar-oracle-adapter).
 - `DB2` see [modelar-ibmdb-adapter](https://github.com/Hyurl/modelar-ibmdb-adapter).
 
-不是所有的适配器都被自动安装的，只有 `MySQL/MariaDB` 和 `PostgreSQL` 是内置包含的，
+不是所有的适配器都被自动安装的，只有 `MySQL/MariaDB`（自 3.0.4 起）是内置包含的，
 你必须要手动安装其他的适配器，如果你打算使用它们。
 
-Modelar 依旧在成长，更多的数据库可能会在未来版本中获得支持。
+Modelar 依旧在成长，更多的特性可能会在未来版本中被引入。
 
 ## 我可以用这个模块做什么？
 
@@ -102,7 +106,8 @@ class Article extends Model {
 ```
 
 上面只是给出了一个非常简单的例子，来显示出这个模块所拥有的便捷性以及表现型，你可以深入
-并真正了解它，请查看 [API 文档](http://modelarjs.org/docs/DB)。
+并真正了解它，请用心查看这份文档。
 
-虽然这个示例中使用了 `async/await` 来组织程序逻辑，但这个模块在内部仅仅使用了 
-`Promise`，因此它可以运行在任何版本高于 6.0 的 Node.js 环境中。
+这个包是使用 TypeScript 编写的，并编译成 ES5 标准（自 3.0.4 版本起），同时包含一些
+ES2015 的新特性，因此它可以运行再任何版本高于 4.0.0 的 NodeJS 环境中。但这个特性依赖
+于你所使用的适配器程序的支持，因此请仔细查阅该适配器程序的说明。

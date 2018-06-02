@@ -47,6 +47,8 @@ To be compatible to 2.X code, you can set `Model.oldIterator` to `true` to use
 old iterator, but it will trigger a warning, you should use the new way 
 instead.
 
+**Since version 3.0.4, old style of iterator is not longer supported.**
+
 ## Migration from 1.X to 2.0+
 
 Modelar 2.0 changed some details of the core, thus programs written with 1.X 

@@ -6,6 +6,7 @@
     * [query.constructor()](#query_constructor)
     * [query.select()](#query_select)
     * [query.from()](#query_table)
+    * [query.field()](#query_field)
     * [query.where()](#query_where)
     * [query.orWhere()](#query_orWhere)
     * [query.whereBetween()](#query_whereBetween)
@@ -79,6 +80,8 @@ current Query instance.
 **signatures:**
 
 - `new Query(table?: string)`
+- `new Query(tables?: string[])` Since 3.0.4, used for multi-table query.
+- `new Query(...tables: string)` Since 3.0.4, used for multi-table query.
 
 ```javascript
 const { Query } = require("modelar");
@@ -110,11 +113,28 @@ query.select(["id", "name", "email"]);
 **signatures:**
 
 - `from(table: string): this`
+- `from(tables: string[]): this` Since 3.0.4, used for multi-table query.
+- `from(...tables: string[]): this` Since 3.0.4, used for multi-table query.
 
 ```javascript
 var query = new Query();
 
 query.select("id", "name", "email").from("users");
+```
+
+### query.field()
+
+*Treats the given name as a field and keep its form in where or join clause.*
+
+**signatures:**
+
+- `field(name: string)`
+
+```javascript
+var query = new Query("users", "articles");
+
+// query.field() will prevent the given name from escaping as a normal value.
+query.where("articles.user_id", query.field("user.id")).where("user.id", 1);
 ```
 
 ### query.where()
@@ -123,9 +143,9 @@ query.select("id", "name", "email").from("users");
 
 **signatures:**
 
-- `where(field: string, value: string | number | boolean | Date): this`
-- `where(field: string, operator: string, value: string | number | boolean | Date): this`
-- `where(fields: { [field: string]: string | number | boolean | Date }): this`
+- `where(field: string, value: any): this`
+- `where(field: string, operator: string, value: any): this`
+- `where(fields: { [field: string]: any }): this`
 - `where(nested: (query: Query) => void): this`
 - `where(field: string, nested: (query: Query) => void): this`
 - `where(field: string, operator: string, nested: (query: Query) => void): this`
@@ -324,6 +344,8 @@ check the documentation above.
 
 - `join(table: string, field1: string, field2: string): this`
 - `join(table: string, field1: string, operator: string, field2: string): this`
+- `join(table: string, fields: { [field: string]: any; }): this`
+- `join(table: string, nested: (query: Query) => void): this;`
 
 ```javascript
 var query = new Query("users");
@@ -332,8 +354,14 @@ query.join("roles", "user.id", "role.user_id");
 
 query.join("roles", "user.id", "=", "role.user_id");
 
-query.join("roles", {"user.id": "role.user_id"});
+query.join("roles", { "user.id": "role.user_id" });
 // select * from `users` inner join `roles` on `user`.`id` = `role`.`user_id`;
+
+query.join("roles", query => {
+    // set 'on' clause in SQL via where() method.
+    // must wrap the value of `where()` parameter, prevent it from escaping.
+    query.where("user.id", query.field("role.user_id"));
+});
 ```
 
 ### query.leftJoin()

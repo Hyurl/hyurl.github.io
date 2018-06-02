@@ -21,7 +21,7 @@
     * [DB.init()](#DB_init)
     * [DB.setAdapter()](#DB_setAdapter)
     * [DB.on()](#DB_on)
-    * [DB.destroy()](#DB_destroy)
+    * [DB.close()](#DB_close)
     * [在 Express 中包裹 DB](#在-Express-中包裹-DB)
 
 ## DB 类
@@ -339,6 +339,9 @@ console.log(db.quote(value));
 //'This\'s is a value that needs to be quoted.'
 ```
 
+一般来说这个方法是 Modelar 内部在拼接 DDL 时使用的，你不会用到，请始终使用绑定参数的
+方式进行传值。
+
 ### db.backquote()
 
 *为一个指定的标识符添加反引号。*
@@ -468,7 +471,7 @@ DB.on("query", db => {
 });
 ```
 
-### DB.destroy()
+### DB.close()
 
 *销毁所有连接池中的数据库连接。*
 
@@ -478,9 +481,7 @@ DB.on("query", db => {
 
 **别名：**
 
-- `DB.close()`
-
-该方法没有返回值。
+- `DB.destroy()`
 
 ### 在 Express 中包裹 DB
 
@@ -500,29 +501,29 @@ const app = express();
 const { DB, User } = require("modelar");
 
 // 定义一个 Express 中间件来保存数据库连接。
-app.use((req, res, next)=>{
+app.use((req, res, next) => {
     // 创建数据库连接，将它保存在 req.db 属性中。
     req.db = new DB();
 
-    // 添加一个时间处理器，当响应被发送回客户端后，回收数据库连接并等待下一个请求
+    // 添加一个事件处理器，当响应被发送回客户端后，回收数据库连接并等待下一个请求
     // 取回它。
     res.on("finish", () => {
-        req.db.recycle();
+        req.db.release();
     });
 
     next();
 });
 
 // 定义一个路由用来通过 UID 获取一个用户。
-app.get("/user/:id", (req, res)=>{
+app.get("/user/:id", (req, res) => {
     // 使用现有数据库连接。
-    User.use(req.db).get(req.params.id).then(user=>{
+    User.use(req.db).get(req.params.id).then(user => {
         // 如果用户存在并被获到，这个代码块将会被运行。
         res.json({
             success: true,
-            data: user.valueOf(),
+            data: user,
         });
-    }).catch(err=>{
+    }).catch(err => {
         // 如果用户不存在或者发生了其他错误，这个代码块将会被运行。
         res.json({
             success: false,

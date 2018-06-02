@@ -6,6 +6,7 @@
     * [query.constructor()](#query_constructor)
     * [query.select()](#query_select)
     * [query.from()](#query_table)
+    * [query.field()](#query_field)
     * [query.where()](#query_where)
     * [query.orWhere()](#query_orWhere)
     * [query.whereBetween()](#query_whereBetween)
@@ -79,6 +80,8 @@
 **签名：**
 
 - `new Query(table?: string)`
+- `new Query(tables?: string[])` 3.0.4 版本起，用于多表查询。
+- `new Query(...tables: string)` 3.0.4 版本起，用于多表查询。
 
 ```javascript
 const { Query } = require("modelar");
@@ -110,6 +113,8 @@ query.select(["id", "name", "email"]);
 **签名：**
 
 - `from(table: string): this`
+- `from(tables: string[]): this` 3.0.4 版本起，用于多表查询。
+- `from(...tables: string[]): this` 3.0.4 版本起，用于多表查询。
 
 ```javascript
 var query = new Query(); // 如果你不在这里传入表名，
@@ -118,15 +123,30 @@ var query = new Query(); // 如果你不在这里传入表名，
 query.select("id", "name", "email").from("users");
 ```
 
+### query.field()
+
+*将给出的名称作为字段名来处理，保持其形式，用在 where() 和 join() 语句中。*
+
+**签名:**
+
+- `field(name: string)`
+
+```javascript
+var query = new Query("users", "articles");
+
+// query.field() 会防止字段名称被当作普通的值进行转义
+query.where("articles.user_id", query.field("user.id")).where("user.id", 1);
+```
+
 ### query.where()
 
 *为 SQL 语句设置一个 `where...` 子句。*
 
 **签名：**
 
-- `where(field: string, value: string | number | boolean | Date): this`
-- `where(field: string, operator: string, value: string | number | boolean | Date): this`
-- `where(fields: { [field: string]: string | number | boolean | Date }): this`
+- `where(field: string, value: any): this`
+- `where(field: string, operator: string, value: any): this`
+- `where(fields: { [field: string]: any }): this`
 - `where(nested: (query: Query) => void): this`
 - `where(field: string, nested: (query: Query) => void): this`
 - `where(field: string, operator: string, nested: (query: Query) => void): this`
@@ -319,6 +339,8 @@ query.whereExists(_query=>{
 
 - `join(table: string, field1: string, field2: string): this`
 - `join(table: string, field1: string, operator: string, field2: string): this`
+- `join(table: string, fields: { [field: string]: any; }): this`
+- `join(table: string, nested: (query: Query) => void): this;`
 
 ```javascript
 var query = new Query("users");
@@ -326,7 +348,15 @@ var query = new Query("users");
 query.join("roles", "user.id", "=", "role.user_id");
 
 query.join("roles", {"user.id": "role.user_id"});
+
+query.join("roles", { "user.id": "role.user_id" });
 // select * from `users` inner join `roles` on `user`.`id` = `role`.`user_id`;
+
+query.join("roles", query => {
+    // 在回调函数中使用 where() 来设置 SQL 中 on 的条件
+    // 必须使用 query.field() 包裹 where() 参数的值，避免转义
+    query.where("user.id", query.field("role.user_id"));
+});
 ```
 
 ### query.leftJoin()

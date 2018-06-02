@@ -16,13 +16,14 @@
     * [model.createTable()](#model_createTable)
     * [静态包装器](#静态包装器)
     * [自定义 Setter 和 Getter](#自定义-Setter-和-Getter)
-    * [模型关联](#Model-Associations)
+    * [模型关联](#模型关联)
     * [model.has()](#model_has)
     * [model.belongsTo()](#model_belongsTo)
     * [model.hasThrough()](#model_hasThrough)
     * [model.belongsToThrough()](#model_belongsToThrough)
     * [model.hasVia()](#model_hasVia)
     * [model.belongsToVia()](#model_belongsToVia)
+    * [model.wherePivot()](#model_wherePivot)
     * [model.withPivot()](#model_withPivot)
     * [model.associate()](#model_associate)
     * [model.dissociate()](#model_dissociate)
@@ -40,7 +41,7 @@
 和 `Symbol.iterator`，你可以调用 `model.toString()` 或 `JSON.stringify(model)`
 来产生模型的字符串表示形式，也可以调用 `model.valueOf()` 来获取模型所包含的数据。
 如果你想要列表出所有模型数据的属性，则可以将模型置于一个 for...of... 循环中，如这样：
-`for(let [field, value] of model)`。
+`for(let { key, value } of model)`。
 
 ### 事件
 
@@ -59,7 +60,7 @@
 - `new Model(data: { [field: string]: any })`
 - `new Model(data: { [field: string]: any }, config: ModelConfig)`
 
-`ModelCOnfig` 接口包含：
+`ModelConfig` 接口包含：
 
 - `table：string` 模型实例所绑定的数据表名称。
 - `fields: string[]` 保存在一个数组中的数据表的字段名称。
@@ -397,9 +398,10 @@ user.getMany({
 
 **signatures:**
 
-- `whereState(field: string, value: string | number | boolean | Date): this`
-- `whereState(field: string, operator: string, value: string | number | boolean | Date): this`
-- `whereState(fields: { [field: string]: string | number | boolean | Date }): this`
+- `whereState(field: string, value: any): this`
+- `whereState(field: string, operator: string, value: any): this`
+- `whereState(fields: { [field: string]: any }): this`
+- `whereState(extra: (query: Query) => void): this;`
 
 这个方法是为了使模型实现乐观锁，配合事务处理机制，我们可以在数据表中创建一个字段来保存
 模型的状态。当更新或者删除模型时，检查这个状态，如果它满足条件，就意味着操作是成功的，
@@ -407,7 +409,6 @@ user.getMany({
 
 不像其他继承自 Query 的方法，这个方法只能使用一次，如果你调用这个方法多次，只有最后
 一个状态是会被检测的。
-
 
 ```javascript
 const { Model } = require("modelar/Model");
@@ -817,6 +818,11 @@ export class User extends _User {
         return <Role>this.hasVia(Role, "userroles", "role_id", "user_id").withPivot("activated");
     }
 
+    get activatedRoles() {
+        return <Role>this.hasVia(Role, "userroles", "role_id", "user_id")
+            .wherePivot("activated", 1).withPivot("activated");
+    }
+
     get tags() {
         return <Tag>this.hasVia(Tag, "taggables", "tag_id", "taggable_id", "taggable_type");
     }
@@ -888,6 +894,24 @@ table.addColumn("taggable_type", "varchar", 32).default("");
 
 请查看 [model.hasVia()](#model_hasVia) 章节中的示例。
 
+### model.wherePivot()
+
+*当通过中间表获取数据时设置额外的 `where...` 字句条件。*
+
+**签名:** (自 3.0.4 起)
+
+- `wherePivot(field: string, value: any): this`
+- `wherePivot(field: string, operator: string, value: any): this`
+- `wherePivot(fields: { [field: string]: any }): this`
+- `wherePivot(nested: (query: Query) => void): this`
+
+这个方法只能在调用了 `model.hasVia()` 或 `model.belongsToVia()` 之后才被调用。
+
+请查看 [model.hasVia()](#model_hasVia) 章节中的示例。
+
+这个方法和 [model.whereState()](#model_whereState) 是非常相似的，请查看它的说明
+以便获取详细的使用细节。
+
 ### model.withPivot()
 
 *获取中间表中的额外数据。*
@@ -897,7 +921,8 @@ table.addColumn("taggable_type", "varchar", 32).default("");
 - `withPivot(...fields: string[]): this`
 - `withPivot(fields: string[]): this`
 
-这个方法只能在调用了 `model.hasVia()` 或 `model.belongsToVia()` 之后才被调用。
+这个方法只能在调用了 `model.hasVia()`，`model.wherePivot()`，
+或 `model.belongsToVia()` 之后才被调用。
 
 请查看 [model.hasVia()](#model_hasVia) 章节中的示例。
 

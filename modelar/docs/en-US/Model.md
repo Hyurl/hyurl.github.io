@@ -23,6 +23,7 @@
     * [model.belongsToThrough()](#model_belongsToThrough)
     * [model.hasVia()](#model_hasVia)
     * [model.belongsToVia()](#model_belongsToVia)
+    * [model.wherePivot()](#model_wherePivot)
     * [model.withPivot()](#model_withPivot)
     * [model.associate()](#model_associate)
     * [model.dissociate()](#model_dissociate)
@@ -42,7 +43,7 @@ Also, this class implements some useful API of ES2015, like `toString()`,
 `model.toString()` or `JSON.stringify(model)` to generate a JSON string of 
 the model, and call `model.valueOf()` to get the data of the model. If you
 want to list out all properties of the model data, put the model in a 
-for...of... loop, like `for(let [field, value] of model)`.
+for...of... loop, like `for(let { key, value } of model)`.
 
 ### Events
 
@@ -410,9 +411,9 @@ the operator and the value.
 
 **signatures:**
 
-- `whereState(field: string, value: string | number | boolean | Date): this`
-- `whereState(field: string, operator: string, value: string | number | boolean | Date): this`
-- `whereState(fields: { [field: string]: string | number | boolean | Date }): this`
+- `whereState(field: string, value: any): this`
+- `whereState(field: string, operator: string, value: any): this`
+- `whereState(fields: { [field: string]: any }): this`
 
 This method is meant to implement optimistic locking for the model, with 
 transaction, we create a field in the table that stores the state of the 
@@ -858,6 +859,11 @@ export class User extends _User {
         return <Role>this.hasVia(Role, "userroles", "role_id", "user_id").withPivot("activated");
     }
 
+    get activatedRoles() {
+        return <Role>this.hasVia(Role, "userroles", "role_id", "user_id")
+            .wherePivot("activated", 1).withPivot("activated");
+    }
+
     get tags() {
         return <Tag>this.hasVia(Tag, "taggables", "tag_id", "taggable_id", "taggable_type");
     }
@@ -931,6 +937,25 @@ TypeScript.
 
 Please check the example at section [model.hasVia()](#model_hasVia).
 
+### model.wherePivot()
+
+*Sets extra `where...` clause when fetching data via a pivot table.*
+
+**signatures:** (Since 3.0.4)
+
+- `wherePivot(field: string, value: any): this`
+- `wherePivot(field: string, operator: string, value: any): this`
+- `wherePivot(fields: { [field: string]: any }): this`
+- `wherePivot(nested: (query: Query) => void): this`
+
+This method can only be called after calling `model.hasVia()` 
+or `model.belongsToVia()`, and can be called only once.
+
+Please check the example at section [model.hasVia()](#model_hasVia).
+
+This method is very alike with [model.whereState()](#model_whereState), check 
+its specification for more usage details.
+
 ### model.withPivot()
 
 *Gets extra data from the pivot table.*
@@ -940,8 +965,8 @@ Please check the example at section [model.hasVia()](#model_hasVia).
 - `withPivot(...fields: string[]): this`
 - `withPivot(fields: string[]): this`
 
-This method can only be called after calling `model.hasVia()` or 
-`model.belongsToVia()`.
+This method can only be called after calling `model.hasVia()`, 
+`model.wherePivot()` or `model.belongsToVia()`.
 
 Please check the example at section [model.hasVia()](#model_hasVia).
 

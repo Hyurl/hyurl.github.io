@@ -21,7 +21,7 @@
     * [DB.init()](#DB_init)
     * [DB.setAdapter()](#DB_setAdapter)
     * [DB.on()](#DB_on)
-    * [DB.destroy()](#DB_destroy)
+    * [DB.close()](#DB_close)
     * [Wrap DB in Express](#Wrap-DB-in-Express)
 
 ## The DB Class
@@ -365,6 +365,9 @@ console.log(db.quote(value));
 // 'This\'s is a value that needs to be quoted.'
 ```
 
+Normally this method is internally used when Modelar dealing with DDL, you're 
+not going to use it, please always use bindings parameters instead.
+
 ### db.backquote()
 
 *Adds back-quote marks to a specified identifier.*
@@ -497,7 +500,7 @@ DB.on("query", db => {
 });
 ```
 
-### DB.destroy()
+### DB.close()
 
 *Closes all connections in all pools.*
 
@@ -507,7 +510,7 @@ DB.on("query", db => {
 
 **alias:**
 
-- `DB.close()`
+- `DB.destroy()`
 
 ### Wrap DB in Express
 
@@ -530,29 +533,29 @@ const app = express();
 const { DB, User } = require("modelar");
 
 // Define an Express middleware to store the connection for each request.
-app.use((req, res, next)=>{
+app.use((req, res, next) => {
     // Make a connection to the database, store it in the req.db property.
     req.db = new DB();
 
     // Add an event handler that when the response has been sent, recycle the 
     // connection and wait for the next request to retrieve it.
     res.on("finish", () => {
-        req.db.recycle();
+        req.db.release();
     });
 
     next();
 });
 
 // Define a route to get a user by its UID.
-app.get("/user/:id", (req, res)=>{
+app.get("/user/:id", (req, res) => {
     // Use the existing conneciton.
-    User.use(req.db).get(req.params.id).then(user=>{
+    User.use(req.db).get(req.params.id).then( user =>{
         // If user exists and has been fetched, this code block will run.
         res.json({
             success: true,
-            data: user.valueOf(),
+            data: user,
         });
-    }).catch(err=>{
+    }).catch(err => {
         // If user doesn't exist or other errors occured, this code block 
         // runs.
         res.json({

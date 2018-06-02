@@ -172,9 +172,7 @@ table.addColumn("name", "varchar", [3, 15]).unique();
 
 **签名：**
 
-- `default(value: string | number | boolean | void | Date): this`
-
-`void` 在这里表示 `null`。
+- `default(value: any): this`
 
 ```javascript
 var table = new Table("users");
@@ -232,7 +230,7 @@ table.addColumn("id", "integer").primary().comment("The primary key.");
 **签名：**
 
 - `foreignKey(config: ForeignKeyConfig): this`
-- `foreignKey(table: string, field: string, onDelete?: "no action" | "set null" | "cascade" | "restrict", onUpdate?: "no action" | "set null" | "cascade" | "restrict"): this`
+- `foreignKey(table: string, field: string, onDelete?: string, onUpdate?: string): this`
 
 ```javascript
 var table = new Table("users");
