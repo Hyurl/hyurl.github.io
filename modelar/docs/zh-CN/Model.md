@@ -108,7 +108,7 @@
 - `fields: string[]` 保存在一个数组中的数据表的字段名称。
 - `primary: string` 数据表的主键名称。
 - `searchable: string[]` 一个包含所有可用于搜索的字段的数组，它们可以在调用 
-        `model.getMany()` 时用于模糊查询。
+    `model.getMany()` 时用于模糊查询。
 
 ```javascript
 const { Model } = require("modelar");
