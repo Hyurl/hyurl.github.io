@@ -3,6 +3,13 @@
 
 * [The Model Class](#The-Model-Class)
     * [事件](#事件)
+    * [model.primary](#model_primary)
+    * [model.fields](#model_fields)
+    * [model.searchable](#model_searchable)
+    * [model.data](#model_data)
+    * [model.extra](#model_extra)
+    * [model.isNew](#model_isNew)
+    * [model.throwNotFoundError](model.throwNotFoundError)
     * [model.constructor()](#model_constructor)
     * [model.assign()](#model_assign)
     * [model.save()](#model_save)
@@ -49,6 +56,41 @@
 - `saved` 将会在一个模型被成功保存后触发。
 
 所有绑定到这些事件上的监听器函数都支持一个参数，即当前的 Model 实例。
+
+### model.primary
+
+`string` *数据表的主键。*
+
+### model.fields
+
+`string[]` *数据表中的字段。*
+
+### model.searchable
+
+`string[]` *数据表中可用于查询的字段。* 
+
+这些字段将被用于调用 `model.getMany()` 并设置 `keywors` 时作为模糊查询的条件。
+
+### model.data
+
+`{ [field: string]: any }` *模型的真实数据。*
+
+### model.extra
+
+`readonly` `{ [field: string]: any }` *模型的额外数据。*
+
+当调用 `model.assign()` 时，那些没有在 `model.fields` 中定义的数据将会被存储到这个
+属性中，且它们也不会在插入获取更新数据时被使用。
+
+### model.isNew
+
+`readonly` `boolean` *判断当前模型是否是新的模型。*
+
+### model.throwNotFoundError
+
+`boolean` 如果为 `false`，那么当调用 `model.get()` 和 `model.all()` 失败时将不会
+抛出一个 `NotFoundError` 的错误，而仅仅只在 `get()` 时返回 `null`，在 `all()` 时
+返回 `[]` (空数组)。默认为 `true`。
 
 ### model.constructor()
 

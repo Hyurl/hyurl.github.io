@@ -23,7 +23,6 @@
     "jquery": "^3.3.1",
     "jquery.typein": "^0.1.0",
     "lodash": "^4.17.10",
-    "vue": "^2.5.16",
     "webium": "^0.3.7",
     "whatstpl": "^0.1.7"
   }

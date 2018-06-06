@@ -3,6 +3,13 @@
 
 * [The Model Class](#The-Model-Class)
     * [Events](#Events)
+    * [model.primary](#model_primary)
+    * [model.fields](#model_fields)
+    * [model.searchable](#model_searchable)
+    * [model.data](#model_data)
+    * [model.extra](#model_extra)
+    * [model.isNew](#model_isNew)
+    * [model.throwNotFoundError](model.throwNotFoundError)
     * [model.constructor()](#model_constructor)
     * [model.assign()](#model_assign)
     * [model.save()](#model_save)
@@ -52,6 +59,42 @@ for...of... loop, like `for(let { key, value } of model)`.
 
 All the listeners bound to these events accept a parameter, which is the 
 current Model instance.
+
+### model.primary
+
+`string` *Primary key of the table.*
+
+### model.fields
+
+`string[]` *Fields in the table.*
+
+### model.searchable
+
+`string[]` *Searchable fields in the table.* 
+
+These fields are used when calling `model.getMany()` and set `keywords` for 
+fuzzy query.
+
+### model.data
+
+`{ [field: string]: any }` *The real data of the model.*
+
+### model.extra
+
+`readonly` `{ [field: string]: any }` *Extra data of the model.*
+
+When calling `model.assign()`, those data which are not defined in the `model.fields` will be stored in this property, and they won't be used when 
+inserting or updating the model.
+
+### model.isNew
+
+`readonly` `boolean` *Whether the current model is new.*
+
+### model.throwNotFoundError
+
+`boolean` If `false`, then failed calling `model.get()` and `model.all()` will 
+not throw a `NotFoundError`, just return `null` on `get()` and `[]` on  
+`all()`. Default is `true`.
 
 ### model.constructor()
 
@@ -313,7 +356,8 @@ user.delete(1).then(user=>{
 
 - `get(id?: number): Promise<this>`
 
-This method will throw an error if no model was found.
+This method will throw an error if no model was found, unless you set 
+`model.throwNotFoundError` to `false`.
 
 ```javascript
 const { User } = require("modelar");
@@ -339,7 +383,8 @@ user.get(1).then(user=>{
 
 - `all(): Promise<this[]>`
 
-This method will throw an error if no model was found.
+This method will throw an error if no model was found, unless you set 
+`model.throwNotFoundError` to `false`.
 
 ```javascript
 const { User } = require("modelar");

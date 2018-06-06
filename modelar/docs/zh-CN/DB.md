@@ -3,6 +3,14 @@
 
 * [The DB Class](#The-DB-Class)
     * [事件](#事件)
+    * [db.command](#db_command)
+    * [db.sql](#db_sql)
+    * [db.bindings](#db_bindings)
+    * [db.insertId](#db_insertId)
+    * [db.affectedRows](#db_affectedRows)
+    * [db.dsn](#db_dsn)
+    * [db.config](#db_config)
+    * [db.data](#db_data)
     * [db.constructor()](#db_constructor)
     * [db.set()](#db_set)
     * [db.on()](#db_on)
@@ -39,6 +47,38 @@
 
 你可以使用 [DB.on()](#DB_on) 或者 [db.on()](#db_on) 来绑定事件监听函数到事件上，
 但是需要注意区分它们的不同表现。
+
+### db.command
+
+`string` *上一次执行的 SQL 命令。*
+
+### db.sql
+
+`string` *上一次执行的 SQL 语句。*
+
+### db.bindings
+
+`any[]` *上一次执行的 SQL 语句中绑定参数的数据。*
+
+### db.insertId
+
+`number` *上一次插入语句执行后返回的 ID。*
+
+### db.affectedRows
+
+`number` *一个数字，表示上一次执行的 SQL 语句影响的行数。*
+
+### db.dsn
+
+`string` *当前实例的数据源名称。*
+
+### db.config
+
+`DBConfig` *当前实例的数据库配置。*
+
+### db.data
+
+`any[]` *执行一条查询语句后取得的数据。*
 
 ### db.constructor()
 

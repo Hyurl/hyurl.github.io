@@ -3,6 +3,7 @@
 
 * [The User Class](#The-User-Class)
     * [Events](#Events)
+    * [User.loginable](#User_loginable)
     * [user.constructor()](#user_constructor)
     * [user.login()](#user_login)
     * [User.login()](#User_login)
@@ -21,6 +22,11 @@ class.
 ### Events
 
 - `login` Fired when a user logged in.
+
+### User.loginable
+
+`string[]` Setting the possible fields that can be used for calling 
+`user.login()` and passing the `user` field.
 
 ### user.constructor()
 

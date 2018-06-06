@@ -3,6 +3,7 @@
 
 * [The Query Class](#The-Query-Class)
     * [Events](#Events)
+    * [query.table](#query_table)
     * [query.constructor()](#query_constructor)
     * [query.select()](#query_select)
     * [query.from()](#query_table)
@@ -72,6 +73,10 @@ generate SQL statements and handle data in a more easier and efficient way.
 
 All the listeners bound to these events accept a parameter, which is the 
 current Query instance.
+
+### query.table
+
+`string` *The table that this query binds to.*
 
 ### query.constructor()
 

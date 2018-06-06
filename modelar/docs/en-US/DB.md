@@ -3,6 +3,14 @@
 
 * [The DB Class](#The-DB-Class)
     * [Events](#Events)
+    * [db.command](#db_command)
+    * [db.sql](#db_sql)
+    * [db.bindings](#db_bindings)
+    * [db.insertId](#db_insertId)
+    * [db.affectedRows](#db_affectedRows)
+    * [db.dsn](#db_dsn)
+    * [db.config](#db_config)
+    * [db.data](#db_data)
     * [db.constructor()](#db_constructor)
     * [db.set()](#db_set)
     * [db.on()](#db_on)
@@ -41,6 +49,39 @@ DB instance.
 
 You can either use [DB.on()](#DB_on) or [db.on()](#db_on) to bind event 
 listeners to events, but be aware of the difference they act.
+
+### db.command
+
+`string` *The last executed SQL command.*
+
+### db.sql
+
+`string` *The last executed SQL statement.*
+
+### db.bindings
+
+`any[]` *The binding data of the last executed SQL statement.*
+
+### db.insertId
+
+`number` *The ID returned by executing the last insert statement.*
+
+### db.affectedRows
+
+`number` *A number that represents how many records are affected by executing* 
+*the last SQL statement.*
+
+### db.dsn
+
+`string` *Data Source Name of the current instance.*
+
+### db.config
+
+`DBConfig` *Database configurations of the current instance.*
+
+### db.data
+
+`any[]` *The data fetched by executing a select statement.*
 
 ### db.constructor()
 

@@ -3,6 +3,7 @@
 
 * [The User Class](#The-User-Class)
     * [Events](#Events)
+    * [User.loginable](#User_loginable)
     * [user.constructor()](#user_constructor)
     * [user.login()](#user_login)
     * [User.login()](#User_login)
@@ -19,6 +20,12 @@
 ### 事件
 
 - `login` 当用户登录成功后触发。
+
+### User.loginable
+
+`string[]` 设置所有可能的字段，当调用 `user.login()` 并传递 `user` 字段时使用。
+
+### user.constructor()
 
 **signatures:**
 

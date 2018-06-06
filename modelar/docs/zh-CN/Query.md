@@ -3,6 +3,7 @@
 
 * [The Query Class](#The-Query-Class)
     * [事件](#事件)
+    * [query.table](#query_table)
     * [query.constructor()](#query_constructor)
     * [query.select()](#query_select)
     * [query.from()](#query_table)
@@ -59,6 +60,10 @@
 
 这个类提供了一大堆的方法，用来提供以面向对象的特性来产生 SQL 语句，并使用更简单和高效
 的方式来操作数据。
+
+### query.table
+
+`string` *当前查询所绑定的数据表。*
 
 
 ### 事件
