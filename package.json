@@ -5,7 +5,7 @@
   "description": "Github page of Hyurl",
   "main": "index.js",
   "scripts": {
-    "test": "node index"
+    "start": "node index"
   },
   "repository": {
     "type": "git",
@@ -18,11 +18,9 @@
   },
   "homepage": "https://github.com/hyurl/hyurl.github.io#readme",
   "dependencies": {
-    "@types/fs-extra": "^5.0.2",
-    "fs-extra": "^5.0.0",
     "jquery": "^3.3.1",
     "jquery.typein": "^0.1.0",
-    "lodash": "^4.17.10",
+    "serve-static": "^1.13.2",
     "webium": "^0.3.7",
     "whatstpl": "^0.1.7"
   }
