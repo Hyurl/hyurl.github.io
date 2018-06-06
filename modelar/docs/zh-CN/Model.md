@@ -105,8 +105,8 @@
 `ModelConfig` 接口包含：
 
 - `table：string` 模型实例所绑定的数据表名称。
-- `fields: string[]` 保存在一个数组中的数据表的字段名称。
 - `primary: string` 数据表的主键名称。
+- `fields: string[]` 保存在一个数组中的数据表的字段名称。
 - `searchable: string[]` 一个包含所有可用于搜索的字段的数组，它们可以在调用 
     `model.getMany()` 时用于模糊查询。
 

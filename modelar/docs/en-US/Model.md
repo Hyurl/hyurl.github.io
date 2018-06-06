@@ -109,8 +109,8 @@ not throw a `NotFoundError`, just return `null` on `get()` and `[]` on
 Interface `ModelConfig` includes:
 
 - `table: string` The table that the model binds to.
-- `fields: string[]` Fields in the model's table.
 - `primary: string` Primary key of the model's table.
+- `fields: string[]` Fields in the model's table.
 - `searchable?: string[]` Searchable fields in the model's table, they will be
     used when calling `model.getMany()` for vague searching.
 
