@@ -110,10 +110,25 @@ console.log(article.title);
 console.log(article.content);
 ```
 
+自 Modelar 3.1.0 版本起，提供了一种新的设置 `ModelConfig` 的方式，与其将它们传递到 
+`super()` 构造函数中，你可以将它们设置为属性。
+
+```javascript
+class Article extends Model {
+    constructor(data) {
+        super(data);
+        this.table = "users";
+        this.primary = "id"; // 必须先定义 'primary'，然后再定义 'fields'
+        this.fields = ["id", "title", "content"];
+        this.searchable = ["title", "content"];
+    }
+}
+```
+
 如果你使用 **TypeScript**, 你可以使用装饰器来定义模型类。
 
 ```typescript
-import { Model, User, field, primary, searchable, autoIncrement } from "modelar";
+import { Model, field, primary, searchable, autoIncrement } from "modelar";
 
 export class Article extends Model {
     table = "articles";

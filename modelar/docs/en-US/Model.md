@@ -114,11 +114,26 @@ console.log(article.title);
 console.log(article.content);
 ```
 
+Since Modelar 3.1.0, there is a new way to set `ModelConfig`, rather than put 
+them is the `super()` constructor, you can assign them as properties.
+
+```javascript
+class Article extends Model {
+    constructor(data) {
+        super(data);
+        this.table = "users";
+        this.primary = "id"; // must define 'primary' before 'fields'
+        this.fields = ["id", "title", "content"];
+        this.searchable = ["title", "content"];
+    }
+}
+```
+
 If you're using **TypeScript**, you can declare you model class with 
 **decorators**.
 
 ```typescript
-import { Model, User, field, primary, searchable, autoIncrement } from "modelar";
+import { Model, field, primary, searchable, autoIncrement } from "modelar";
 
 export class Article extends Model {
     table = "articles";
