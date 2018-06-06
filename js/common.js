@@ -210,7 +210,7 @@ whatstpl.Template.register("/layout.html", `
 @{ __contents }
 <footer>
     <p class="text-center">
-        <span id="copyright">©@{ year } Hyurl
+        <span id="copyright">©@{ year } hyurl
             <a href="http://nodejs.org/">Node.js</a> 6.0+.
         </span>
         <span id="license">Licensed under the
@@ -228,7 +228,7 @@ whatstpl.Template.register("/layout.html", `
 whatstpl.Template.register(`/components.html`, `
 <block name="fork-github" export>
     <div class="github-brand vivify fadeIn">
-        <a href="https://github.com/Hyurl/@{module}" target="_blank" class="btn btn-default">
+        <a href="https://github.com/hyurl/@{module}" target="_blank" class="btn btn-default">
             <img src="/svg/github.svg" alt=""> Fork Me on GitHub
         </a>
     </div>
