@@ -75,7 +75,7 @@ npm i sfn
 ### 启动服务器示例
 
 **SFN** 提供了一个简单的示例，因此你可以立马开启服务器并观察将会发生什么。首先，使用
-命令 `tsc` 便宜源代码（仅 TypeScript），然后输入这个命令：
+命令 `tsc` 编译源代码（仅 TypeScript），然后输入这个命令：
 
 ```sh
 node dist/index
