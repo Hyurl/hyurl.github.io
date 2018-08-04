@@ -82,7 +82,7 @@ export default class extends WebSocketController {
 
     /**
      * On client side:
-     *      socket.emit("event1", "Hello, World!", "Hi, sfn!");
+     *      socket.emit("event2", "Hello, World!", "Hi, sfn!");
      */
     @event("event2")
     event2(data1: any, data2: any, socket: WebSocket) {
@@ -173,7 +173,7 @@ export default class extends WebSocketController {
 你在代码中有任何这样的代码，那只会给你自己造成麻烦。
 
 ```typescript
-// These example is wrong and should be avoid.
+// This example is wrong and should be avoid.
 
 var obj = new WebSocket;
 

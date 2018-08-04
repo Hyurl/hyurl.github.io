@@ -241,7 +241,7 @@ instantiated, or check `instanceof`, if you have any of these code in your
 application, you just got yourself troubles.
 
 ```typescript
-// These example is wrong and should be avoid.
+// This example is wrong and should be avoid.
 
 var obj = new Request;
 

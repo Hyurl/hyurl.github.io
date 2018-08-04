@@ -229,7 +229,7 @@ export default class extends HttpController {
 检测，如果你在代码中有任何这样的代码，那只会给你自己造成麻烦。
 
 ```typescript
-// These example is wrong and should be avoid.
+// This example is wrong and should be avoid.
 
 var obj = new Request;
 

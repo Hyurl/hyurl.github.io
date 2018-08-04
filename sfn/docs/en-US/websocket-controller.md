@@ -89,7 +89,7 @@ export default class extends WebSocketController {
 
     /**
      * On client side:
-     *      socket.emit("event1", "Hello, World!", "Hi, sfn!");
+     *      socket.emit("event2", "Hello, World!", "Hi, sfn!");
      */
     @event("event2")
     event2(data1: any, data2: any, socket: WebSocket) {
@@ -187,7 +187,7 @@ check `instanceof`, if you have any of these code in your application, you
 just got yourself troubles.
 
 ```typescript
-// These example is wrong and should be avoid.
+// This example is wrong and should be avoid.
 
 var obj = new WebSocket;
 
