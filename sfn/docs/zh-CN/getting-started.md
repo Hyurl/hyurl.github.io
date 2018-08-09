@@ -9,8 +9,8 @@ npm init
 
 ### 安装 TypeScript
 
-**SFN** 是使用 **TypeScript** 编写的，因此你也应该使用它来编写你的代码，但这并不是
-必须的，后面我们会讲到这一点。
+**SFN** 是使用 [TypeScript](https://www.typescriptlang.org) 编写的，因此你也应该
+使用它来编写你的代码，但这并不是必须的，后面我们会讲到这一点。
 
 ```sh
 npm i -g typescript
@@ -62,6 +62,11 @@ npm i -g typescript
 
 你也可以简单地复制这个示例，它已经满足了大多数情况。如果 `tsconfig.json` 缺失，那么
 框架将会运行在纯 JavaScript 环境中。
+
+为了加快应用的运行，你可能需要修改 `compilerOptions.importHelpers` 选项为 `true`，
+并使用命令 `npm i tslib` 来安装必需的依赖。更多关于 
+[tsconfig.json](https://www.typescriptlang.org/docs/handbook/tsconfig-json.html)
+的信息，请查看其文档解释。
 
 ### 安装框架
 当你初始化完成项目之后，你现在可以安装 **SFN** 框架了，请使用下面地命令：

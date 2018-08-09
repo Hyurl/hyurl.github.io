@@ -11,8 +11,8 @@ to initiate your project, assume you have some knowledge of **npm** and have
 
 ### Install TypeScript
 
-**SFN** is written in **TypeScript**, which your own code should as well, 
-but it's not necessary, we will talk about that later.
+**SFN** is written in [TypeScript](https://www.typescriptlang.org), which your
+own code should as well, but it's not necessary, we will talk about that later.
 
 ```sh
 npm i -g typescript
@@ -64,6 +64,12 @@ To turn on TypeScript support of your project, just add a new file named
 
 Just copy this example, and it will be fine for most cases. If `tsconfig.json`
 is missing, the framework will run in pure JavaScript mode.
+
+To fasten you application, you should probably change 
+`compilerOptions.importHelpers` into `true`, and use the command 
+`npm i tslib` to install the required dependency. For more information about 
+[tsconfig.json](https://www.typescriptlang.org/docs/handbook/tsconfig-json.html),
+please refer to its documentation.
 
 ### Install Framework
 
