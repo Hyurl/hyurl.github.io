@@ -57,7 +57,7 @@ export default class extends HttpController {
     @route("/auth")
     auth(req: Request, res: Responce) {
         if (!req.auth) {
-            // req.auth() will lead you to HTTP basic authentication.
+            // res.auth() will lead you to HTTP basic authentication.
             return res.auth();
         } else {
             return "User has been authorized.";
