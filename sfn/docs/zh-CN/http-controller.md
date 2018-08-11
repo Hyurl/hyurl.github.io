@@ -170,7 +170,94 @@ exports.default = class extends HttpController {
 }
 ```
 
-### 构造函数
+## 处理异步操作
+
+当处理异步操作时，你可以使用修饰符 `async`，就像下面这样：
+
+```typescript
+import { HttpController, Request, Response, route } from "sfn";
+
+export default class extends HttpController {
+    @route.get("/")
+    async index(req: Request, res: Response) {
+        // you can use `await` here
+    }
+}
+```
+
+### 在 JavaScript 中
+
+无论你是使用 TypeScript 或者 JavaScript 编程，只要你的 NodeJS 版本高于 `7.6`，你都
+总是可以使用 `async/await` 修饰符。但如果你是在版低于 `7.6` 的 NodeJS 环境中编程，
+你可以使用另一个兼容的方案来实现这个功能。
+
+编辑你的 `config.js` 文件，设置 `config.awaitGenerator` 为 `true`，然后你就可以
+使用迭代器函数和 `yield` 来处理异步操作了，就像这样：
+
+```javascript
+// config.js
+exports.default = {
+    // ...
+    awaitGenerator: true,
+    // ...
+};
+```
+
+```javascript
+const { HttpController } = require("sfn");
+
+exports.default = class extends HttpController {
+    /**
+     * @route GET /
+     */
+    * index() {
+        // you can use `yield` here
+    }
+}
+```
+
+### 处理非 Promise 过程
+
+如果你的代码中使用的某些异步的函数、第三方包不支持 `Promise`，那么你就不能使用 
+`await` 或者 `yield` 来处理它们，要处理这些异步的操作，你可以使用 `util` 模块中的 
+`promisify()` 函数来将其包装成 Promise（NodeJS 版本高于 `8.0`），或者直接使用它们，
+然后在你想要返回数据给前端的地方，直接调用 `res.send()` 方法即可。请看下面的示例：
+
+```typescript
+import { HttpController, Request, Response, route } from "sfn";
+import * as fs from "fs";
+import * as util from "util";
+
+export default class extends HttpController {
+    filename = "somefile";
+
+    @route.get("/check-file")
+    checkFile() {
+        fs.exists(this.filename, exists => {
+            if (exists) {
+                res.send(this.success("File exists!"));
+            } else {
+                res.send(this.error("File doesn't exist!"));
+            }
+        });
+    }
+
+    @route.get("/check-file-promisify")
+    async checkFilePromisify() {
+        // require NodeJs higher than 8.0
+        var fileExists = util.promisify(fs.exists),
+            exists = await fileExists(this.filename);
+
+        if (exists) {
+            return this.success("File exists!");
+        } else {
+            return this.error("File doesn't exist!");
+        }
+    }
+}
+```
+
+## 构造函数
 
 有些时候你可能想要在真正的方法被调用前做一些事情，你可能想要进行一些额外的配置，在类被
 实例化前，你想要自定义类的 `constructor`。就像下面这样：
@@ -192,7 +279,7 @@ export default class extends HttpController {
 你所需要做的，就是传递第三个参数 `next` 到 `constructor()` 中，然后在你准备好调用
 实际方法时，调用 `next(this)`。
 
-#### 读取文件的示例
+### 读取文件的示例
 
 ```typescript
 import * as fs from "fs";

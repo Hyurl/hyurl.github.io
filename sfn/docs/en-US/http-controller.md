@@ -177,7 +177,99 @@ exports.default = class extends HttpController {
 }
 ```
 
-### The constructor
+## Handle Asynchronous Operations
+
+When dealing with asynchronous operations, you can define the method with 
+modifier `async`, just like the following:
+
+```typescript
+import { HttpController, Request, Response, route } from "sfn";
+
+export default class extends HttpController {
+    @route.get("/")
+    async index(req: Request, res: Response) {
+        // you can use `await` here
+    }
+}
+```
+
+### In JavaScript
+
+Either you're coding in TypeScript or JavaScript, if only you NodeJS version 
+is higher than `7.6`, you can always use the `async/await` modifiers. But if 
+you're coding in JavaScript and NodeJS version is lower than `7.6`, you can 
+use another compatible approach to do so.
+
+Edit your `config.js` file, set `config.awaitGenerator` to `true`, and then 
+you can use the `GeneratorFunction` with `yield` to handle asynchronous 
+actions, just like this:
+
+```javascript
+// config.js
+exports.default = {
+    // ...
+    awaitGenerator: true,
+    // ...
+};
+```
+
+```javascript
+const { HttpController } = require("sfn");
+
+exports.default = class extends HttpController {
+    /**
+     * @route GET /
+     */
+    * index() {
+        // you can use `yield` here
+    }
+}
+```
+
+### Handle Non-Promise Procedures
+
+If your code includes some asynchronous functions, third-party modules that 
+doesn't support `Promise`, then you can't use `await` or `yield` to handle 
+them, to handle those asynchronous operations, you can either use the 
+`promisify()` method from `util` module to wrap them (NodeJS version higher 
+than `8.0`), or use them directly, and wherever you want to send data to 
+front-end, just call `res.send()`. Look this example:
+
+```typescript
+import { HttpController, Request, Response, route } from "sfn";
+import * as fs from "fs";
+import * as util from "util";
+
+export default class extends HttpController {
+    filename = "somefile";
+
+    @route.get("/check-file")
+    checkFile() {
+        fs.exists(this.filename, exists => {
+            if (exists) {
+                res.send(this.success("File exists!"));
+            } else {
+                res.send(this.error("File doesn't exist!"));
+            }
+        });
+    }
+
+    @route.get("/check-file-promisify")
+    async checkFilePromisify() {
+        // require NodeJs higher than 8.0
+        var fileExists = util.promisify(fs.exists),
+            exists = await fileExists(this.filename);
+
+        if (exists) {
+            return this.success("File exists!");
+        } else {
+            return this.error("File doesn't exist!");
+        }
+    }
+}
+```
+
+## The Constructor
 
 Some times you may want to do something before the actual method is called, 
 you want to initiate some configurations before the class is instantiated, you
@@ -201,7 +293,7 @@ JavaScript will not allow you define an `async constructor()`, but don't worry,
 third parameter `next` to the `constructor()`, and calling `next(this)` when 
 you're ready to call the actual method.
 
-#### Example of reading a file
+### Example of reading a file
 
 ```typescript
 import * as fs from "fs";
