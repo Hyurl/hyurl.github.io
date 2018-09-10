@@ -1,3 +1,4 @@
+<!-- title: 缓存 -->
 # 基本概念
 
 [sfn-cache](https://github.com/hyurl/sfn-cache) 是一个非常简单的基于 Redis 的

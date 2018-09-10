@@ -133,6 +133,9 @@ query.select("id", "name", "email").from("users");
 
 **signatures:**
 
+Since version 3.1.5, this method is no longer recommended, use the much short 
+way of tag `i` with `tagged template` string instead.
+
 - `field(name: string)`
 
 ```javascript
@@ -140,6 +143,10 @@ var query = new Query("users", "articles");
 
 // query.field() will prevent the given name from escaping as a normal value.
 query.where("articles.user_id", query.field("user.id")).where("user.id", 1);
+
+// After modelar 3.1.5, you can do this via a short form.
+const { i } = require("modelar");
+query.where("articles.user_id", i`user.id`).where("user.id", 1);
 ```
 
 ### query.where()
@@ -453,7 +460,7 @@ query.groupBy(["name", "email"]); // Pass an array.
 
 **signatures:**
 
-- `having(raw: string): this`
+- `having(clause: string | DB.Statement): this`
 
 ```javascript
 var query = new Query("users");

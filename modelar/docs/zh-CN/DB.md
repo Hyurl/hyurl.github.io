@@ -250,8 +250,9 @@ var db2 = (new DB).use(db);
 
 **签名：**
 
-- `query(sql: string, bindings?: any[]): Promise<this>`
 - `query(sql: string, ...bindings: any[]): Promise<this>`
+- `query(sql: string, bindings?: any[]): Promise<this>`
+- `query(sql: DB.Statement): Promise<this>` (新增与 3.1.5)
 
 这个方法是一个通用的 API，用来执行 SQL 语句，并以兼容的方式来适配所有 Modelar 支持的
 数据库，因此当你调用这个方法的时候，务必始终使用 `?` 作为占位符，然后把值存放在
@@ -299,6 +300,21 @@ db.query("delete from users where `id` = ?", 1).then(db=>{
     console.log(db.affectedRows + " rows were deleted.");
 }).catch(err=>{
     console.log(err);
+});
+```
+
+`DB.Statement` 是一个通过 ES6 `tagged template` 字符串产生的对象，你可以通过 `s` 
+标签来产生这个对象，并且通过 `i` （用于产生 `DB.Identifier` 对象） 标签来组织 SQL 
+语句。
+
+```javascript
+const { DB, s, i } = require("modelar");
+
+var db = new DB();
+
+db.query(s`select * from ${i`users`} where ${i`id`} = ${1}`).then(() => {
+    console.log(db.sql); // => select * from `users` where `id` = ?
+    console.log(db.bindings); // => [1]
 });
 ```
 

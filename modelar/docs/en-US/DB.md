@@ -268,8 +268,9 @@ speeding up the program.
 
 **signatures:**
 
-- `query(sql: string, bindings?: any[]): Promise<this>`
 - `query(sql: string, ...bindings: any[]): Promise<this>`
+- `query(sql: string, bindings?: any[]): Promise<this>`
+- `query(sql: DB.Statement): Promise<this>` (Added since 3.1.5)
 
 This method is a common API to execute SQL statements in a compatible way for
 all database drivers that Modelar supports, so when you are calling this 
@@ -319,6 +320,21 @@ db.query("delete from users where `id` = ?", 1).then(db=>{
     console.log(db.affectedRows + " rows were deleted.");
 }).catch(err=>{
     console.log(err);
+});
+```
+
+`DB.Statement` is an object produced by a ES6 `tagged template` string, you can 
+use tag `s` to produce it, and use tag `i` (used to produce a `DB.Identifier` 
+instance) to organize the SQL statement.
+
+```javascript
+const { DB, s, i } = require("modelar");
+
+var db = new DB();
+
+db.query(s`select * from ${i`users`} where ${i`id`} = ${1}`).then(() => {
+    console.log(db.sql); // => select * from `users` where `id` = ?
+    console.log(db.bindings); // => [1]
 });
 ```
 

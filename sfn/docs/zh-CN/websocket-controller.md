@@ -1,3 +1,4 @@
+<!-- title: WebSocket 控制器 -->
 # 基本概念
 
 `WebSocketController` 处理来自 [socket.io](https://socket.io/) 客户端的消息。

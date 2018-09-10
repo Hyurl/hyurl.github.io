@@ -60,7 +60,13 @@ function onRendered() {
 
     //Render markdown codes to be highlighted.
     renderer.code = function (code, lang, escaped) {
-        return `<pre><code class="lang-${lang} hljs">${hljs.highlight(lang, code, true).value}</code></pre>`;
+        var value = "";
+        try {
+            value = hljs.highlight(lang, code, true).value;
+        } catch (e) {
+            value = hljs.highlightAuto(code).value;
+        }
+        return `<pre><code class="lang-${lang} hljs">${value}</code></pre>`;
     };
 
     // toggle navbar

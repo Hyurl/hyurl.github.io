@@ -136,11 +136,18 @@ query.select("id", "name", "email").from("users");
 
 - `field(name: string)`
 
+自 3.1.5 版本起，这个方法将不再建议使用，而是建议使用更为简短的 `i` 标签和 ES6 
+`tagged template` 字符串。
+
 ```javascript
 var query = new Query("users", "articles");
 
 // query.field() 会防止字段名称被当作普通的值进行转义
 query.where("articles.user_id", query.field("user.id")).where("user.id", 1);
+
+// 在 modelar 3.1.5 后，你可以使用简短的方式来实现
+const { i } = require("modelar");
+query.where("articles.user_id", i`user.id`).where("user.id", 1);
 ```
 
 ### query.where()
@@ -444,7 +451,7 @@ query.groupBy(["name", "email"]); // 传递一个数组。
 
 **签名：**
 
-- `having(raw: string): this`
+- `having(clause: string | DB.Statement): this`
 
 ```javascript
 var query = new Query("users");

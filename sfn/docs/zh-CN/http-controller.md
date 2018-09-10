@@ -1,3 +1,4 @@
+<!-- title: HTTP 控制器 -->
 # 基本概念
 
 `HttpController` 处理来自 HTTP 客户端地请求。

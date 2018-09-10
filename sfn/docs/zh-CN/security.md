@@ -1,3 +1,4 @@
+<!-- title: 安全 -->
 # 授权
 
 `HttpController` 和 `WebSocketController` 都提供了一个简单地方式来控制用户的权限。
