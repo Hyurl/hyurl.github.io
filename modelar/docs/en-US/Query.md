@@ -824,19 +824,17 @@ Interface `PaginatedRecords` includes:
 - `total: number` A number of all record counts.
 - `data: any[]` An array that carries all fetched data.
 
+**Notes:** After Modelar 3.2.0, this interface extends the `Array`, so you can 
+use all supported method of Array to manipulate it, e.g. iterating inside 
+`for...of...` loop, invoking `forEach()`, `map()`, etc. Before that, it's just 
+an object, you can access its `data` property instead. For compatible reasons, 
+you can still access `data` after 3.2.0.
+
 ```javascript
 var query = Query("users");
 
 query.where("id", ">", 0).paginate(1, 15).then(info=>{
     console.log(info);
-    // It will be like this:
-    // {
-    //     page: 1,
-    //     limit: 15,
-    //     pages: 2,
-    //     total: 24,
-    //     data: [...]
-    // }
 }).catch(err=>{
     console.log(err);
 });

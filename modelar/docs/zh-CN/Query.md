@@ -811,19 +811,16 @@ query.chunk(10, data=>{
 - `total: number` 所有的记录数量。
 - `data: any[]` 一个携带所有数据的数组。
 
+**备注：** 在 Modelar 3.2.0 之后，这个接口继承于数组 `Array`，因此你可以使用所有数组所
+支持的方式去处理它，例如在 `for...of...` 中遍历，使用 `forEach()`, `map()` 等方法。
+而在此之前，它则是一个 object 对象，你可以访问它的 `data` 属性来获取数据。为了兼容，
+在 3.2.0 之后你依旧可以访问 `data` 属性。
+
 ```javascript
 var query = Query("users");
 
 query.where("id", ">", 0).paginate(1, 15).then(info=>{
     console.log(info);
-    // 它将会是像这样的：
-    // {
-    //     page: 1,
-    //     limit: 15,
-    //     pages: 2,
-    //     total: 24,
-    //     data: [...]
-    // }
 }).catch(err=>{
     console.log(err);
 });

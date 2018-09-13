@@ -433,6 +433,12 @@ Interface `PaginatedModels` includes:
 - `keywords?: string | string[]` Keywords for vague searching.
 - `data: Model[]` An array that carries all fetched models.
 
+**Notes:** After Modelar 3.2.0, this interface extends the `Array`, so you can 
+use all supported method of Array to manipulate it, e.g. iterating inside 
+`for...of...` loop, invoking `forEach()`, `map()`, etc. Before that, it's just 
+an object, you can access its `data` property instead. For compatible reasons, 
+you can still access `data` after 3.2.0.
+
 ```javascript
 const { User } = require("modelar");
 

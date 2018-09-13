@@ -420,6 +420,11 @@ user.all().then(users=>{
 - `keywords?: string | string[]` 用于模糊查询的关键词。
 - `data: Model[]` 一个携带着所有获取到的模型的数组。
 
+**备注：** 在 Modelar 3.2.0 之后，这个接口继承于数组 `Array`，因此你可以使用所有数组所
+支持的方式去处理它，例如在 `for...of...` 中遍历，使用 `forEach()`, `map()` 等方法。
+而在此之前，它则是一个 object 对象，你可以访问它的 `data` 属性来获取数据。为了兼容，
+在 3.2.0 之后你依旧可以访问 `data` 属性。
+
 ```javascript
 const { User } = require("modelar");
 
